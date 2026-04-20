@@ -36,7 +36,7 @@ def parse_ine_design(design_file):
         df_d.columns = [str(c).strip().lower() for c in df_d.columns]
         df_d = df_d.dropna(how="all")
         col_map = {}
-        for col in df_d.columns:
+        for col in df_d.columns: #Localiza por cada fila del e
             if any(w in col for w in ["nombre", "variable", "name"]):
                 col_map["name"] = col
             elif any(w in col for w in ["inicio", "start", "pos_ini"]):
@@ -90,10 +90,10 @@ def parse_ine_microdata(txt_file, variables):
             for var in variables:
                 record[var["name"]] = line[var["start"]:var["end"]].strip() if var["end"] <= len(line) else ""
             records.append(record)
-        df = pd.DataFrame(records)
-        for col in df.columns:
+        df = pd.DataFrame(records) # esos datos que se guardan, se convierten en una tabla real.
+        for col in df.columns:# Se revisa una por una todas las columnas 
             try:
-                df[col] = pd.to_numeric(df[col])
+                df[col] = pd.to_numeric(df[col]) #con esto convertimos todos los "numeros" en numerico , para luego poder trabajar con ellos 
             except Exception:
                 pass
         return df, None
@@ -106,7 +106,7 @@ def auto_load(files):
         return None, None, None, None
 
     ext_map = {}
-    for f in files:
+    for f in files: #guarda en una "libreta" las extensiones de cada fichero para saber los que le hemos pasado y hacer las conversiones respectivas en cada uno 
         ext = f.name.rsplit(".", 1)[-1].lower() if "." in f.name else "sin_ext"
         ext_map[ext] = f
 
@@ -121,7 +121,8 @@ def auto_load(files):
         except Exception as e:
             return None, None, None, f"Error leyendo CSV: {e}"
 
-    if "xlsx" in ext_map and len(files) == 1:
+    if "xlsx" in ext_map and len(files) == 1: #Si lo que se sube es solo un fichero, se entiende que la tabla con lod datos esta dentro y lo lee
+        # si hay mas de un ficheo a parte de este, es porque es el mapa de como estan guardados los datos en el otro fichero y no lo trata en este apartado
         f = ext_map["xlsx"]
         try:
             df = pd.read_excel(f)
@@ -148,39 +149,8 @@ def auto_load(files):
             return df, f"XML · {f.name}", f"XML directo (codificación: {enc})", None
         except Exception as e:
             return None, None, None, f"Error leyendo XML: {e}"
+    #Si llega aqui es porque hay dos ficheros subidos.
+    #ascii_exts = ["dat", "txt", "asc", "mic", "sin_ext"]
+    #ascii_file = next((ext_map[e] for e in ascii_exts if e in ext_map), None)
 
-    ascii_exts = ["dat", "txt", "asc", "mic", "sin_ext"]
-    ascii_file = next((ext_map[e] for e in ascii_exts if e in ext_map), None)
-
-    if ascii_file:
-        content = ascii_file.read()
-        text, enc = decode_bytes(content)
-        if text is None:
-            return None, None, None, "No se pudo decodificar el fichero ASCII."
-
-        design_file = ext_map.get("xlsx") or ext_map.get("xls")
-
-        if design_file:
-            variables, err = parse_ine_design(design_file)
-            if err:
-                return None, None, None, f"Error en diseño de registro: {err}"
-            ascii_file.seek(0)
-            df, err2 = parse_ine_microdata(ascii_file, variables)
-            if err2:
-                return None, None, None, err2
-            return df, f"Microdatos · {ascii_file.name}", f"ASCII ancho fijo + diseño Excel ({len(variables)} variables, codificación: {enc})", None
-        else:
-            sep, sep_nombre = detect_separator(text)
-            if sep:
-                try:
-                    df = pd.read_csv(io.StringIO(text), sep=sep, engine="python")
-                    return df, f"Microdatos · {ascii_file.name}", f"ASCII con separador '{sep_nombre}' detectado (codificación: {enc})", None
-                except Exception as e:
-                    return None, None, None, f"Error: {e}"
-            else:
-                return None, None, None, (
-                    "⚠️ El fichero parece ser ASCII de ancho fijo sin separadores.\n"
-                    "Sube también el **Excel de diseño de registro** junto a este fichero para poder convertirlo."
-                )
-
-    return None, None, None, "Formato no reconocido. Formatos soportados: CSV, JSON, XML, Excel, DAT/TXT/ASC (con o sin diseño de registro)."
+    
