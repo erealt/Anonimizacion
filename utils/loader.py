@@ -150,7 +150,42 @@ def auto_load(files):
         except Exception as e:
             return None, None, None, f"Error leyendo XML: {e}"
     #Si llega aqui es porque hay dos ficheros subidos.
-    #ascii_exts = ["dat", "txt", "asc", "mic", "sin_ext"]
-    #ascii_file = next((ext_map[e] for e in ascii_exts if e in ext_map), None)
+    ascii_exts = ["dat", "txt", "asc", "mic", "sin_ext"]
+    ascii_file = next((ext_map[e] for e in ascii_exts if e in ext_map), None)
 
-    
+
+    if ascii_file:
+        content = ascii_file.read()
+        text, enc = decode_bytes(content)
+        if text is None:
+            return None, None, None, "No se pudo decodificar el fichero ASCII."
+
+        design_file = ext_map.get("xlsx") or ext_map.get("xls")
+
+        if design_file:
+            variables, err = parse_ine_design(design_file)
+            if err:
+                return None, None, None, f"Error en diseño de registro: {err}"
+            ascii_file.seek(0)
+
+            df, err2 = parse_ine_microdata(ascii_file, variables)
+
+            if err2:
+                return None, None, None, err2
+            return df, f"Microdatos · {ascii_file.name}", f"ASCII ancho fijo + diseño Excel ({len(variables)} variables, codificación: {enc})", None
+
+        else:
+            sep, sep_nombre = detect_separator(text)
+            if sep:
+                try:
+                    df = pd.read_csv(io.StringIO(text), sep=sep, engine="python")
+                    return df, f"Microdatos · {ascii_file.name}", f"ASCII con separador '{sep_nombre}' detectado (codificación: {enc})", None
+                except Exception as e:
+                    return None, None, None, f"Error: {e}"
+            else:
+                return None, None, None, (
+                    "⚠️ El fichero parece ser ASCII de ancho fijo sin separadores.\n"
+                    "Sube también el **Excel de diseño de registro** junto a este fichero para poder convertirlo."
+                )
+
+    return None, None, None, "Formato no reconocido. Formatos soportados: CSV, JSON, XML, Excel, DAT/TXT/ASC (con o sin diseño de registro)."

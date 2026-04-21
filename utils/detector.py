@@ -1,3 +1,5 @@
+#Aqui lo que hacemos es definir internamente los QI y los atributos sensibles , aunque luego se puedan modificar manualmente
+
 QI_KEYWORDS = [
     "edad", "age", "sexo", "sex", "genero", "cp", "postal", "municipio",
     "provincia", "region", "comunidad", "pais", "nacionalidad", "estudios",
