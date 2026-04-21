@@ -29,6 +29,7 @@ def render():
         if error:
             st.error(f"❌ {error}")
         else:
+            
             st.success(f"✅ **{len(df_loaded)} registros · {len(df_loaded.columns)} columnas**")
             st.markdown(f"""
             <div class='info-box'>

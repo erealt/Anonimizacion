@@ -4,7 +4,7 @@ from utils.styles import CSS
 from tabs import  tab_import
 
 st.set_page_config(
-    page_title="MaskIt",
+    page_title="Anonimización",
     page_icon="🔒",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -43,7 +43,7 @@ sensitive_col = st.session_state.get("sensitive_col", "")
 source        = st.session_state.get("source", "")
 
 
-st.markdown("# 🔒 MaskIt")
+st.markdown("# 🔒 Anonimización")
 st.markdown(
     "<p style='color:#6b7280;margin-top:-1rem;margin-bottom:2rem'>"
     "Prototipo de anonimización y evaluación de riesgo residual de reidentificación</p>",
@@ -61,3 +61,5 @@ tab0, tab1, tab2, tab3, tab4 = st.tabs([
 with tab0:
     tab_import.render()
 
+# with tab1:
+#     tab_convertidor.render()

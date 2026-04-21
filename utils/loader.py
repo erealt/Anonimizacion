@@ -99,93 +99,194 @@ def parse_ine_microdata(txt_file, variables):
         return df, None
     except Exception as e:
         return None, f"Error parseando microdatos: {e}"
+def is_design_file(f):
+    ext = f.name.rsplit(".", 1)[-1].lower() if "." in f.name else ""
+    return ext in ["xlsx", "xls", "ods"]
 
+def is_data_file(f):
+    ext = f.name.rsplit(".", 1)[-1].lower() if "." in f.name else ""
+    return ext in ["dat", "txt", "asc", "mic", "csv", "sin_ext"]
 
 def auto_load(files):
     if not files:
         return None, None, None, None
 
-    ext_map = {}
-    for f in files: #guarda en una "libreta" las extensiones de cada fichero para saber los que le hemos pasado y hacer las conversiones respectivas en cada uno 
-        ext = f.name.rsplit(".", 1)[-1].lower() if "." in f.name else "sin_ext"
-        ext_map[ext] = f
+    # ─── UN SOLO FICHERO ────────────────────────────────────────────
+    if len(files) == 1:
+        return _load_single(files[0])
 
-    if "csv" in ext_map:
-        f = ext_map["csv"]
+    # ─── DOS FICHEROS ───────────────────────────────────────────────
+    if len(files) == 2:
+        f1, f2 = files[0], files[1]
+
+        d1 = is_design_file(f1)
+        d2 = is_design_file(f2)
+
+        # Caso claro: uno es diseño y el otro no
+        if d1 and not d2:
+            design_file, data_file = f1, f2
+        elif d2 and not d1:
+            design_file, data_file = f2, f1
+
+        # Ambos parecen diseño o ninguno → intentar por contenido
+        else:
+            t1 = is_data_file(f1)
+            t2 = is_data_file(f2)
+
+            if t1 and not t2:
+                data_file, design_file = f1, f2
+            elif t2 and not t1:
+                data_file, design_file = f2, f1
+            else:
+                return None, None, None, (
+                    "⚠️ Se han subido dos ficheros pero no se ha podido "
+                    "determinar cuál contiene los datos y cuál el diseño. "
+                    "Asegúrate de que el fichero de diseño contiene columnas "
+                    "como 'nombre', 'inicio', 'fin' o 'longitud'."
+                )
+
+        return _load_with_design(data_file, design_file)
+
+    # ─── MÁS DE DOS FICHEROS ────────────────────────────────────────
+    return None, None, None, (
+        "⚠️ Se han subido más de dos ficheros. "
+        "Sube únicamente el fichero de datos y, opcionalmente, "
+        "el fichero de diseño de registro."
+    )
+
+
+def _load_single(f):
+    """Carga un único fichero detectando su formato."""
+    ext = f.name.rsplit(".", 1)[-1].lower() if "." in f.name else "sin_ext" #mira la extension del fichero
+
+    if ext == "csv":
         try:
             content = f.read()
             text, enc = decode_bytes(content)
             sep, sep_nombre = detect_separator(text)
             df = pd.read_csv(io.StringIO(text), sep=sep or ",", engine="python")
-            return df, f"CSV · {f.name}", f"CSV (separador: {sep_nombre or 'coma'}, codificación: {enc})", None
+            return df, f"CSV · {f.name}", \
+                   f"CSV (separador: {sep_nombre or 'coma'}, codificación: {enc})", None
         except Exception as e:
             return None, None, None, f"Error leyendo CSV: {e}"
 
-    if "xlsx" in ext_map and len(files) == 1: #Si lo que se sube es solo un fichero, se entiende que la tabla con lod datos esta dentro y lo lee
-        # si hay mas de un ficheo a parte de este, es porque es el mapa de como estan guardados los datos en el otro fichero y no lo trata en este apartado
-        f = ext_map["xlsx"]
+    if ext in ("xlsx", "xls"):
         try:
             df = pd.read_excel(f)
             return df, f"Excel · {f.name}", "Excel tabular directo", None
         except Exception as e:
             return None, None, None, f"Error leyendo Excel: {e}"
 
-    if "json" in ext_map:
-        f = ext_map["json"]
+    if ext == "json":
         try:
             content = f.read()
             text, enc = decode_bytes(content)
             df = pd.read_json(io.StringIO(text))
-            return df, f"JSON · {f.name}", f"JSON directo (codificación: {enc})", None
+            return df, f"JSON · {f.name}", \
+                   f"JSON directo (codificación: {enc})", None
         except Exception as e:
             return None, None, None, f"Error leyendo JSON: {e}"
 
-    if "xml" in ext_map:
-        f = ext_map["xml"]
+    if ext == "xml":
         try:
             content = f.read()
             text, enc = decode_bytes(content)
             df = pd.read_xml(io.StringIO(text))
-            return df, f"XML · {f.name}", f"XML directo (codificación: {enc})", None
+            return df, f"XML · {f.name}", \
+                   f"XML directo (codificación: {enc})", None
         except Exception as e:
             return None, None, None, f"Error leyendo XML: {e}"
-    #Si llega aqui es porque hay dos ficheros subidos.
+
+    # ASCII ancho fijo sin diseño
     ascii_exts = ["dat", "txt", "asc", "mic", "sin_ext"]
-    ascii_file = next((ext_map[e] for e in ascii_exts if e in ext_map), None)
-
-
-    if ascii_file:
-        content = ascii_file.read()
-        text, enc = decode_bytes(content)
-        if text is None:
-            return None, None, None, "No se pudo decodificar el fichero ASCII."
-
-        design_file = ext_map.get("xlsx") or ext_map.get("xls")
-
-        if design_file:
-            variables, err = parse_ine_design(design_file)
-            if err:
-                return None, None, None, f"Error en diseño de registro: {err}"
-            ascii_file.seek(0)
-
-            df, err2 = parse_ine_microdata(ascii_file, variables)
-
-            if err2:
-                return None, None, None, err2
-            return df, f"Microdatos · {ascii_file.name}", f"ASCII ancho fijo + diseño Excel ({len(variables)} variables, codificación: {enc})", None
-
-        else:
+    if ext in ascii_exts:
+        try:
+            content = f.read()
+            text, enc = decode_bytes(content)
+            if text is None:
+                return None, None, None, "No se pudo decodificar el fichero."
             sep, sep_nombre = detect_separator(text)
             if sep:
-                try:
-                    df = pd.read_csv(io.StringIO(text), sep=sep, engine="python")
-                    return df, f"Microdatos · {ascii_file.name}", f"ASCII con separador '{sep_nombre}' detectado (codificación: {enc})", None
-                except Exception as e:
-                    return None, None, None, f"Error: {e}"
+                df = pd.read_csv(io.StringIO(text), sep=sep, engine="python")
+                return df, f"Microdatos · {f.name}", \
+                       f"ASCII con separador '{sep_nombre}' (codificación: {enc})", None
             else:
                 return None, None, None, (
-                    "⚠️ El fichero parece ser ASCII de ancho fijo sin separadores.\n"
-                    "Sube también el **Excel de diseño de registro** junto a este fichero para poder convertirlo."
+                    "⚠️ El fichero parece ser ASCII de ancho fijo sin separadores. "
+                    "Sube también el fichero de diseño de registro junto a este."
                 )
+        except Exception as e:
+            return None, None, None, f"Error: {e}"
 
-    return None, None, None, "Formato no reconocido. Formatos soportados: CSV, JSON, XML, Excel, DAT/TXT/ASC (con o sin diseño de registro)."
+    return None, None, None, (
+        "Formato no reconocido. Formatos soportados: "
+        "CSV, JSON, XML, Excel, DAT/TXT/ASC."
+    )
+
+
+def _load_with_design(data_file, design_file):
+    """Carga datos usando un fichero de diseño y traduce los nombres de las columnas."""
+    try:
+        # 1. Parsear el diseño (el mapa)
+        design_file.seek(0)
+        variables, err = parse_ine_design(design_file) # extrae una lista llamada variable, donde contiene el codigo de cada columna y su descripcion real
+        if err:
+            return None, None, None, f"Error en diseño de registro: {err}"
+
+        ext = data_file.name.rsplit(".", 1)[-1].lower() if "." in data_file.name else ""
+
+        # 2. Cargar los datos (el cuerpo) según su formato
+        if ext in ("xlsx", "xls"):
+            data_file.seek(0)
+            try:
+                df = pd.read_excel(data_file)
+                metodo = f"Excel tabular con diseño ({len(variables)} variables)"
+            except Exception as e:
+                return None, None, None, f"Error leyendo datos Excel: {e}"
+                
+        else:
+            data_file.seek(0)
+            content = data_file.read()
+            text, enc = decode_bytes(content)
+            if text is None:
+                return None, None, None, "No se pudo decodificar el fichero de datos."
+
+            sep, sep_nombre = detect_separator(text)
+            if sep:
+                df = pd.read_csv(io.StringIO(text), sep=sep, engine="python")
+                metodo = f"ASCII separado ('{sep_nombre}') con diseño ({len(variables)} vars, cod: {enc})"
+            else:
+                data_file.seek(0)
+                df, err2 = parse_ine_microdata(data_file, variables)
+                if err2:
+                    return None, None, None, err2
+                metodo = f"ASCII ancho fijo + diseño ({len(variables)} vars, cod: {enc})"
+
+        
+        rename_map = {}
+        nombres_usados = set()
+        for var in variables:
+            codigo = var["name"]
+            # Cogemos la descripción, si la hay
+            descripcion = var.get("description", "") 
+            
+            if descripcion and str(descripcion).lower() not in ["nan", ""]:
+                # Limpiamos el texto: quitamos espacios sobrantes y lo cortamos si es larguísimo
+                descripcion_limpia = str(descripcion)[:60].strip()
+
+                if descripcion_limpia in nombres_usados:
+                    descripcion_limpia = f"{descripcion_limpia} ({codigo})"
+                
+                nombres_usados.add(descripcion_limpia)
+                rename_map[codigo] = descripcion_limpia
+        
+       
+        if rename_map:
+            df = df.rename(columns=rename_map)
+     
+
+        # 4. Devolvemos la tabla ya procesada y con nombres bonitos
+        return df, f"Microdatos · {data_file.name}", metodo, None
+
+    except Exception as e:
+        return None, None, None, f"Error procesando ficheros: {e}"
