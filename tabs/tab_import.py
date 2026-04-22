@@ -36,6 +36,7 @@ def render():
             🔍 <strong>Método de carga:</strong> {metodo}
             </div>""", unsafe_allow_html=True)
 
+            primera_carga = "df" not in st.session_state
             st.session_state["df"] = df_cargado
             st.session_state["fuente"] = etiqueta_fuente
             qi_automatico, sensible_automatico = sugerir_qi_y_sensibles(df_cargado)
@@ -83,6 +84,11 @@ def render():
             st.session_state["columnas_qi"] = qi_seleccionado
             st.session_state["columna_sensible"] = sensible_seleccionado
             st.info("✅ Configuración guardada. Continúa en las pestañas siguientes.")
+
+            # Forzar un rerun solo en la primera carga para que el sidebar
+            # se desbloquee inmediatamente (lee session_state antes que este tab)
+            if primera_carga:
+                st.rerun()
     else:
         st.markdown("""
         <div style='text-align:center;padding:3rem 0;color:#6b7280'>
