@@ -1,7 +1,7 @@
 import streamlit as st
 
 from utils.styles import CSS
-from tabs import  tab_import, tab_original
+from tabs import tab_import, tab_original
 
 st.set_page_config(
     page_title="Anonimización",
@@ -11,7 +11,7 @@ st.set_page_config(
 )
 st.markdown(CSS, unsafe_allow_html=True)
 
-# ── Sidebar ──
+# ── Barra lateral ──
 with st.sidebar:
     st.markdown("## 🔒 Anonimización")
     st.markdown(
@@ -20,27 +20,27 @@ with st.sidebar:
     )
     st.markdown("---")
     st.markdown("<div class='section-header'>Técnica de anonimización</div>", unsafe_allow_html=True)
-    technique = st.radio("", ["K-Anonimato", "L-Diversidad", "Privacidad Diferencial"], label_visibility="collapsed")
+    tecnica = st.radio("", ["K-Anonimato", "L-Diversidad", "Privacidad Diferencial"], label_visibility="collapsed")
     st.markdown("---")
     st.markdown("<div class='section-header'>Parámetros</div>", unsafe_allow_html=True)
-    if technique == "K-Anonimato":
-        k = st.slider("Valor de k", 2, 20, 3) 
-        l, epsilon, sensitivity = 2, 1.0, 1.0
-    elif technique == "L-Diversidad":
+    if tecnica == "K-Anonimato":
+        k = st.slider("Valor de k", 2, 20, 3)
+        l, epsilon, sensibilidad = 2, 1.0, 1.0
+    elif tecnica == "L-Diversidad":
         k = st.slider("Valor de k", 2, 20, 3)
         l = st.slider("Valor de l", 2, 10, 2)
-        epsilon, sensitivity = 1.0, 1.0
+        epsilon, sensibilidad = 1.0, 1.0
     else:
         epsilon = st.slider("Epsilon (ε)", 0.01, 5.0, 1.0, step=0.01)
-        sensitivity = st.slider("Sensibilidad (Δf)", 0.1, 10.0, 1.0, step=0.1)
+        sensibilidad = st.slider("Sensibilidad (Δf)", 0.1, 10.0, 1.0, step=0.1)
         k, l = 3, 2
     st.markdown("---")
-    run = st.button("▶ Aplicar anonimización", use_container_width=True)
+    ejecutar = st.button("▶ Aplicar anonimización", use_container_width=True)
 
-df            = st.session_state.get("df", None)
-qi_cols       = st.session_state.get("qi_cols", [])
-sensitive_col = st.session_state.get("sensitive_col", "")
-source        = st.session_state.get("source", "")
+df               = st.session_state.get("df", None)
+columnas_qi      = st.session_state.get("columnas_qi", [])
+columna_sensible = st.session_state.get("columna_sensible", "")
+fuente           = st.session_state.get("fuente", "")
 
 
 st.markdown("# 🔒 Anonimización")
@@ -62,4 +62,4 @@ with tab0:
     tab_import.render()
 
 with tab1:
-    tab_original.render(df, qi_cols, source)
+    tab_original.render(df, columnas_qi, fuente)

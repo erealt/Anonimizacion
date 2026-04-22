@@ -1,32 +1,33 @@
-#Aqui lo que hacemos es definir internamente los QI y los atributos sensibles , aunque luego se puedan modificar manualmente
+# Definición interna de palabras clave para detectar QI y atributos sensibles,
+# aunque el usuario pueda modificarlos manualmente después.
 
-QI_KEYWORDS = [
+PALABRAS_CLAVE_QI = [
     "edad", "age", "sexo", "sex", "genero", "cp", "postal", "municipio",
     "provincia", "region", "comunidad", "pais", "nacionalidad", "estudios",
     "educacion", "ocupacion", "empleo", "civil",
     "EDAD", "SEXO", "CCAA", "PROVRES", "ESTUDIOS", "ECIVIL",
 ]
 
-SENSITIVE_KEYWORDS = [
+PALABRAS_CLAVE_SENSIBLES = [
     "diagnostico", "enfermedad", "patologia", "medicacion", "medicamento",
     "tratamiento", "ingreso", "salud", "health", "disease", "diagnosis",
     "DIAG", "ENFER", "MEDIC", "TRATA",
 ]
 
 
-def suggest_qi_and_sensitive(df):
-    cols = df.columns.tolist()
-    qi, sens = [], []
-    for col in cols:
-        cl = col.lower()
-        if any(kw.lower() in cl for kw in SENSITIVE_KEYWORDS):
-            sens.append(col)
-        elif any(kw.lower() in cl for kw in QI_KEYWORDS):
-            qi.append(col)
-        elif df[col].dtype == object or df[col].nunique() < 25:
-            qi.append(col)
+def sugerir_qi_y_sensibles(df):
+    columnas = df.columns.tolist()
+    qi, sensibles = [], []
+    for columna in columnas:
+        columna_min = columna.lower()
+        if any(palabra_clave.lower() in columna_min for palabra_clave in PALABRAS_CLAVE_SENSIBLES):
+            sensibles.append(columna)
+        elif any(palabra_clave.lower() in columna_min for palabra_clave in PALABRAS_CLAVE_QI):
+            qi.append(columna)
+        elif df[columna].dtype == object or df[columna].nunique() < 25:
+            qi.append(columna)
         else:
-            sens.append(col)
-    if not sens and cols:
-        sens = [cols[-1]]
-    return qi, sens
+            sensibles.append(columna)
+    if not sensibles and columnas:
+        sensibles = [columnas[-1]]
+    return qi, sensibles
