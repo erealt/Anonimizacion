@@ -25,7 +25,7 @@ def render():
     if uploaded_files:
         with st.spinner("Detectando formato y cargando datos..."):
             df_loaded, source_label, metodo, error = auto_load(uploaded_files)
-
+        
         if error:
             st.error(f"❌ {error}")
         else:

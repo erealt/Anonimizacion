@@ -22,7 +22,7 @@ def detect_separator(text):
     return None, None
 
 
-def parse_ine_design(design_file):
+def leer_diseno(design_file):
     try:
         xl = pd.ExcelFile(design_file)
         raw = xl.parse(xl.sheet_names[0], header=None)
@@ -77,7 +77,7 @@ def parse_ine_design(design_file):
         return None, f"Error leyendo diseño: {e}"
 
 
-def parse_ine_microdata(txt_file, variables):
+def leer_microdatos(txt_file, variables):
     try:
         content = txt_file.read() if hasattr(txt_file, "read") else open(txt_file, "rb").read()
         text, enc = decode_bytes(content)
@@ -229,7 +229,7 @@ def _load_with_design(data_file, design_file):
     try:
         # 1. Parsear el diseño (el mapa)
         design_file.seek(0)
-        variables, err = parse_ine_design(design_file) # extrae una lista llamada variable, donde contiene el codigo de cada columna y su descripcion real
+        variables, err = leer_diseno(design_file) # extrae una lista llamada variable, donde contiene el codigo de cada columna y su descripcion real
         if err:
             return None, None, None, f"Error en diseño de registro: {err}"
 
@@ -257,7 +257,7 @@ def _load_with_design(data_file, design_file):
                 metodo = f"ASCII separado ('{sep_nombre}') con diseño ({len(variables)} vars, cod: {enc})"
             else:
                 data_file.seek(0)
-                df, err2 = parse_ine_microdata(data_file, variables)
+                df, err2 = leer_microdatos(data_file, variables)
                 if err2:
                     return None, None, None, err2
                 metodo = f"ASCII ancho fijo + diseño ({len(variables)} vars, cod: {enc})"

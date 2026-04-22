@@ -1,7 +1,7 @@
 import streamlit as st
 
 from utils.styles import CSS
-from tabs import  tab_import
+from tabs import  tab_import, tab_original
 
 st.set_page_config(
     page_title="Anonimización",
@@ -13,7 +13,7 @@ st.markdown(CSS, unsafe_allow_html=True)
 
 # ── Sidebar ──
 with st.sidebar:
-    st.markdown("## 🔒 MaskIt")
+    st.markdown("## 🔒 Anonimización")
     st.markdown(
         "<p style='color:#6b7280;font-size:0.8rem'> Anonimización y Riesgo de Reidentificación</p>",
         unsafe_allow_html=True,
@@ -61,5 +61,5 @@ tab0, tab1, tab2, tab3, tab4 = st.tabs([
 with tab0:
     tab_import.render()
 
-# with tab1:
-#     tab_convertidor.render()
+with tab1:
+    tab_original.render(df, qi_cols, source)
