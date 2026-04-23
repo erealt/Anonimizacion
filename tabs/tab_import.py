@@ -22,86 +22,115 @@ def render():
         key="auto_upload",
     )
 
-    if ficheros_subidos:
+    if not ficheros_subidos:
+        st.markdown("""
+        <div style='text-align:center;padding:3rem 0;color:#6b7280'>
+            <div style='font-size:2.5rem;margin-bottom:1rem'>📂</div>
+            <div style='font-size:0.8rem;letter-spacing:0.1em'>
+                Arrastra aquí tu fichero para comenzar
+            </div>
+            <div style='font-size:0.75rem;margin-top:0.75rem;color:#9ca3af'>
+                CSV · JSON · XML · Excel · DAT · TXT · ASC
+            </div>
+        </div>""", unsafe_allow_html=True)
+        return
+
+    # ── Comprobar si el fichero es nuevo antes de parsear ───────────────
+    hash_actual = "-".join(f"{f.name}_{f.size}" for f in ficheros_subidos)
+
+    if st.session_state.get("hash_archivos") != hash_actual:
+        # Fichero nuevo → cargar y calcular todo UNA sola vez
         with st.spinner("Detectando formato y cargando datos..."):
             df_cargado, etiqueta_fuente, metodo, error = carga_automatica(ficheros_subidos)
 
         if error:
             st.error(f"❌ {error}")
-        else:
-            st.success(f"✅ **{len(df_cargado)} registros · {len(df_cargado.columns)} columnas**")
-            st.markdown(f"""
-            <div class='info-box'>
-            📂 <strong>Fichero:</strong> {etiqueta_fuente}<br>
-            🔍 <strong>Método de carga:</strong> {metodo}
-            </div>""", unsafe_allow_html=True)
+            return
 
-            primera_carga = "df" not in st.session_state
-            st.session_state["df"] = df_cargado
-            st.session_state["fuente"] = etiqueta_fuente
-            qi_automatico, sensible_automatico = sugerir_qi_y_sensibles(df_cargado)
+        # nunique() calculado una sola vez para toda la sesión
+        nuniques = {c: int(df_cargado[c].nunique()) for c in df_cargado.columns}
+        qi_automatico, sensible_automatico = sugerir_qi_y_sensibles(df_cargado, nuniques)
 
-            columna1, columna2 = st.columns(2)
-            with columna1:
-                st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
-                st.dataframe(df_cargado.head(10), use_container_width=True)
-            with columna2:
-                st.markdown("<div class='section-header'>Sugerencia de columnas</div>", unsafe_allow_html=True)
-                st.dataframe(pd.DataFrame({
-                    "Columna":        df_cargado.columns,
-                    "Tipo":           df_cargado.dtypes.astype(str).values,
-                    "Valores únicos": [df_cargado[c].nunique() for c in df_cargado.columns],
-                    "Sugerencia":     ["🔑 Cuasi-ID" if c in qi_automatico else "🔒 Sensible" for c in df_cargado.columns],
-                }), use_container_width=True)
+        st.session_state.update({
+            "df":                df_cargado,
+            "fuente":            etiqueta_fuente,
+            "metodo":            metodo,
+            "hash_archivos":     hash_actual,
+            "nuniques":          nuniques,
+            "qi_sugerido":       qi_automatico,
+            "sensible_sugerido": sensible_automatico,
+            "columnas_qi":       qi_automatico[:min(5, len(qi_automatico))],
+            "columna_sensible":  sensible_automatico[0] if sensible_automatico
+                                 else df_cargado.columns[-1],
+        })
+        st.rerun()  # sincroniza el resto de pestañas con los nuevos datos
 
-            if etiqueta_fuente and not etiqueta_fuente.startswith("CSV"):
-                bytes_csv = df_cargado.to_csv(index=False).encode("utf-8")
-                st.download_button(
-                    "⬇ Descargar dataset convertido como CSV",
-                    bytes_csv,
-                    file_name="dataset_convertido.csv",
-                    mime="text/csv",
-                )
+    # ── Datos ya en session_state: solo leer, sin recalcular ────────────
+    df_cargado          = st.session_state["df"]
+    etiqueta_fuente     = st.session_state["fuente"]
+    metodo              = st.session_state["metodo"]
+    nuniques            = st.session_state["nuniques"]
+    qi_automatico       = st.session_state["qi_sugerido"]
+    sensible_automatico = st.session_state["sensible_sugerido"]
 
-            st.markdown("---")
-            st.markdown("<div class='section-header'>Configura las columnas para este dataset</div>", unsafe_allow_html=True)
-            columna_a, columna_b = st.columns(2)
-            with columna_a:
-                qi_seleccionado = st.multiselect(
-                    "Cuasi-identificadores (QI)",
-                    df_cargado.columns.tolist(),
-                    default=qi_automatico[:min(5, len(qi_automatico))],
-                    key="qi_auto",
-                )
-            with columna_b:
-                indice_defecto = df_cargado.columns.tolist().index(sensible_automatico[0]) if sensible_automatico else 0
-                sensible_seleccionado = st.selectbox(
-                    "Atributo sensible",
-                    df_cargado.columns.tolist(),
-                    index=indice_defecto,
-                    key="sens_auto",
-                )
-            st.session_state["columnas_qi"] = qi_seleccionado
-            st.session_state["columna_sensible"] = sensible_seleccionado
-            st.info("✅ Configuración guardada. Continúa en las pestañas siguientes.")
+    st.success(f"✅ **{len(df_cargado)} registros · {len(df_cargado.columns)} columnas**")
+    st.markdown(f"""
+    <div class='info-box'>
+    📂 <strong>Fichero:</strong> {etiqueta_fuente}<br>
+    🔍 <strong>Método de carga:</strong> {metodo}
+    </div>""", unsafe_allow_html=True)
 
-            
-            # if primera_carga:
-            #     st.rerun()
-            #Gneramos un hash unico con los nombres y tamaños de los archivos que subimos
-            hash_archivos="-".join([f"{f.name}_{f.size}"for f in ficheros_subidos])
-            # Si la firma es nueva, forzamos un rerun para sincronizar la aplicación 
-            if st.session_state.get("hash_archivos") != hash_archivos:
-                st.session_state["hash_archivos"] = hash_archivos
-                st.rerun()
-    else:
-        st.markdown("""
-        <div style='text-align:center;padding:3rem 0;color:#6b7280'>
-            <div style='font-size:2.5rem;margin-bottom:1rem'>📂</div>
-            <div style='font-family:Space Mono,monospace;font-size:0.8rem;letter-spacing:0.1em'>
-                Arrastra aquí tu fichero para comenzar
-            </div>
-            <div style='font-size:0.75rem;margin-top:0.75rem;color:#4b5563'>
-                CSV · JSON · XML · Excel · DAT · TXT · ASC
-            </div>
-        </div>""", unsafe_allow_html=True)
+    # ── Vista previa + tabla de sugerencias (nuniques ya calculados) ─────
+    columna1, columna2 = st.columns(2)
+    with columna1:
+        st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
+        st.dataframe(df_cargado.head(10), use_container_width=True)
+    with columna2:
+        st.markdown("<div class='section-header'>Sugerencia de columnas</div>", unsafe_allow_html=True)
+        st.dataframe(pd.DataFrame({
+            "Columna":        df_cargado.columns,
+            "Tipo":           df_cargado.dtypes.astype(str).values,
+            "Valores únicos": [nuniques[c] for c in df_cargado.columns],
+            "Sugerencia":     ["🔑 Cuasi-ID" if c in qi_automatico else "🔒 Sensible"
+                               for c in df_cargado.columns],
+        }), use_container_width=True)
+
+    if etiqueta_fuente and not etiqueta_fuente.startswith("CSV"):
+        bytes_csv = df_cargado.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            "⬇ Descargar dataset convertido como CSV",
+            bytes_csv,
+            file_name="dataset_convertido.csv",
+            mime="text/csv",
+        )
+
+    # ── Configuración de columnas ────────────────────────────────────────
+    st.markdown("---")
+    st.markdown("<div class='section-header'>Configura las columnas para este dataset</div>", unsafe_allow_html=True)
+    columna_a, columna_b = st.columns(2)
+
+    with columna_a:
+        qi_seleccionado = st.multiselect(
+            "Cuasi-identificadores (QI)",
+            df_cargado.columns.tolist(),
+            default=st.session_state["columnas_qi"],
+            key="qi_auto",
+        )
+    with columna_b:
+        todas = df_cargado.columns.tolist()
+        idx_defecto = todas.index(st.session_state["columna_sensible"]) \
+            if st.session_state["columna_sensible"] in todas else 0
+        sensible_seleccionado = st.selectbox(
+            "Atributo sensible",
+            todas,
+            index=idx_defecto,
+            key="sens_auto",
+        )
+
+    # Actualizar session_state solo si el usuario cambió algo
+    if (qi_seleccionado       != st.session_state.get("columnas_qi") or
+            sensible_seleccionado != st.session_state.get("columna_sensible")):
+        st.session_state["columnas_qi"]      = qi_seleccionado
+        st.session_state["columna_sensible"] = sensible_seleccionado
+
+    st.info("✅ Configuración guardada. Continúa en las pestañas siguientes.")
