@@ -203,3 +203,10 @@ def render(df, qi_cols, source):
                      f"{val:.1f}%", ha="center", color=COLOR_MUTED, fontsize=8)
         plt.tight_layout()
         st.pyplot(fig2)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    _, col_btn = st.columns([3, 1])
+    with col_btn:
+        if st.button("Continuar →", key="continuar_original", use_container_width=True, type="primary"):
+            st.session_state["pagina_activa"] = 2
+            st.rerun()

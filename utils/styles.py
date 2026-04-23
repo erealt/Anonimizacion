@@ -73,8 +73,8 @@ div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
     background: #ffffff;
 }
 
-/* ── Botones ── */
-.stButton > button {
+/* ── Botones primarios ── */
+.stButton > button[kind="primary"] {
     background-color: #1a3a6b;
     color: #ffffff;
     border: none;
@@ -84,9 +84,32 @@ div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
     padding: 0.55rem 1.2rem;
     transition: background 0.2s;
 }
-.stButton > button:hover {
+.stButton > button[kind="primary"]:hover {
     background-color: #15305a;
     color: #ffffff;
+}
+/* ── Botones secundarios (navegación inactiva) ── */
+.stButton > button[kind="secondary"] {
+    background-color: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0.55rem 1.2rem;
+    transition: all 0.2s;
+}
+.stButton > button[kind="secondary"]:hover {
+    background-color: #f5f6f8;
+    border-color: #1a3a6b;
+    color: #1a3a6b;
+}
+/* ── Botones deshabilitados ── */
+.stButton > button:disabled {
+    background-color: #f5f6f8 !important;
+    color: #d1d5db !important;
+    border-color: #e5e7eb !important;
+    cursor: not-allowed;
 }
 
 /* ── Inputs / Sliders ── */

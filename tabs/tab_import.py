@@ -133,4 +133,11 @@ def render():
         st.session_state["columnas_qi"]      = qi_seleccionado
         st.session_state["columna_sensible"] = sensible_seleccionado
 
-    st.info("✅ Configuración guardada. Continúa en las pestañas siguientes.")
+    st.info("✅ Configuración guardada. Continúa en el siguiente paso.")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    _, col_btn = st.columns([3, 1])
+    with col_btn:
+        if st.button("Continuar →", key="continuar_import", use_container_width=True, type="primary"):
+            st.session_state["pagina_activa"] = 1
+            st.rerun()

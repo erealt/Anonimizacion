@@ -97,10 +97,17 @@ def render():
         if len(df_anon) > 100:
             st.caption(f"Vista previa de las primeras 100 filas (total: {registros_anon}).")
 
-        csv = df_anon.to_csv(index=False).encode("utf-8")
-        st.download_button(
-            "⬇ Descargar datos anonimizados (CSV)",
-            csv,
-            file_name="datos_anonimizados.csv",
-            mime="text/csv",
-        )
+        col_dl, col_btn = st.columns([2, 1])
+        with col_dl:
+            csv = df_anon.to_csv(index=False).encode("utf-8")
+            st.download_button(
+                "⬇ Descargar datos anonimizados (CSV)",
+                csv,
+                file_name="datos_anonimizados.csv",
+                mime="text/csv",
+                use_container_width=True,
+            )
+        with col_btn:
+            if st.button("Ver métricas →", key="continuar_anon", use_container_width=True, type="primary"):
+                st.session_state["pagina_activa"] = 3
+                st.rerun()
