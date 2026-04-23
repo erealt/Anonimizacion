@@ -1,10 +1,17 @@
 import streamlit as st
 from utils.anonimizacion import k_anonimicidad, l_diversidad, privacidad_diferencial
 
+COLOR_PRIMARY = "#1a3a6b"
+COLOR_BORDER  = "#d1d5db"
+COLOR_TEXT    = "#1a2340"
+COLOR_MUTED   = "#6b7280"
+COLOR_WARN_BG = "#fffbeb"
+COLOR_WARN_BD = "#d97706"
+
 
 def render():
-    df = st.session_state.get("df", None)
-    columnas_qi = st.session_state.get("columnas_qi", [])
+    df               = st.session_state.get("df", None)
+    columnas_qi      = st.session_state.get("columnas_qi", [])
     columna_sensible = st.session_state.get("columna_sensible", "")
 
     if df is None:
@@ -37,10 +44,10 @@ def render():
     with col_resultado:
         if not ejecutar and "df_anonimizado" not in st.session_state:
             st.markdown(
-                """
-                <div style='background:#12151c;border-left:3px solid #f5a623;
-                            padding:1.2rem 1rem;border-radius:0 8px 8px 0;
-                            font-size:0.85rem;color:#a0aec0;line-height:1.6;margin-top:2rem'>
+                f"""
+                <div style='background:{COLOR_WARN_BG};border-left:3px solid {COLOR_WARN_BD};
+                            padding:1.2rem 1rem;border-radius:0 6px 6px 0;
+                            font-size:0.88rem;color:{COLOR_TEXT};line-height:1.6;margin-top:2rem'>
                 ⚙️ Configura los parámetros y pulsa <strong>Aplicar anonimización</strong> para ver el resultado.
                 </div>
                 """,
@@ -62,15 +69,15 @@ def render():
                     df_anon = privacidad_diferencial(df, epsilon, sensibilidad)
 
             st.session_state["df_anonimizado"] = df_anon
-            st.session_state["tecnica_usada"] = tecnica
+            st.session_state["tecnica_usada"]  = tecnica
 
-        df_anon = st.session_state.get("df_anonimizado")
+        df_anon      = st.session_state.get("df_anonimizado")
         tecnica_usada = st.session_state.get("tecnica_usada", tecnica)
 
         registros_orig = len(df)
         registros_anon = len(df_anon)
-        suprimidos = registros_orig - registros_anon
-        retencion = registros_anon / registros_orig if registros_orig > 0 else 0
+        suprimidos     = registros_orig - registros_anon
+        retencion      = registros_anon / registros_orig if registros_orig > 0 else 0
 
         st.markdown(
             f"<div class='section-header'>{tecnica_usada} · {registros_anon} registros · {len(df_anon.columns)} columnas</div>",
@@ -79,12 +86,16 @@ def render():
 
         c1, c2, c3 = st.columns(3)
         c1.metric("Registros originales", registros_orig)
-        c2.metric("Registros tras anonimizar", registros_anon, delta=f"-{suprimidos}" if suprimidos else None, delta_color="inverse")
+        c2.metric(
+            "Registros anonimizados", registros_anon,
+            delta=f"-{suprimidos}" if suprimidos else None,
+            delta_color="inverse",
+        )
         c3.metric("Retención de datos", f"{retencion:.1%}")
 
         st.dataframe(df_anon.head(100), use_container_width=True, height=350)
         if len(df_anon) > 100:
-            st.caption(f"👀 Mostrando las primeras 100 filas de {registros_anon}.")
+            st.caption(f"Vista previa de las primeras 100 filas (total: {registros_anon}).")
 
         csv = df_anon.to_csv(index=False).encode("utf-8")
         st.download_button(

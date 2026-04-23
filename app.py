@@ -17,10 +17,10 @@ columnas_qi      = st.session_state.get("columnas_qi", [])
 columna_sensible = st.session_state.get("columna_sensible", "")
 fuente           = st.session_state.get("fuente", "")
 
-st.markdown("# 🔒 Anonimización")
+st.markdown("# 🔒 Sistema de Anonimización de Datos")
 st.markdown(
-    "<p style='color:#6b7280;margin-top:-1rem;margin-bottom:2rem'>"
-    "Prototipo de anonimización y evaluación de riesgo residual de reidentificación</p>",
+    "<p style='color:#6b7280;margin-top:-0.5rem;margin-bottom:2rem;font-size:0.95rem;'>"
+    "Herramienta de anonimización y evaluación del riesgo residual de reidentificación</p>",
     unsafe_allow_html=True,
 )
 
