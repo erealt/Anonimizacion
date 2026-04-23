@@ -2,6 +2,7 @@ import streamlit as st
 
 from utils.styles import CSS
 from tabs import tab_import, tab_original
+from utils.metricas import *
 
 st.set_page_config(
     page_title="Anonimización",
@@ -79,4 +80,7 @@ with tab0:
     tab_import.render()
 
 with tab1:
-    tab_original.render(df, columnas_qi, fuente)
+    if df is None:
+        st.info("👈 Ve a la pestaña **📥 IMPORTAR DATOS** para cargar un dataset.")
+    else:
+     tab_original.render(df, columnas_qi, fuente)

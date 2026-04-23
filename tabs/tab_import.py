@@ -85,9 +85,14 @@ def render():
             st.session_state["columna_sensible"] = sensible_seleccionado
             st.info("✅ Configuración guardada. Continúa en las pestañas siguientes.")
 
-            # Forzar un rerun solo en la primera carga para que el sidebar
-            # se desbloquee inmediatamente (lee session_state antes que este tab)
-            if primera_carga:
+            
+            # if primera_carga:
+            #     st.rerun()
+            #Gneramos un hash unico con los nombres y tamaños de los archivos que subimos
+            hash_archivos="-".join([f"{f.name}_{f.size}"for f in ficheros_subidos])
+            # Si la firma es nueva, forzamos un rerun para sincronizar la aplicación 
+            if st.session_state.get("hash_archivos") != hash_archivos:
+                st.session_state["hash_archivos"] = hash_archivos
                 st.rerun()
     else:
         st.markdown("""

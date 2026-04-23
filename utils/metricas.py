@@ -16,12 +16,25 @@ def tasa_unicidad(df,qi_cols):
     if not qi_cols:
         return 0.0
     size = df.groupby(qi_cols,dropna=False).transform("size")
-    return float((size==1).sum / len(df))
+    return float((size==1).sum() / len(df))
 
 def k_value(df,qi_cols):
     if not qi_cols:
         return len(df)
     return int(df.groupby(qi_cols, dropna=False).size().min())
+
+def calcular_riesgo_global_armonico(r_fiscal, r_periodista, r_marketing):
+    """
+    Calcula la media armónica de los tres riesgos. 
+    Se ignoran los riesgos muy cercanos a 0 para evitar divisiones por cero.
+    """
+    riesgos = [r for r in [r_fiscal, r_periodista, r_marketing] if r > 0.0001]
+    
+    if not riesgos:
+        return 0.0
+        
+    suma_inversos = sum(1.0 / r for r in riesgos)
+    return len(riesgos) / suma_inversos
 
 def riesgo_label(value):
     if value < 0.2:
