@@ -40,7 +40,7 @@ if not pagina_disponible(pagina):
 
 def ir_a(n):
     st.session_state["pagina_activa"] = n
-    st.rerun()
+    
 
 # ── Cabecera ─────────────────────────────────────────────────────────────────
 st.markdown("## 🔒 Sistema de Anonimización de Datos")
@@ -50,7 +50,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ── Stepper de progreso ──────────────────────────────────────────────────────
+
 def stepper():
     pasos_html = ""
     for i, nombre in enumerate(PAGINAS):
@@ -117,7 +117,6 @@ for i, (col, nombre) in enumerate(zip(cols_nav, PAGINAS)):
 
 st.markdown("<div style='margin-bottom:1.5rem'></div>", unsafe_allow_html=True)
 
-# ── Contenido de la página activa ─────────────────────────────────────────────
 columnas_qi      = st.session_state.get("columnas_qi", [])
 columna_sensible = st.session_state.get("columna_sensible", "")
 fuente           = st.session_state.get("fuente", "")

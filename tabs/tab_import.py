@@ -21,6 +21,40 @@ def render():
         type=None,
         key="auto_upload",
     )
+    if not ficheros_subidos and "df" in st.session_state:
+        st.markdown(f"""
+        <div style="
+            background: #ffffff;
+            border: 1.5px solid #22c55e88;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            display: flex; align-items: center; gap: 14px;
+        ">
+            <div style="font-size:24px;">✅</div>
+            <div>
+                <div style="color:#22c55e; font-size:14px; font-weight:700; margin-bottom:4px;">
+                    Dataset ya cargado
+                </div>
+                <div style="color:#374151; font-size:13px;">
+                    📂 {st.session_state['fuente']} ·
+                    {len(st.session_state['df'])} registros ·
+                    {len(st.session_state['df'].columns)} columnas
+                </div>
+                <div style="color:#6b7280; font-size:12px; margin-top:4px;">
+                    Puedes continuar en las otras pestañas o subir un fichero nuevo.
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        if st.button("🗑️ Cargar un fichero diferente"):
+            for key in ["df", "fuente", "metodo", "hash_archivos",
+                        "nuniques", "qi_sugerido", "sensible_sugerido",
+                        "columnas_qi", "columna_sensible"]:
+                st.session_state.pop(key, None)
+            st.rerun()
+        return
 
     if not ficheros_subidos:
         st.markdown("""
@@ -39,7 +73,7 @@ def render():
     hash_actual = "-".join(f"{f.name}_{f.size}" for f in ficheros_subidos)
 
     if st.session_state.get("hash_archivos") != hash_actual:
-        # Fichero nuevo → cargar y calcular todo UNA sola vez
+       
         with st.spinner("Detectando formato y cargando datos..."):
             df_cargado, etiqueta_fuente, metodo, error = carga_automatica(ficheros_subidos)
 
@@ -47,7 +81,7 @@ def render():
             st.error(f"❌ {error}")
             return
 
-        # nunique() calculado una sola vez para toda la sesión
+    
         nuniques = {c: int(df_cargado[c].nunique()) for c in df_cargado.columns}
         qi_automatico, sensible_automatico = sugerir_qi_y_sensibles(df_cargado, nuniques)
 
@@ -65,7 +99,7 @@ def render():
         })
         st.rerun()  # sincroniza el resto de pestañas con los nuevos datos
 
-    # ── Datos ya en session_state: solo leer, sin recalcular ────────────
+    
     df_cargado          = st.session_state["df"]
     etiqueta_fuente     = st.session_state["fuente"]
     metodo              = st.session_state["metodo"]
@@ -80,7 +114,7 @@ def render():
     🔍 <strong>Método de carga:</strong> {metodo}
     </div>""", unsafe_allow_html=True)
 
-    # ── Vista previa + tabla de sugerencias (nuniques ya calculados) ─────
+   
     columna1, columna2 = st.columns(2)
     with columna1:
         st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
