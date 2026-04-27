@@ -2,25 +2,34 @@ import io
 import pandas as pd
 
 
-def decodificar_bytes(contenido):
-    for codificacion in ["utf-8", "latin-1", "cp1252"]:
+# ── Helpers de detección ─────────────────────────────────────────────────────
+
+def _detectar_encoding(contenido_bytes):
+    """Detecta encoding probando solo los primeros 1 KB (no el fichero entero)."""
+    muestra = contenido_bytes[:1024]
+    for enc in ["utf-8", "latin-1", "cp1252"]:
         try:
-            return contenido.decode(codificacion), codificacion
+            muestra.decode(enc)
+            return enc
         except UnicodeDecodeError:
             continue
-    return None, None
+    return "latin-1"
 
 
-def detectar_separador(texto):
-    for separador, nombre_separador in [(",", "coma"), (";", "punto y coma"), ("\t", "tabulador"), ("|", "pipe")]:
+def _detectar_separador(contenido_bytes, encoding):
+    """Detecta separador decodificando solo los primeros 4 KB con el engine C (rápido)."""
+    muestra = contenido_bytes[:4096].decode(encoding, errors="replace")
+    for sep, nombre in [(",", "coma"), (";", "punto y coma"), ("\t", "tabulador"), ("|", "pipe")]:
         try:
-            df_prueba = pd.read_csv(io.StringIO(texto), sep=separador, engine="python", nrows=5)
-            if len(df_prueba.columns) > 1:
-                return separador, nombre_separador
+            df = pd.read_csv(io.StringIO(muestra), sep=sep, nrows=5)
+            if len(df.columns) > 1:
+                return sep, nombre
         except Exception:
             continue
     return None, None
 
+
+# ── Parsers especializados ───────────────────────────────────────────────────
 
 def parsear_diseno_ine(fichero_diseno):
     try:
@@ -28,74 +37,77 @@ def parsear_diseno_ine(fichero_diseno):
         datos_brutos = excel.parse(excel.sheet_names[0], header=None)
         fila_cabecera = 0
         for i, fila in datos_brutos.iterrows():
-            fila_texto = " ".join(str(valor).lower() for valor in fila.values)
-            if any(palabra in fila_texto for palabra in ["inicio", "posici", "variable", "nombre"]):
+            fila_texto = " ".join(str(v).lower() for v in fila.values)
+            if any(p in fila_texto for p in ["inicio", "posici", "variable", "nombre"]):
                 fila_cabecera = i
                 break
         df_diseno = excel.parse(excel.sheet_names[0], header=fila_cabecera)
         df_diseno.columns = [str(c).strip().lower() for c in df_diseno.columns]
         df_diseno = df_diseno.dropna(how="all")
-        mapa_columnas = {}
-        for columna in df_diseno.columns:  # Localiza el rol semántico de cada columna del diseño
-            if any(palabra in columna for palabra in ["nombre", "variable", "name"]):
-                mapa_columnas["nombre"] = columna
-            elif any(palabra in columna for palabra in ["inicio", "start", "pos_ini"]):
-                mapa_columnas["inicio"] = columna
-            elif any(palabra in columna for palabra in ["fin", "end", "pos_fin", "final"]):
-                mapa_columnas["fin"] = columna
-            elif any(palabra in columna for palabra in ["longitud", "length", "ancho", "tam"]):
-                mapa_columnas["longitud"] = columna
-            elif any(palabra in columna for palabra in ["descrip", "etiqueta", "label"]):
-                mapa_columnas["descripcion"] = columna
-        if "nombre" not in mapa_columnas or "inicio" not in mapa_columnas:
+
+        mapa = {}
+        for col in df_diseno.columns:
+            if any(p in col for p in ["nombre", "variable", "name"]):
+                mapa["nombre"] = col
+            elif any(p in col for p in ["inicio", "start", "pos_ini"]):
+                mapa["inicio"] = col
+            elif any(p in col for p in ["fin", "end", "pos_fin", "final"]):
+                mapa["fin"] = col
+            elif any(p in col for p in ["longitud", "length", "ancho", "tam"]):
+                mapa["longitud"] = col
+            elif any(p in col for p in ["descrip", "etiqueta", "label"]):
+                mapa["descripcion"] = col
+
+        if "nombre" not in mapa or "inicio" not in mapa:
             return None, "No se encontraron columnas de nombre/posición en el diseño."
+
         variables = []
         for _, fila in df_diseno.iterrows():
-            nombre = str(fila[mapa_columnas["nombre"]]).strip()
+            nombre = str(fila[mapa["nombre"]]).strip()
             if not nombre or nombre.lower() in ["nan", "variable", "nombre"]:
                 continue
             try:
-                inicio = int(float(fila[mapa_columnas["inicio"]])) - 1
+                inicio = int(float(fila[mapa["inicio"]])) - 1
             except Exception:
                 continue
-            if "fin" in mapa_columnas:
+            if "fin" in mapa:
                 try:
-                    fin = int(float(fila[mapa_columnas["fin"]]))
+                    fin = int(float(fila[mapa["fin"]]))
                 except Exception:
                     fin = inicio + 1
-            elif "longitud" in mapa_columnas:
+            elif "longitud" in mapa:
                 try:
-                    fin = inicio + int(float(fila[mapa_columnas["longitud"]]))
+                    fin = inicio + int(float(fila[mapa["longitud"]]))
                 except Exception:
                     fin = inicio + 1
             else:
                 fin = inicio + 1
-            descripcion_campo = str(fila[mapa_columnas["descripcion"]]).strip() if "descripcion" in mapa_columnas else ""
-            variables.append({"nombre": nombre, "inicio": inicio, "fin": fin, "descripcion": descripcion_campo})
+            desc = str(fila[mapa["descripcion"]]).strip() if "descripcion" in mapa else ""
+            variables.append({"nombre": nombre, "inicio": inicio, "fin": fin, "descripcion": desc})
+
         return variables, None
     except Exception as e:
         return None, f"Error leyendo diseño: {e}"
 
 
 def parsear_microdatos_ine(fichero_datos, variables):
+    """Lee ASCII de ancho fijo recortando cada campo por posición."""
     try:
         contenido = fichero_datos.read() if hasattr(fichero_datos, "read") else open(fichero_datos, "rb").read()
-        texto, codificacion = decodificar_bytes(contenido)
-        if texto is None:
-            return None, "No se pudo decodificar el fichero."
-        lineas = [l.rstrip("\n").rstrip("\r") for l in texto.splitlines() if l.strip()]
-        registros = []
-        for linea in lineas:
-            registro = {}
-            for variable in variables:
-                # Recortamos cada campo según sus posiciones de inicio y fin
-                registro[variable["nombre"]] = linea[variable["inicio"]:variable["fin"]].strip() if variable["fin"] <= len(linea) else ""
-            registros.append(registro)
-        df = pd.DataFrame(registros)  # Los registros en bruto se convierten en una tabla real
-        for columna in df.columns:    # Se revisa cada columna para convertir números en tipo numérico
+        encoding  = _detectar_encoding(contenido)
+        texto     = contenido.decode(encoding, errors="replace")
+        lineas    = [l.rstrip("\r\n") for l in texto.splitlines() if l.strip()]
+
+        registros = [
+            {v["nombre"]: (linea[v["inicio"]:v["fin"]].strip() if v["fin"] <= len(linea) else "")
+             for v in variables}
+            for linea in lineas
+        ]
+        df = pd.DataFrame(registros)
+        for col in df.columns:
             try:
-                df[columna] = pd.to_numeric(df[columna])
-            except Exception:
+                df[col] = pd.to_numeric(df[col])
+            except (ValueError, TypeError):
                 pass
         return df, None
     except Exception as e:
@@ -103,192 +115,159 @@ def parsear_microdatos_ine(fichero_datos, variables):
 
 
 def es_fichero_diseno(fichero):
-    extension = fichero.name.rsplit(".", 1)[-1].lower() if "." in fichero.name else ""
-    return extension in ["xlsx", "xls", "ods"]
+    ext = fichero.name.rsplit(".", 1)[-1].lower() if "." in fichero.name else ""
+    return ext in ["xlsx", "xls", "ods"]
 
 
 def es_fichero_datos(fichero):
-    extension = fichero.name.rsplit(".", 1)[-1].lower() if "." in fichero.name else ""
-    return extension in ["dat", "txt", "asc", "mic", "csv", "sin_ext"]
+    ext = fichero.name.rsplit(".", 1)[-1].lower() if "." in fichero.name else ""
+    return ext in ["dat", "txt", "asc", "mic", "csv", "sin_ext"]
 
+
+# ── Entrada principal ────────────────────────────────────────────────────────
 
 def carga_automatica(ficheros):
     if not ficheros:
         return None, None, None, None
 
-    # ─── UN SOLO FICHERO ────────────────────────────────────────────
     if len(ficheros) == 1:
         return _cargar_fichero_unico(ficheros[0])
 
-    # ─── DOS FICHEROS ───────────────────────────────────────────────
     if len(ficheros) == 2:
-        fichero1, fichero2 = ficheros[0], ficheros[1]
+        f1, f2 = ficheros[0], ficheros[1]
+        d1, d2 = es_fichero_diseno(f1), es_fichero_diseno(f2)
 
-        es_diseno1 = es_fichero_diseno(fichero1)
-        es_diseno2 = es_fichero_diseno(fichero2)
-
-        # Caso claro: uno es diseño y el otro no
-        if es_diseno1 and not es_diseno2:
-            fichero_diseno, fichero_datos = fichero1, fichero2
-        elif es_diseno2 and not es_diseno1:
-            fichero_diseno, fichero_datos = fichero2, fichero1
-
-        # Ambos parecen diseño o ninguno → intentar por contenido
+        if d1 and not d2:
+            fichero_diseno, fichero_datos = f1, f2
+        elif d2 and not d1:
+            fichero_diseno, fichero_datos = f2, f1
         else:
-            es_datos1 = es_fichero_datos(fichero1)
-            es_datos2 = es_fichero_datos(fichero2)
-
-            if es_datos1 and not es_datos2:
-                fichero_datos, fichero_diseno = fichero1, fichero2
-            elif es_datos2 and not es_datos1:
-                fichero_datos, fichero_diseno = fichero2, fichero1
+            e1, e2 = es_fichero_datos(f1), es_fichero_datos(f2)
+            if e1 and not e2:
+                fichero_datos, fichero_diseno = f1, f2
+            elif e2 and not e1:
+                fichero_datos, fichero_diseno = f2, f1
             else:
                 return None, None, None, (
-                    "⚠️ Se han subido dos ficheros pero no se ha podido "
-                    "determinar cuál contiene los datos y cuál el diseño. "
-                    "Asegúrate de que el fichero de diseño contiene columnas "
+                    "⚠️ No se ha podido determinar cuál fichero contiene los datos "
+                    "y cuál el diseño. Asegúrate de que el diseño tiene columnas "
                     "como 'nombre', 'inicio', 'fin' o 'longitud'."
                 )
-
         return _cargar_con_diseno(fichero_datos, fichero_diseno)
 
-    # ─── MÁS DE DOS FICHEROS ────────────────────────────────────────
     return None, None, None, (
-        "⚠️ Se han subido más de dos ficheros. "
-        "Sube únicamente el fichero de datos y, opcionalmente, "
-        "el fichero de diseño de registro."
+        "⚠️ Sube únicamente el fichero de datos y, opcionalmente, el fichero de diseño."
     )
 
 
 def _cargar_fichero_unico(fichero):
-    """Carga un único fichero detectando su formato automáticamente."""
-    extension = fichero.name.rsplit(".", 1)[-1].lower() if "." in fichero.name else "sin_ext"
+    ext = fichero.name.rsplit(".", 1)[-1].lower() if "." in fichero.name else "sin_ext"
 
-    if extension == "csv":
+    # ── CSV ──────────────────────────────────────────────────────────────
+    if ext == "csv":
         try:
             contenido = fichero.read()
-            texto, codificacion = decodificar_bytes(contenido)
-            separador, nombre_separador = detectar_separador(texto)
-            df = pd.read_csv(io.StringIO(texto), sep=separador or ",", engine="python")
+            encoding  = _detectar_encoding(contenido)
+            sep, nombre_sep = _detectar_separador(contenido, encoding)
+            # BytesIO + encoding → pandas usa engine C directamente, sin copias extra
+            df = pd.read_csv(io.BytesIO(contenido), sep=sep or ",", encoding=encoding)
             return df, f"CSV · {fichero.name}", \
-                   f"CSV (separador: {nombre_separador or 'coma'}, codificación: {codificacion})", None
+                   f"CSV (separador: {nombre_sep or 'coma'}, codificación: {encoding})", None
         except Exception as e:
             return None, None, None, f"Error leyendo CSV: {e}"
 
-    if extension in ("xlsx", "xls"):
+    # ── Excel ─────────────────────────────────────────────────────────────
+    if ext in ("xlsx", "xls"):
         try:
             df = pd.read_excel(fichero)
-            return df, f"Excel · {fichero.name}", "Excel tabular directo", None
+            return df, f"Excel · {fichero.name}", "Excel tabular", None
         except Exception as e:
             return None, None, None, f"Error leyendo Excel: {e}"
 
-    if extension == "json":
+    # ── JSON ──────────────────────────────────────────────────────────────
+    if ext == "json":
         try:
             contenido = fichero.read()
-            texto, codificacion = decodificar_bytes(contenido)
-            df = pd.read_json(io.StringIO(texto))
-            return df, f"JSON · {fichero.name}", \
-                   f"JSON directo (codificación: {codificacion})", None
+            encoding  = _detectar_encoding(contenido)
+            df = pd.read_json(io.BytesIO(contenido), encoding=encoding)
+            return df, f"JSON · {fichero.name}", f"JSON (codificación: {encoding})", None
         except Exception as e:
             return None, None, None, f"Error leyendo JSON: {e}"
 
-    if extension == "xml":
+    # ── XML ───────────────────────────────────────────────────────────────
+    if ext == "xml":
         try:
             contenido = fichero.read()
-            texto, codificacion = decodificar_bytes(contenido)
-            df = pd.read_xml(io.StringIO(texto))
-            return df, f"XML · {fichero.name}", \
-                   f"XML directo (codificación: {codificacion})", None
+            encoding  = _detectar_encoding(contenido)
+            df = pd.read_xml(io.BytesIO(contenido), encoding=encoding)
+            return df, f"XML · {fichero.name}", f"XML (codificación: {encoding})", None
         except Exception as e:
             return None, None, None, f"Error leyendo XML: {e}"
 
-    # ASCII de ancho fijo sin diseño
-    extensiones_ascii = ["dat", "txt", "asc", "mic", "sin_ext"]
-    if extension in extensiones_ascii:
+    # ── ASCII (DAT / TXT / ASC …) ─────────────────────────────────────────
+    if ext in ("dat", "txt", "asc", "mic", "sin_ext"):
         try:
             contenido = fichero.read()
-            texto, codificacion = decodificar_bytes(contenido)
-            if texto is None:
-                return None, None, None, "No se pudo decodificar el fichero."
-            separador, nombre_separador = detectar_separador(texto)
-            if separador:
-                df = pd.read_csv(io.StringIO(texto), sep=separador, engine="python")
+            encoding  = _detectar_encoding(contenido)
+            sep, nombre_sep = _detectar_separador(contenido, encoding)
+            if sep:
+                df = pd.read_csv(io.BytesIO(contenido), sep=sep, encoding=encoding)
                 return df, f"Microdatos · {fichero.name}", \
-                       f"ASCII con separador '{nombre_separador}' (codificación: {codificacion})", None
-            else:
-                return None, None, None, (
-                    "⚠️ El fichero parece ser ASCII de ancho fijo sin separadores. "
-                    "Sube también el fichero de diseño de registro junto a este."
-                )
+                       f"ASCII separado por '{nombre_sep}' (codificación: {encoding})", None
+            return None, None, None, (
+                "⚠️ El fichero parece ser ASCII de ancho fijo. "
+                "Sube también el fichero de diseño de registro."
+            )
         except Exception as e:
             return None, None, None, f"Error: {e}"
 
     return None, None, None, (
-        "Formato no reconocido. Formatos soportados: "
-        "CSV, JSON, XML, Excel, DAT/TXT/ASC."
+        "Formato no reconocido. Formatos soportados: CSV, JSON, XML, Excel, DAT/TXT/ASC."
     )
 
 
 def _cargar_con_diseno(fichero_datos, fichero_diseno):
-    """Carga datos usando un fichero de diseño y traduce los nombres de las columnas."""
     try:
-        # 1. Parsear el diseño (el mapa semántico)
         fichero_diseno.seek(0)
-        variables, error = parsear_diseno_ine(fichero_diseno)  # Extrae el código de cada columna y su descripción real
+        variables, error = parsear_diseno_ine(fichero_diseno)
         if error:
             return None, None, None, f"Error en diseño de registro: {error}"
 
-        extension = fichero_datos.name.rsplit(".", 1)[-1].lower() if "." in fichero_datos.name else ""
+        ext = fichero_datos.name.rsplit(".", 1)[-1].lower() if "." in fichero_datos.name else ""
 
-        # 2. Cargar los datos (el cuerpo) según su formato
-        if extension in ("xlsx", "xls"):
+        if ext in ("xlsx", "xls"):
             fichero_datos.seek(0)
-            try:
-                df = pd.read_excel(fichero_datos)
-                metodo = f"Excel tabular con diseño ({len(variables)} variables)"
-            except Exception as e:
-                return None, None, None, f"Error leyendo datos Excel: {e}"
-
+            df = pd.read_excel(fichero_datos)
+            metodo = f"Excel + diseño ({len(variables)} variables)"
         else:
             fichero_datos.seek(0)
             contenido = fichero_datos.read()
-            texto, codificacion = decodificar_bytes(contenido)
-            if texto is None:
-                return None, None, None, "No se pudo decodificar el fichero de datos."
+            encoding  = _detectar_encoding(contenido)
+            sep, nombre_sep = _detectar_separador(contenido, encoding)
 
-            separador, nombre_separador = detectar_separador(texto)
-            if separador:
-                df = pd.read_csv(io.StringIO(texto), sep=separador, engine="python")
-                metodo = f"ASCII separado ('{nombre_separador}') con diseño ({len(variables)} vars, cod: {codificacion})"
+            if sep:
+                df = pd.read_csv(io.BytesIO(contenido), sep=sep, encoding=encoding)
+                metodo = f"ASCII '{nombre_sep}' + diseño ({len(variables)} vars)"
             else:
                 fichero_datos.seek(0)
                 df, error2 = parsear_microdatos_ine(fichero_datos, variables)
                 if error2:
                     return None, None, None, error2
-                metodo = f"ASCII ancho fijo + diseño ({len(variables)} vars, cod: {codificacion})"
+                metodo = f"ASCII ancho fijo + diseño ({len(variables)} vars)"
 
-        # 3. Traducción semántica con control de colisiones
-        mapa_renombrado = {}
-        nombres_usados = set()
-        for variable in variables:
-            codigo = variable["nombre"]
-            # Cogemos la descripción del diccionario, si la hay
-            descripcion = variable.get("descripcion", "")
+        # Renombrar columnas con las descripciones del diseño
+        mapa, usados = {}, set()
+        for v in variables:
+            desc = str(v.get("descripcion", "")).strip()
+            if desc and desc.lower() not in ("nan", ""):
+                desc = desc[:60]
+                if desc in usados:
+                    desc = f"{desc} ({v['nombre']})"
+                usados.add(desc)
+                mapa[v["nombre"]] = desc
+        if mapa:
+            df = df.rename(columns=mapa)
 
-            if descripcion and str(descripcion).lower() not in ["nan", ""]:
-                # Limpiamos el texto: quitamos espacios sobrantes y lo cortamos si es larguísimo
-                descripcion_limpia = str(descripcion)[:60].strip()
-
-                if descripcion_limpia in nombres_usados:
-                    descripcion_limpia = f"{descripcion_limpia} ({codigo})"
-
-                nombres_usados.add(descripcion_limpia)
-                mapa_renombrado[codigo] = descripcion_limpia
-
-        if mapa_renombrado:
-            df = df.rename(columns=mapa_renombrado)
-
-        # 4. Devolvemos la tabla ya procesada y con nombres descriptivos
         return df, f"Microdatos · {fichero_datos.name}", metodo, None
 
     except Exception as e:

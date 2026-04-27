@@ -1,8 +1,6 @@
-import pandas as pd
 import streamlit as st
 
 from utils.loader import carga_automatica
-from utils.detector import sugerir_qi_y_sensibles
 
 
 def render():
@@ -21,41 +19,35 @@ def render():
         type=None,
         key="auto_upload",
     )
+
+    # ── Dataset ya cargado (uploader vacío pero hay df en sesión) ────────
     if not ficheros_subidos and "df" in st.session_state:
         st.markdown(f"""
-        <div style="
-            background: #ffffff;
-            border: 1.5px solid #22c55e88;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin: 12px 0;
-            display: flex; align-items: center; gap: 14px;
-        ">
-            <div style="font-size:24px;">✅</div>
+        <div style='background:#ffffff;border:1px solid #d1d5db;border-left:4px solid #166534;
+                    border-radius:6px;padding:1.1rem 1.4rem;margin:1rem 0;
+                    display:flex;align-items:center;gap:1rem;'>
+            <div style='font-size:1.4rem;'>✅</div>
             <div>
-                <div style="color:#22c55e; font-size:14px; font-weight:700; margin-bottom:4px;">
-                    Dataset ya cargado
+                <div style='color:#166534;font-size:0.88rem;font-weight:600;margin-bottom:0.2rem;'>
+                    Dataset cargado
                 </div>
-                <div style="color:#374151; font-size:13px;">
+                <div style='color:#374151;font-size:0.85rem;'>
                     📂 {st.session_state['fuente']} ·
                     {len(st.session_state['df'])} registros ·
                     {len(st.session_state['df'].columns)} columnas
-                </div>
-                <div style="color:#6b7280; font-size:12px; margin-top:4px;">
-                    Puedes continuar en las otras pestañas o subir un fichero nuevo.
                 </div>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-        if st.button("🗑️ Cargar un fichero diferente"):
+        if st.button("Cargar un fichero diferente"):
             for key in ["df", "fuente", "metodo", "hash_archivos",
-                        "nuniques", "qi_sugerido", "sensible_sugerido",
-                        "columnas_qi", "columna_sensible"]:
+                        "nuniques", "columnas_qi", "columna_sensible"]:
                 st.session_state.pop(key, None)
             st.rerun()
         return
 
+    # ── Sin fichero ──────────────────────────────────────────────────────
     if not ficheros_subidos:
         st.markdown("""
         <div style='text-align:center;padding:3rem 0;color:#6b7280'>
@@ -69,11 +61,10 @@ def render():
         </div>""", unsafe_allow_html=True)
         return
 
-    # ── Comprobar si el fichero es nuevo antes de parsear ───────────────
+    # ── Parsear solo si el fichero es nuevo ──────────────────────────────
     hash_actual = "-".join(f"{f.name}_{f.size}" for f in ficheros_subidos)
 
     if st.session_state.get("hash_archivos") != hash_actual:
-       
         with st.spinner("Detectando formato y cargando datos..."):
             df_cargado, etiqueta_fuente, metodo, error = carga_automatica(ficheros_subidos)
 
@@ -81,31 +72,22 @@ def render():
             st.error(f"❌ {error}")
             return
 
-    
-        nuniques = {c: int(df_cargado[c].nunique()) for c in df_cargado.columns}
-        qi_automatico, sensible_automatico = sugerir_qi_y_sensibles(df_cargado, nuniques)
-
         st.session_state.update({
-            "df":                df_cargado,
-            "fuente":            etiqueta_fuente,
-            "metodo":            metodo,
-            "hash_archivos":     hash_actual,
-            "nuniques":          nuniques,
-            "qi_sugerido":       qi_automatico,
-            "sensible_sugerido": sensible_automatico,
-            "columnas_qi":       qi_automatico[:min(5, len(qi_automatico))],
-            "columna_sensible":  sensible_automatico[0] if sensible_automatico
-                                 else df_cargado.columns[-1],
+            "df":            df_cargado,
+            "fuente":        etiqueta_fuente,
+            "metodo":        metodo,
+            "hash_archivos": hash_actual,
+            # Resetear selección manual al cargar nuevo fichero
+            "columnas_qi":       [],
+            "columna_sensible":  None,
         })
-        st.rerun()  # sincroniza el resto de pestañas con los nuevos datos
+        st.rerun()
 
-    
-    df_cargado          = st.session_state["df"]
-    etiqueta_fuente     = st.session_state["fuente"]
-    metodo              = st.session_state["metodo"]
-    nuniques            = st.session_state["nuniques"]
-    qi_automatico       = st.session_state["qi_sugerido"]
-    sensible_automatico = st.session_state["sensible_sugerido"]
+    # ── Datos ya en sesión ───────────────────────────────────────────────
+    df_cargado      = st.session_state["df"]
+    etiqueta_fuente = st.session_state["fuente"]
+    metodo          = st.session_state["metodo"]
+    todas           = df_cargado.columns.tolist()
 
     st.success(f"✅ **{len(df_cargado)} registros · {len(df_cargado.columns)} columnas**")
     st.markdown(f"""
@@ -114,20 +96,9 @@ def render():
     🔍 <strong>Método de carga:</strong> {metodo}
     </div>""", unsafe_allow_html=True)
 
-   
-    columna1, columna2 = st.columns(2)
-    with columna1:
-        st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
-        st.dataframe(df_cargado.head(10), use_container_width=True)
-    with columna2:
-        st.markdown("<div class='section-header'>Sugerencia de columnas</div>", unsafe_allow_html=True)
-        st.dataframe(pd.DataFrame({
-            "Columna":        df_cargado.columns,
-            "Tipo":           df_cargado.dtypes.astype(str).values,
-            "Valores únicos": [nuniques[c] for c in df_cargado.columns],
-            "Sugerencia":     ["🔑 Cuasi-ID" if c in qi_automatico else "🔒 Sensible"
-                               for c in df_cargado.columns],
-        }), use_container_width=True)
+    # ── Vista previa ─────────────────────────────────────────────────────
+    st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
+    st.dataframe(df_cargado.head(10), use_container_width=True)
 
     if etiqueta_fuente and not etiqueta_fuente.startswith("CSV"):
         bytes_csv = df_cargado.to_csv(index=False).encode("utf-8")
@@ -138,40 +109,49 @@ def render():
             mime="text/csv",
         )
 
-    # ── Configuración de columnas ────────────────────────────────────────
+    # ── Selección manual de columnas ─────────────────────────────────────
     st.markdown("---")
-    st.markdown("<div class='section-header'>Configura las columnas para este dataset</div>", unsafe_allow_html=True)
-    columna_a, columna_b = st.columns(2)
+    st.markdown("<div class='section-header'>Selección de columnas</div>", unsafe_allow_html=True)
 
-    with columna_a:
+    col_a, col_b = st.columns(2)
+
+    with col_a:
         qi_seleccionado = st.multiselect(
             "Cuasi-identificadores (QI)",
-            df_cargado.columns.tolist(),
-            default=st.session_state["columnas_qi"],
-            key="qi_auto",
+            todas,
+            default=st.session_state.get("columnas_qi", []),
+            placeholder="Selecciona una o varias columnas...",
+            key="qi_manual",
         )
-    with columna_b:
-        todas = df_cargado.columns.tolist()
+    with col_b:
         idx_defecto = todas.index(st.session_state["columna_sensible"]) \
-            if st.session_state["columna_sensible"] in todas else 0
+            if st.session_state.get("columna_sensible") in todas else None
         sensible_seleccionado = st.selectbox(
             "Atributo sensible",
-            todas,
-            index=idx_defecto,
-            key="sens_auto",
+            [None] + todas,
+            index=0 if idx_defecto is None else idx_defecto + 1,
+            format_func=lambda x: "Selecciona una columna..." if x is None else x,
+            key="sens_manual",
         )
 
-    # Actualizar session_state solo si el usuario cambió algo
-    if (qi_seleccionado       != st.session_state.get("columnas_qi") or
-            sensible_seleccionado != st.session_state.get("columna_sensible")):
-        st.session_state["columnas_qi"]      = qi_seleccionado
-        st.session_state["columna_sensible"] = sensible_seleccionado
+    # Guardar en sesión cuando el usuario selecciona
+    st.session_state["columnas_qi"]      = qi_seleccionado
+    st.session_state["columna_sensible"] = sensible_seleccionado
 
-    st.info("✅ Configuración guardada. Continúa en el siguiente paso.")
-
+    # ── Botón continuar (solo si hay selección mínima) ───────────────────
     st.markdown("<br>", unsafe_allow_html=True)
+    listo = bool(qi_seleccionado) and sensible_seleccionado is not None
     _, col_btn = st.columns([3, 1])
     with col_btn:
-        if st.button("Continuar →", key="continuar_import", use_container_width=True, type="primary"):
+        if st.button(
+            "Continuar →",
+            key="continuar_import",
+            use_container_width=True,
+            type="primary",
+            disabled=not listo,
+        ):
             st.session_state["pagina_activa"] = 1
             st.rerun()
+
+    if not listo:
+        st.caption("Selecciona al menos un cuasi-identificador y un atributo sensible para continuar.")
