@@ -2,6 +2,10 @@ import streamlit as st
 
 from utils.loader import carga_automatica
 
+@st.cache_data
+def generar_csv_cacheado(df):
+    return df.to_csv(index=False).encode("utf-8")
+
 
 def render():
     st.markdown("<div class='section-header'>Importar datos</div>", unsafe_allow_html=True)
@@ -101,7 +105,7 @@ def render():
     st.dataframe(df_cargado.head(10), use_container_width=True)
 
     if etiqueta_fuente and not etiqueta_fuente.startswith("CSV"):
-        bytes_csv = df_cargado.to_csv(index=False).encode("utf-8")
+        bytes_csv = generar_csv_cacheado(df_cargado)
         st.download_button(
             "⬇ Descargar dataset convertido como CSV",
             bytes_csv,
