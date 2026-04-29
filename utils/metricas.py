@@ -40,35 +40,56 @@ def riesgo_label(value):
     if value < 0.2:
         return "BAJO", "riesgo-bajo"
     elif value < 0.5:
-        return "MEDIO", "riego-medio"
+        return "MEDIO", "riesgo-medio"
     else:
         return "ALTO", "riesgo-alto"
 
-def generar_grafico_riesgos(pr_orig, jr_orig, mr_orig, pr_anon, jr_anon, mr_anon):
-    fig, ax = plt.subplots(figsize=(8, 3.5))
-    fig.patch.set_facecolor("#0d0f14")
-    ax.set_facecolor("#12151c")
-    x = np.arange(3)
-    w = 0.35
-    b1 = ax.bar(x - w / 2, [pr_orig, jr_orig, mr_orig], w, label="Original", color="#ff4d4d", alpha=0.85)
-    b2 = ax.bar(x + w / 2, [pr_anon, jr_anon, mr_anon], w, label="Anonimizado", color="#00e5a0", alpha=0.85)
+def generar_grafico_riesgos(r_maximo_orig, r_medio_orig, t_unicidad_orig,
+                            r_maximo_anon, r_medio_anon, t_unicidad_anon):
+    """Gráfico de barras agrupadas original vs anonimizado para las tres métricas principales."""
+    COLOR_BG      = "#ffffff"
+    COLOR_ORIG    = "#991b1b"   # rojo institucional — datos originales (más riesgo)
+    COLOR_ANON    = "#1a3a6b"   # azul institucional  — datos anonimizados
+    COLOR_MUTED   = "#6b7280"
+    COLOR_BORDER  = "#d1d5db"
+
+    etiquetas = ["Riesgo máximo", "Riesgo medio", "Tasa de unicidad"]
+    vals_orig = [r_maximo_orig, r_medio_orig, t_unicidad_orig]
+    vals_anon = [r_maximo_anon, r_medio_anon, t_unicidad_anon]
+
+    x = np.arange(len(etiquetas))
+    w = 0.32
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+    fig.patch.set_facecolor(COLOR_BG)
+    ax.set_facecolor(COLOR_BG)
+
+    b1 = ax.bar(x - w / 2, vals_orig, w, label="Original",     color=COLOR_ORIG, alpha=0.85)
+    b2 = ax.bar(x + w / 2, vals_anon, w, label="Anonimizado",  color=COLOR_ANON, alpha=0.85)
+
     ax.set_xticks(x)
-    ax.set_xticklabels(["Fiscal", "Periodístico", "Marketing"], color="#a0aec0", fontsize=10)
-    ax.set_ylabel("Riesgo", color="#6b7280", fontsize=9)
-    ax.set_ylim(0, 1.1)
-    ax.tick_params(colors="#6b7280")
+    ax.set_xticklabels(etiquetas, color=COLOR_MUTED, fontsize=10)
+    ax.set_ylabel("Valor de la métrica", color=COLOR_MUTED, fontsize=9)
+    ax.set_ylim(0, 1.15)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.tick_params(colors=COLOR_MUTED)
+
     for s in ax.spines.values():
-        s.set_edgecolor("#1e2330")
+        s.set_edgecolor(COLOR_BORDER)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    ax.legend(facecolor="#12151c", edgecolor="#1e2330", labelcolor="#a0aec0", fontsize=9)
-    for bar, c in zip(list(b1) + list(b2), ["#ff4d4d"] * 3 + ["#00e5a0"] * 3):
+
+    ax.legend(facecolor=COLOR_BG, edgecolor=COLOR_BORDER,
+              labelcolor=COLOR_MUTED, fontsize=9, loc="upper right")
+
+    for bar, color in zip(list(b1) + list(b2), [COLOR_ORIG] * 3 + [COLOR_ANON] * 3):
         ax.text(
             bar.get_x() + bar.get_width() / 2,
             bar.get_height() + 0.02,
             f"{bar.get_height():.1%}",
-            ha="center", va="bottom", color=c, fontsize=8,
+            ha="center", va="bottom", color=color, fontsize=8, fontweight="600",
         )
+
     plt.tight_layout()
     return fig
 

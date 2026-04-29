@@ -22,11 +22,11 @@ def render():
 
     with col_controles:
         st.markdown("<div class='section-header'>Técnica de anonimización</div>", unsafe_allow_html=True)
-        tecnica = st.radio("", ["K-Anonimato", "L-Diversidad", "Privacidad Diferencial"], label_visibility="collapsed")
+        tecnica = st.radio("", ["K-Anonimidad", "L-Diversidad", "Privacidad Diferencial"], label_visibility="collapsed")
         st.markdown("---")
         st.markdown("<div class='section-header'>Parámetros</div>", unsafe_allow_html=True)
 
-        if tecnica == "K-Anonimato":
+        if tecnica == "K-Anonimidad":
             k = st.slider("Valor de k", 2, 20, 3)
             l, epsilon, sensibilidad = 2, 1.0, 1.0
         elif tecnica == "L-Diversidad":
@@ -61,7 +61,7 @@ def render():
                 return
 
             with st.spinner("Aplicando anonimización..."):
-                if tecnica == "K-Anonimato":
+                if tecnica == "K-Anonimidad":
                     df_anon = k_anonimicidad(df, columnas_qi, k)
                 elif tecnica == "L-Diversidad":
                     df_anon = l_diversidad(df, columnas_qi, columna_sensible, k, l)

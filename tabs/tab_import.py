@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 from utils.loader import carga_automatica
 
@@ -48,11 +49,22 @@ def render():
             for key in ["df", "fuente", "metodo", "hash_archivos",
                         "nuniques", "columnas_qi", "columna_sensible"]:
                 st.session_state.pop(key, None)
+            st.session_state["abrir_dialogo"] = True
             st.rerun()
         return
 
     # ── Sin fichero ──────────────────────────────────────────────────────
     if not ficheros_subidos:
+        # Si venimos de "Cargar un fichero diferente", abrir el diálogo automáticamente
+        if st.session_state.pop("abrir_dialogo", False):
+            components.html("""
+                <script>
+                    setTimeout(function() {
+                        const inputs = window.parent.document.querySelectorAll('input[type="file"]');
+                        if (inputs.length > 0) inputs[0].click();
+                    }, 300);
+                </script>
+            """, height=0)
         st.markdown("""
         <div style='text-align:center;padding:3rem 0;color:#6b7280'>
             <div style='font-size:2.5rem;margin-bottom:1rem'>📂</div>
