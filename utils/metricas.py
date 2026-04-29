@@ -23,19 +23,6 @@ def k_value(df,qi_cols):
         return len(df)
     return int(df.groupby(qi_cols, dropna=False).size().min())
 
-def calcular_riesgo_global_armonico(r_fiscal, r_periodista, r_marketing):
-    """
-    Calcula la media armónica de los tres riesgos. 
-    Se ignoran los riesgos muy cercanos a 0 para evitar divisiones por cero.
-    """
-    riesgos = [r for r in [r_fiscal, r_periodista, r_marketing] if r > 0.0001]
-    
-    if not riesgos:
-        return 0.0
-        
-    suma_inversos = sum(1.0 / r for r in riesgos)
-    return len(riesgos) / suma_inversos
-
 def riesgo_label(value):
     if value < 0.2:
         return "BAJO", "riesgo-bajo"
@@ -44,6 +31,7 @@ def riesgo_label(value):
     else:
         return "ALTO", "riesgo-alto"
 
+# Reservado para tab 5 - Comparativa
 def generar_grafico_riesgos(r_maximo_orig, r_medio_orig, t_unicidad_orig,
                             r_maximo_anon, r_medio_anon, t_unicidad_anon):
     """Gráfico de barras agrupadas original vs anonimizado para las tres métricas principales."""
