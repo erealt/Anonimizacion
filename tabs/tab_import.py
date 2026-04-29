@@ -131,30 +131,43 @@ def render():
 
     col_a, col_b = st.columns(2)
 
+    # Leemos el estado actual para poder filtrar las listas
+    sensible_actual = st.session_state.get("columna_sensible")
+    qi_actual       = st.session_state.get("columnas_qi", [])
+
+    # Opciones de QI: excluir el atributo sensible ya elegido
+    opciones_qi = [c for c in todas if c != sensible_actual]
+    # Aseguramos que el default no contenga columnas ya no disponibles
+    default_qi  = [c for c in qi_actual if c in opciones_qi]
+
     with col_a:
         qi_seleccionado = st.multiselect(
             "Cuasi-identificadores (QI)",
-            todas,
-            default=st.session_state.get("columnas_qi", []),
+            opciones_qi,
+            default=default_qi,
             placeholder="Selecciona una o varias columnas...",
             key="qi_manual",
         )
+
+    # Opciones de sensible: excluir los QI ya elegidos
+    opciones_sens = [c for c in todas if c not in qi_seleccionado]
+    idx_defecto   = opciones_sens.index(sensible_actual) \
+        if sensible_actual in opciones_sens else None
+
     with col_b:
-        idx_defecto = todas.index(st.session_state["columna_sensible"]) \
-            if st.session_state.get("columna_sensible") in todas else None
         sensible_seleccionado = st.selectbox(
             "Atributo sensible",
-            [None] + todas,
+            [None] + opciones_sens,
             index=0 if idx_defecto is None else idx_defecto + 1,
             format_func=lambda x: "Selecciona una columna..." if x is None else x,
             key="sens_manual",
         )
 
-    # Guardar en sesión cuando el usuario selecciona
+    # Guardar en sesión
     st.session_state["columnas_qi"]      = qi_seleccionado
     st.session_state["columna_sensible"] = sensible_seleccionado
 
-    # ── Botón continuar (solo si hay selección mínima) ───────────────────
+    # ── Botón continuar ──────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     listo = bool(qi_seleccionado) and sensible_seleccionado is not None
     _, col_btn = st.columns([3, 1])
