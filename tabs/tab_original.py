@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from utils.metricas import riesgo_maximo,riesgo_medio,generar_grafico_riesgos,riesgo_label
+from utils.metricas import riesgo_maximo,riesgo_medio,generar_grafico_riesgos,riesgo_label,tasa_unicidad,k_value
 
 # ── Paleta institucional ──
 COLOR_BG        = "#ffffff"
@@ -171,6 +171,7 @@ def render(df, qi_cols, source):
                 t.set_fontsize(8)
         plt.tight_layout()
         st.pyplot(fig1)
+        plt.close(fig1)
 
     with col_g2:
         st.markdown("**Riesgo por Atributo (Aislamiento)**")
@@ -203,6 +204,7 @@ def render(df, qi_cols, source):
                      f"{val:.1f}%", ha="center", color=COLOR_MUTED, fontsize=8)
         plt.tight_layout()
         st.pyplot(fig2)
+        plt.close(fig2)
 
     st.markdown("<br>", unsafe_allow_html=True)
     _, col_btn = st.columns([3, 1])

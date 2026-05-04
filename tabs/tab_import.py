@@ -2,20 +2,14 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from utils.loader import carga_automatica
-
-@st.cache_data
-def generar_csv_cacheado(df):
-    return df.to_csv(index=False).encode("utf-8")
+from utils.exporter import FORMATOS, exportar
 
 
 def render():
     st.markdown("<div class='section-header'>Importar datos</div>", unsafe_allow_html=True)
     st.markdown("""
     <div class='info-box'>
-    Sube uno o varios ficheros y la app detectará automáticamente el formato.<br><br>
-    <strong>Formatos soportados:</strong> CSV · JSON · XML · Excel · DAT/TXT/ASC (ASCII fijo)<br>
-    <strong>Para microdatos del INE</strong> (ASCII fijo): sube el <code>.dat</code>/<code>.txt</code>
-    <em>y</em> el Excel de diseño de registro a la vez y se procesarán solos.
+    Sube uno o varios ficheros y la app detectará automáticamente el formato.
     </div>""", unsafe_allow_html=True)
 
     ficheros_subidos = st.file_uploader(
@@ -116,14 +110,24 @@ def render():
     st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
     st.dataframe(df_cargado.head(10), use_container_width=True)
 
-    if etiqueta_fuente and not etiqueta_fuente.startswith("CSV"):
-        bytes_csv = generar_csv_cacheado(df_cargado)
-        st.download_button(
-            "⬇ Descargar dataset convertido como CSV",
-            bytes_csv,
-            file_name="dataset_convertido.csv",
-            mime="text/csv",
-        )
+    if etiqueta_fuente:
+        col_fmt_imp, col_dl_imp = st.columns([1, 3])
+        with col_fmt_imp:
+            formato_imp = st.selectbox(
+                "Formato",
+                list(FORMATOS.keys()),
+                key="formato_export_import",
+                label_visibility="collapsed",
+            )
+        with col_dl_imp:
+            with st.spinner(f"Generando {formato_imp}..."):
+                datos_imp, ext_imp, mime_imp = exportar(df_cargado, formato_imp)
+            st.download_button(
+                f"⬇ Descargar dataset convertido (.{ext_imp})",
+                datos_imp,
+                file_name=f"dataset_convertido.{ext_imp}",
+                mime=mime_imp,
+            )
 
     # ── Selección manual de columnas ─────────────────────────────────────
     st.markdown("---")

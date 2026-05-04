@@ -7,10 +7,17 @@ def riesgo_maximo(df, qi_cols):
         return 0.0
     return float((1 / df.groupby(qi_cols, dropna=False).size()).max())
 
-def riesgo_medio(df,qi_cols):
+def riesgo_medio(df, qi_cols):
+    """Journalist risk: riesgo medio de re-identificación promediado por REGISTRO.
+
+    Cada individuo aporta 1/tamaño_de_su_grupo. Promediar por grupo (en lugar
+    de por registro) infraestima el peso de los grupos grandes y sobrestima
+    el de los pequeños, dando un valor distorsionado.
+    """
     if not qi_cols:
         return 0.0
-    return float((1/df.groupby(qi_cols,dropna=False).size()).mean())
+    sizes = df.groupby(qi_cols, dropna=False)[df.columns[0]].transform("size")
+    return float((1 / sizes).mean())
 
 def tasa_unicidad(df,qi_cols):
     if not qi_cols:
@@ -34,7 +41,11 @@ def riesgo_label(value):
 # Reservado para tab 5 - Comparativa
 def generar_grafico_riesgos(r_maximo_orig, r_medio_orig, t_unicidad_orig,
                             r_maximo_anon, r_medio_anon, t_unicidad_anon):
-    """Gráfico de barras agrupadas original vs anonimizado para las tres métricas principales."""
+    """Gráfico de barras agrupadas original vs anonimizado para las tres métricas principales.
+
+    IMPORTANTE: el llamador debe hacer ``plt.close(fig)`` tras pintarla con
+    ``st.pyplot(fig)`` para evitar fugas de memoria al re-ejecutarse el script.
+    """
     COLOR_BG      = "#ffffff"
     COLOR_ORIG    = "#991b1b"   # rojo institucional — datos originales (más riesgo)
     COLOR_ANON    = "#1a3a6b"   # azul institucional  — datos anonimizados

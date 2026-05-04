@@ -1,5 +1,6 @@
 import streamlit as st
 from utils.anonimizacion import k_anonimicidad, l_diversidad, privacidad_diferencial
+from utils.exporter import FORMATOS, exportar
 
 COLOR_PRIMARY = "#1a3a6b"
 COLOR_BORDER  = "#d1d5db"
@@ -97,14 +98,22 @@ def render():
         if len(df_anon) > 100:
             st.caption(f"Vista previa de las primeras 100 filas (total: {registros_anon}).")
 
-        col_dl, col_btn = st.columns([2, 1])
+        col_fmt, col_dl, col_btn = st.columns([1, 2, 1])
+        with col_fmt:
+            formato = st.selectbox(
+                "Formato",
+                list(FORMATOS.keys()),
+                key="formato_export_anon",
+                label_visibility="collapsed",
+            )
         with col_dl:
-            csv = df_anon.to_csv(index=False).encode("utf-8")
+            with st.spinner(f"Generando {formato}..."):
+                datos, ext, mime = exportar(df_anon, formato)
             st.download_button(
-                "⬇ Descargar datos anonimizados (CSV)",
-                csv,
-                file_name="datos_anonimizados.csv",
-                mime="text/csv",
+                f"⬇ Descargar datos anonimizados (.{ext})",
+                datos,
+                file_name=f"datos_anonimizados.{ext}",
+                mime=mime,
                 use_container_width=True,
             )
         with col_btn:
