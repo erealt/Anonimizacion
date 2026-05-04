@@ -15,7 +15,7 @@ def k_anonimicidad(df,qi_cols,k):
     for col in qi_cols:
         anon[col]=generalizacion(anon[col])
     sizes=anon.groupby(qi_cols,dropna=False).transform("count").iloc[:,0] # dropna:descarta los vacios , lo ponemos a False ya que por defecto en pandas esta a true.
-                                                                            #Es decir si estamos contando por Ciudades y hay algún campo vacio donde no lo pone que no los elimine de ese recuento
+    #Es decir si estamos contando por Ciudades y hay algún campo vacio donde no lo pone que no los elimine de ese recuento
     return anon[sizes >= k].reset_index(drop=True)  # supresión de registros que no cumplen k
 
 def l_diversidad(df,qi_cols,col_sensibles,k,l):

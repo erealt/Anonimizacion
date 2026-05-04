@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from utils.metricas import *
+from utils.metricas import riesgo_maximo,riesgo_medio,generar_grafico_riesgos,riesgo_label
 
 # ── Paleta institucional ──
 COLOR_BG        = "#ffffff"

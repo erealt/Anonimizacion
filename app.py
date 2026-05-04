@@ -2,7 +2,7 @@ import streamlit as st
 
 from utils.styles import CSS
 from tabs import tab_import, tab_original, tab_anonimizacion
-from utils.metricas import *
+from utils.metricas import riesgo_maximo,riesgo_medio,generar_grafico_riesgos, riesgo_label
 
 st.set_page_config(
     page_title="Anonimización de Datos",
