@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from utils.loader import carga_automatica
-from utils.exporter import FORMATOS, exportar
 
 
 def render():
@@ -21,6 +20,9 @@ def render():
 
     # ── Dataset ya cargado (uploader vacío pero hay df en sesión) ────────
     if not ficheros_subidos and "df" in st.session_state:
+        df_cargado = st.session_state["df"]
+        todas = df_cargado.columns.tolist()
+
         st.markdown(f"""
         <div style='background:#ffffff;border:1px solid #d1d5db;border-left:4px solid #166534;
                     border-radius:6px;padding:1.1rem 1.4rem;margin:1rem 0;
@@ -32,19 +34,87 @@ def render():
                 </div>
                 <div style='color:#374151;font-size:0.85rem;'>
                     📂 {st.session_state['fuente']} ·
-                    {len(st.session_state['df'])} registros ·
-                    {len(st.session_state['df'].columns)} columnas
+                    {len(df_cargado)} registros ·
+                    {len(df_cargado.columns)} columnas
                 </div>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-        if st.button("Cargar un fichero diferente"):
-            for key in ["df", "fuente", "metodo", "hash_archivos",
-                        "nuniques", "columnas_qi", "columna_sensible"]:
-                st.session_state.pop(key, None)
-            st.session_state["abrir_dialogo"] = True
-            st.rerun()
+        # ── Selección de columnas (siempre accesible) ────────────────────
+        st.markdown("---")
+        st.markdown("<div class='section-header'>Modificar selección de columnas</div>", unsafe_allow_html=True)
+        st.caption("Puedes cambiar los cuasi-identificadores y el atributo sensible sin recargar el dataset.")
+
+        col_a, col_b = st.columns(2)
+
+        sensible_actual = st.session_state.get("columna_sensible")
+        qi_actual = st.session_state.get("columnas_qi", [])
+
+        opciones_qi = [c for c in todas if c != sensible_actual]
+        default_qi = [c for c in qi_actual if c in opciones_qi]
+
+        with col_a:
+            qi_seleccionado = st.multiselect(
+                "Cuasi-identificadores (QI)",
+                opciones_qi,
+                default=default_qi,
+                placeholder="Selecciona una o varias columnas...",
+                key="qi_manual_cargado",
+            )
+
+        opciones_sens = [c for c in todas if c not in qi_seleccionado]
+        idx_defecto = opciones_sens.index(sensible_actual) \
+            if sensible_actual in opciones_sens else None
+
+        with col_b:
+            sensible_seleccionado = st.selectbox(
+                "Atributo sensible",
+                [None] + opciones_sens,
+                index=0 if idx_defecto is None else idx_defecto + 1,
+                format_func=lambda x: "Selecciona una columna..." if x is None else x,
+                key="sens_manual_cargado",
+            )
+
+        # Guardar y limpiar resultado anterior si cambiaron los QI
+        qi_cambio = qi_seleccionado != st.session_state.get("columnas_qi", [])
+        sens_cambio = sensible_seleccionado != st.session_state.get("columna_sensible")
+
+        st.session_state["columnas_qi"] = qi_seleccionado
+        st.session_state["columna_sensible"] = sensible_seleccionado
+
+        if qi_cambio or sens_cambio:
+            # Invalidar resultado de anonimización previo (datos stale)
+            st.session_state.pop("df_anonimizado", None)
+            st.session_state.pop("tecnica_usada", None)
+
+        # ── Botones de acción ────────────────────────────────────────────
+        st.markdown("<br>", unsafe_allow_html=True)
+        col_nuevo, _, col_continuar = st.columns([1.5, 1.5, 1])
+
+        with col_nuevo:
+            if st.button("📂 Cargar un fichero diferente", use_container_width=True):
+                for key in ["df", "fuente", "metodo", "hash_archivos",
+                            "nuniques", "columnas_qi", "columna_sensible",
+                            "df_anonimizado", "tecnica_usada"]:
+                    st.session_state.pop(key, None)
+                st.session_state["abrir_dialogo"] = True
+                st.rerun()
+
+        with col_continuar:
+            listo = bool(qi_seleccionado) and sensible_seleccionado is not None
+            if st.button(
+                "Continuar →",
+                key="continuar_cargado",
+                use_container_width=True,
+                type="primary",
+                disabled=not listo,
+            ):
+                st.session_state["pagina_activa"] = 1
+                st.rerun()
+
+        if not (bool(qi_seleccionado) and sensible_seleccionado is not None):
+            st.caption("Selecciona al menos un cuasi-identificador y un atributo sensible para continuar.")
         return
 
     # ── Sin fichero ──────────────────────────────────────────────────────
@@ -109,25 +179,6 @@ def render():
     # ── Vista previa ─────────────────────────────────────────────────────
     st.markdown("<div class='section-header'>Vista previa</div>", unsafe_allow_html=True)
     st.dataframe(df_cargado.head(10), use_container_width=True)
-
-    if etiqueta_fuente:
-        col_fmt_imp, col_dl_imp = st.columns([1, 3])
-        with col_fmt_imp:
-            formato_imp = st.selectbox(
-                "Formato",
-                list(FORMATOS.keys()),
-                key="formato_export_import",
-                label_visibility="collapsed",
-            )
-        with col_dl_imp:
-            with st.spinner(f"Generando {formato_imp}..."):
-                datos_imp, ext_imp, mime_imp = exportar(df_cargado, formato_imp)
-            st.download_button(
-                f"⬇ Descargar dataset convertido (.{ext_imp})",
-                datos_imp,
-                file_name=f"dataset_convertido.{ext_imp}",
-                mime=mime_imp,
-            )
 
     # ── Selección manual de columnas ─────────────────────────────────────
     st.markdown("---")

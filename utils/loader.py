@@ -1,6 +1,12 @@
 import io
 import pandas as pd
 
+try:
+    import pyarrow  # noqa: F401
+    _CSV_ENGINE = "pyarrow"
+except ImportError:
+    _CSV_ENGINE = "c"
+
 
 # ── Helpers de detección ─────────────────────────────────────────────────────
 
@@ -16,8 +22,28 @@ def _detectar_encoding(contenido_bytes):
     return "latin-1"
 
 
+def _leer_csv_rapido(contenido_bytes, separador, encoding):
+    
+    if _CSV_ENGINE == "pyarrow":
+        try:
+            return pd.read_csv(
+                io.BytesIO(contenido_bytes),
+                sep=separador,
+                encoding=encoding,
+                engine="pyarrow",
+            )
+        except Exception:
+            pass
+    return pd.read_csv(
+        io.BytesIO(contenido_bytes),
+        sep=separador,
+        encoding=encoding,
+        engine="c",
+    )
+
+
 def _detectar_separador(contenido_bytes, encoding):
-    """Detecta separador decodificando solo los primeros 4 KB con el engine C (rápido)."""
+
     muestra = contenido_bytes[:4096].decode(encoding, errors="replace")
     for sep, nombre in [(",", "coma"), (";", "punto y coma"), ("\t", "tabulador"), ("|", "pipe")]:
         try:
@@ -91,24 +117,21 @@ def parsear_diseno_ine(fichero_diseno):
 
 
 def parsear_microdatos_ine(fichero_datos, variables):
-    """Lee ASCII de ancho fijo recortando cada campo por posición."""
+
     try:
         contenido = fichero_datos.read() if hasattr(fichero_datos, "read") else open(fichero_datos, "rb").read()
         encoding  = _detectar_encoding(contenido)
-        texto     = contenido.decode(encoding, errors="replace")
-        lineas    = [l.rstrip("\r\n") for l in texto.splitlines() if l.strip()]
 
-        registros = [
-            {v["nombre"]: (linea[v["inicio"]:v["fin"]].strip() if v["fin"] <= len(linea) else "")
-             for v in variables}
-            for linea in lineas
-        ]
-        df = pd.DataFrame(registros)
-        for col in df.columns:
-            try:
-                df[col] = pd.to_numeric(df[col])
-            except (ValueError, TypeError):
-                pass
+        colspecs = [(v["inicio"], v["fin"]) for v in variables]
+        nombres  = [v["nombre"] for v in variables]
+
+        df = pd.read_fwf(
+            io.BytesIO(contenido),
+            colspecs=colspecs,
+            names=nombres,
+            header=None,
+            encoding=encoding,
+        )
         return df, None
     except Exception as e:
         return None, f"Error parseando microdatos: {e}"
@@ -169,10 +192,9 @@ def _cargar_fichero_unico(fichero):
             contenido = fichero.read()
             encoding  = _detectar_encoding(contenido)
             sep, nombre_sep = _detectar_separador(contenido, encoding)
-            # BytesIO + encoding → pandas usa engine C directamente, sin copias extra
-            df = pd.read_csv(io.BytesIO(contenido), sep=sep or ",", encoding=encoding)
+            df = _leer_csv_rapido(contenido, sep or ",", encoding)
             return df, f"CSV · {fichero.name}", \
-                   f"CSV (separador: {nombre_sep or 'coma'}, codificación: {encoding})", None
+                   f"CSV (separador: {nombre_sep or 'coma'}, codificación: {encoding}, motor: {_CSV_ENGINE})", None
         except Exception as e:
             return None, None, None, f"Error leyendo CSV: {e}"
 
@@ -211,9 +233,9 @@ def _cargar_fichero_unico(fichero):
             encoding  = _detectar_encoding(contenido)
             sep, nombre_sep = _detectar_separador(contenido, encoding)
             if sep:
-                df = pd.read_csv(io.BytesIO(contenido), sep=sep, encoding=encoding)
+                df = _leer_csv_rapido(contenido, sep, encoding)
                 return df, f"Microdatos · {fichero.name}", \
-                       f"ASCII separado por '{nombre_sep}' (codificación: {encoding})", None
+                       f"ASCII separado por '{nombre_sep}' (codificación: {encoding}, motor: {_CSV_ENGINE})", None
             return None, None, None, (
                 "⚠️ El fichero parece ser ASCII de ancho fijo. "
                 "Sube también el fichero de diseño de registro."
@@ -246,8 +268,8 @@ def _cargar_con_diseno(fichero_datos, fichero_diseno):
             sep, nombre_sep = _detectar_separador(contenido, encoding)
 
             if sep:
-                df = pd.read_csv(io.BytesIO(contenido), sep=sep, encoding=encoding)
-                metodo = f"ASCII '{nombre_sep}' + diseño ({len(variables)} vars)"
+                df = _leer_csv_rapido(contenido, sep, encoding)
+                metodo = f"ASCII '{nombre_sep}' + diseño ({len(variables)} vars, motor: {_CSV_ENGINE})"
             else:
                 fichero_datos.seek(0)
                 df, error2 = parsear_microdatos_ine(fichero_datos, variables)
