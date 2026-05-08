@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "WebSearch",
+      "PowerShell(gh issue list --repo IFCA-Advanced-Computing/anjana --limit 20 2>&1)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

@@ -1,7 +1,7 @@
 import streamlit as st
 
 from utils.styles import CSS
-from tabs import tab_import, tab_original, tab_anonimizacion
+from tabs import tab_import, tab_original, tab_anonimizacion, tab_metricas, tab_comparativa
 
 st.set_page_config(
     page_title="Anonimización de Datos",
@@ -130,7 +130,7 @@ elif pagina == 2:
     tab_anonimizacion.render()
 
 elif pagina == 3:
-    st.info("📈 Sección de métricas en construcción.")
+    tab_metricas.render()
 
 elif pagina == 4:
-    st.info("⚖️ Sección de comparativa en construcción.")
+    tab_comparativa.render()

@@ -110,3 +110,53 @@ def riesgo_label(value):
     else:
         return "ALTO", "riesgo-alto"
 
+
+def generar_grafico_riesgos(r_maximo_orig, r_medio_orig, t_unicidad_orig,
+                            r_maximo_anon, r_medio_anon, t_unicidad_anon):
+    """Gráfico comparativo de métricas de riesgo: original vs anonimizado."""
+    COLOR_BG      = "#ffffff"
+    COLOR_ORIG    = "#991b1b"
+    COLOR_ANON    = "#1a3a6b"
+    COLOR_MUTED   = "#6b7280"
+    COLOR_BORDER  = "#d1d5db"
+
+    etiquetas = ["Riesgo máximo", "Riesgo medio", "Tasa de unicidad"]
+    vals_orig = [r_maximo_orig, r_medio_orig, t_unicidad_orig]
+    vals_anon = [r_maximo_anon, r_medio_anon, t_unicidad_anon]
+
+    x = np.arange(len(etiquetas))
+    w = 0.32
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+    fig.patch.set_facecolor(COLOR_BG)
+    ax.set_facecolor(COLOR_BG)
+
+    b1 = ax.bar(x - w / 2, vals_orig, w, label="Original",     color=COLOR_ORIG, alpha=0.85)
+    b2 = ax.bar(x + w / 2, vals_anon, w, label="Anonimizado",  color=COLOR_ANON, alpha=0.85)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(etiquetas, color=COLOR_MUTED, fontsize=10)
+    ax.set_ylabel("Valor de la métrica", color=COLOR_MUTED, fontsize=9)
+    ax.set_ylim(0, 1.15)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.tick_params(colors=COLOR_MUTED)
+
+    for s in ax.spines.values():
+        s.set_edgecolor(COLOR_BORDER)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    ax.legend(facecolor=COLOR_BG, edgecolor=COLOR_BORDER,
+              labelcolor=COLOR_MUTED, fontsize=9, loc="upper right")
+
+    for bar, color in zip(list(b1) + list(b2), [COLOR_ORIG] * 3 + [COLOR_ANON] * 3):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + 0.02,
+            f"{bar.get_height():.1%}",
+            ha="center", va="bottom", color=color, fontsize=8, fontweight="600",
+        )
+
+    plt.tight_layout()
+    return fig
+

@@ -1,165 +1,178 @@
 import numpy as np
 import pandas as pd
-from diffprivlib.mechanisms import Laplace as LaplaceMechanism
+from anjana.anonymity import k_anonymity as _anjana_k_anon
+from anjana.anonymity import l_diversity as _anjana_l_div
+from anjana.anonymity.utils.utils import get_transformation as _anjana_get_transformation
 from diffprivlib.accountant import BudgetAccountant
+from diffprivlib.mechanisms import Laplace as LaplaceMechanism
 
 
-# GENERALIZACIÓN ADAPTATIVA
+def _crear_intervalos(valores, v_min, v_max, step):
+    """
+    Genera intervalos de generalizacion para valores numericos.
+
+    Mantiene el formato que espera anjana ("[a, b)") y evita el bug
+    observado en ``generate_intervals`` cuando el maximo cae en el borde.
+    """
+    inicio = np.floor(v_min / step) * step
+    fin = (np.floor(v_max / step) + 2) * step
+    bordes = np.arange(inicio, fin, step)
+
+    resultado = []
+    for val in valores:
+        idx = np.searchsorted(bordes, val, side="right") - 1
+        idx = max(0, min(idx, len(bordes) - 2))
+        resultado.append(f"[{bordes[idx]}, {bordes[idx + 1]})")
+
+    return resultado
 
 
-def generalizacion(series, bins=10):
-    
-    # ── Manejo de series vacías ──────────────────────────────────────────────
-    s = series.dropna()
-    if len(s) == 0:
-        return series.astype(str)
+def _preparar_df(df, qi_cols):
+    """Limpia los cuasi-identificadores antes de delegar en anjana."""
+    df_clean = df.copy()
 
-    n_unicos = s.nunique()
+    for col in qi_cols:
+        if pd.api.types.is_numeric_dtype(df_clean[col]):
+            if df_clean[col].dropna().empty:
+                df_clean[col] = pd.Series(["Desconocido"] * len(df_clean), index=df_clean.index)
+            else:
+                df_clean[col] = df_clean[col].fillna(df_clean[col].median())
+        else:
+            df_clean[col] = df_clean[col].fillna("Desconocido").astype(str)
 
-   
-    # 1. RAMA NUMÉRICA
-   
-    if pd.api.types.is_numeric_dtype(series):
+    return df_clean
 
-        # Comprobación segura de si todos son enteros (protege contra NaN)
-        es_entero = bool((s % 1 == 0).all()) if len(s) > 0 else False
 
-        # ── 1.A. Discretos con pocos valores: NO generalizar ─────────────────
-        # Si ≤60 valores únicos y todos enteros → son categorías codificadas
-        # como números. Generalizarlos destruiría su significado.
-        if n_unicos <= 60 and es_entero:
-            return series.astype(str)
+def _generar_jerarquias(df, qi_cols):
+    """
+    Construye el diccionario ``hierarchies`` con el formato de anjana.
 
-        # ── 1.B. Enteros de alta cardinalidad → SIEMPRE son códigos ──────────
-        # Clave: si un número NO tiene decimales y tiene >60 valores únicos,
-        # es un código (municipio, CP, ID). Las variables continuas reales
-        # (KM, peso, salario) siempre tienen decimales en algún registro.
-        # Enmascaramos ~1/3 de los dígitos para preservar la jerarquía.
-        if es_entero and n_unicos > 60:
-            n_digitos = len(str(int(abs(s.max()))))
-            digitos_mask = max(1, n_digitos // 3)
-            return series.astype(str).apply(
-                lambda x, dm=digitos_mask: (
-                    x[:-dm] + "*" * dm
-                    if len(x) > dm and x not in ("nan", "None", "")
-                    else x
-                )
-            )
+    Estructura esperada:
+    ``{columna_qi: {0: valores_limpios, 1: nivel_1, ..., n: supresion_total}}``
+    """
+    hierarchies = {}
+    n = len(df)
 
-        # ── 1.C. Continuos (decimales): cuantiles ────────────────────────────
-        # Si hay sentinelas extremos (ej: 9999 = "no disponible"),
-        # recortamos al percentil 99 para que no distorsionen los bins.
-        serie_qcut = series.copy()
-        p95 = s.quantile(0.95)
-        if p95 < s.max() * 0.5:
-            # Hay valores extremos muy por encima del grueso de datos (sentinelas)
-            serie_qcut = series.clip(upper=p95)
+    for col in qi_cols:
+        series = df[col]
 
-        try:
-            resultado = pd.qcut(serie_qcut, q=bins, duplicates="drop")
-        except Exception:
-            try:
-                resultado = pd.cut(serie_qcut, bins=bins)
-            except Exception:
-                return series.astype(str)
+        if pd.api.types.is_numeric_dtype(series):
+            raw = np.asarray(series.to_numpy())
 
-        # Convertir intervalos a etiquetas legibles: (17.999, 27.4] → "18 - 27"
-        return resultado.apply(
-            lambda x: f"{int(np.ceil(x.left))} - {int(np.floor(x.right))}"
-            if pd.notna(x) else "nan"
+            if len(raw) == 0:
+                hierarchies[col] = {
+                    0: raw,
+                    1: np.array([], dtype=object),
+                }
+                continue
+
+            v_min = float(np.nanmin(raw))
+            v_max = float(np.nanmax(raw))
+
+            hierarchies[col] = {
+                0: raw,
+                1: np.array(_crear_intervalos(raw, v_min, v_max, step=5), dtype=object),
+                2: np.array(_crear_intervalos(raw, v_min, v_max, step=10), dtype=object),
+                3: np.array(_crear_intervalos(raw, v_min, v_max, step=20), dtype=object),
+                4: np.array(["*"] * n, dtype=object),
+            }
+            continue
+
+        raw = np.asarray(series.fillna("Desconocido").astype(str).to_numpy(), dtype=object)
+        truncado = np.array(
+            [(valor[:3] + "*" if len(valor) > 3 else valor) for valor in raw],
+            dtype=object,
         )
+        hierarchies[col] = {
+            0: raw,
+            1: truncado,
+            2: np.array(["*"] * n, dtype=object),
+        }
+
+    return hierarchies
 
 
-    # 2. RAMA CATEGÓRICA (texto)
-   
-    s_str = series.fillna("Desconocido").astype(str)
+def _normalizar_salida_anjana(df_resultado, columnas_originales):
+    """Elimina artefactos de anjana y restablece un indice limpio."""
+    if "index" in df_resultado.columns and "index" not in columnas_originales:
+        df_resultado = df_resultado.drop(columns=["index"])
 
-    # ── 2.A. Baja cardinalidad (≤50): truncar último carácter ────────────────
-    if n_unicos <= 50:
-        return s_str.apply(lambda x: x[:-1] + "*" if len(x) > 1 else "*")
-
-    # ── 2.B. Alta cardinalidad (>50): top-20 + "Otros" ──────────────────────
-    top = s_str.value_counts().head(20).index
-    return s_str.where(s_str.isin(top), other="Otros")
+    return df_resultado.reset_index(drop=True)
 
 
-# TÉCNICAS DE ANONIMIZACIÓN
-
-
-def k_anonimicidad(df, qi_cols, k):
+def _anotar_resultado_anjana(df_original, df_anon, qi_cols, hierarchies):
     """
-    K-Anonimidad 
-    Generaliza los QI y suprime registros cuyo grupo tiene tamaño < k.
+    Adjunta metadatos utiles para auditoria y diagnostico.
+
+    Estos metadatos permiten saber si anjana aplico generalizacion,
+    cuantas filas suprimio y si el resultado termino siendo identico.
     """
-    anon = df.copy()
-    for col in qi_cols:
-        anon[col] = generalizacion(anon[col])
+    df_anon = df_anon.copy()
+    transformacion = _anjana_get_transformation(df_anon, qi_cols, hierarchies)
+    filas_suprimidas = max(len(df_original) - len(df_anon), 0)
+    salida_igual = df_anon.reset_index(drop=True).equals(df_original.reset_index(drop=True))
 
-    sizes = anon.groupby(qi_cols, dropna=False)[qi_cols[0]].transform("size")
-    return anon[sizes >= k].reset_index(drop=True)
+    df_anon.attrs["anjana_transformation"] = transformacion
+    df_anon.attrs["filas_suprimidas"] = filas_suprimidas
+    df_anon.attrs["resultado_identico_original"] = salida_igual
+
+    return df_anon
 
 
-def l_diversidad(df, qi_cols, col_sensible, k, l):
+def k_anonimicidad(df, qi_cols, k, supp_level=30):
     """
-    L-Diversidad (Machanavajjhala et al., 2007).
-    Cada grupo de equivalencia debe tener ≥k registros Y ≥l valores
-    distintos en el atributo sensible.
+    Wrapper ligero sobre ``anjana.anonymity.k_anonymity``.
+
+    El algoritmo de generalizacion y supresion se delega por completo a anjana.
     """
-    anon = df.copy()
-    for col in qi_cols:
-        anon[col] = generalizacion(anon[col])
+    df_clean = _preparar_df(df, qi_cols)
+    hierarchies = _generar_jerarquias(df_clean, qi_cols)
 
-    return anon.groupby(qi_cols, group_keys=False, dropna=False).filter(
-        lambda g: len(g) >= k and g[col_sensible].nunique() >= l
-    ).reset_index(drop=True)
+    df_anon = _anjana_k_anon(
+        data=df_clean,
+        ident=[],
+        quasi_ident=qi_cols,
+        k=k,
+        supp_level=supp_level,
+        hierarchies=hierarchies,
+    )
+    df_anon = _normalizar_salida_anjana(df_anon, df.columns)
+    return _anotar_resultado_anjana(df_clean, df_anon, qi_cols, hierarchies)
 
 
-def t_closeness(df, qi_cols, col_sensible, k, t_max):
+def l_diversidad(df, qi_cols, col_sensible, k, l, supp_level=30):
     """
-    La distribución del atributo sensible en cada grupo no debe diferir
-    más de t respecto a la distribución global (Earth Mover's Distance).
-    Suprime grupos con mayor EMD hasta cumplir el umbral.
+    Wrapper ligero sobre ``anjana.anonymity.l_diversity``.
+
+    El algoritmo de generalizacion y supresion se delega por completo a anjana.
     """
-    anon = df.copy()
-    for col in qi_cols:
-        anon[col] = generalizacion(anon[col])
+    df_clean = _preparar_df(df, qi_cols)
+    hierarchies = _generar_jerarquias(df_clean, qi_cols)
 
-    # Primero aplicar k-anonimidad como base
-    sizes = anon.groupby(qi_cols, dropna=False)[qi_cols[0]].transform("size")
-    anon = anon[sizes >= k].reset_index(drop=True)
-
-    if len(anon) == 0:
-        return anon
-
-    # Calcular EMD por grupo y suprimir los que superen el umbral
-    dist_global = anon[col_sensible].value_counts(normalize=True)
-
-    def emd_grupo(grupo):
-        dist_local = grupo[col_sensible].value_counts(normalize=True)
-        todas = dist_global.index.union(dist_local.index)
-        return float(np.abs(
-            dist_global.reindex(todas, fill_value=0) -
-            dist_local.reindex(todas, fill_value=0)
-        ).sum()) / 2
-
-    grupos = list(anon.groupby(qi_cols, dropna=False))
-    partes = [g for _, g in grupos if emd_grupo(g) <= t_max and len(g) >= k]
-
-    if partes:
-        return pd.concat(partes).reset_index(drop=True)
-    return anon.iloc[:0].copy().reset_index(drop=True)
+    df_anon = _anjana_l_div(
+        data=df_clean,
+        ident=[],
+        quasi_ident=qi_cols,
+        sens_att=col_sensible,
+        k=k,
+        l_div=l,
+        supp_level=supp_level,
+        hierarchies=hierarchies,
+    )
+    df_anon = _normalizar_salida_anjana(df_anon, df.columns)
+    return _anotar_resultado_anjana(df_clean, df_anon, qi_cols, hierarchies)
 
 
 def privacidad_diferencial(df, epsilon, sensibilidad):
     """
-    Privacidad Diferencial (Dwork, 2006).
-    Usa el mecanismo de Laplace de diffprivlib (IBM) en vez de ruido manual.
-    Incluye control de presupuesto de privacidad (ε).
+    Privacidad Diferencial usando diffprivlib (IBM).
+
+    Aplica el mecanismo de Laplace a cada columna numerica,
+    con control de presupuesto de privacidad (composicion secuencial).
     """
     anon = df.copy()
     columnas_num = df.select_dtypes(include=[np.number]).columns.tolist()
 
-    # Presupuesto total repartido entre columnas (composición secuencial)
     epsilon_por_col = epsilon / len(columnas_num) if columnas_num else epsilon
     accountant = BudgetAccountant(epsilon=epsilon, delta=0)
 
@@ -168,17 +181,14 @@ def privacidad_diferencial(df, epsilon, sensibilidad):
             epsilon=epsilon_por_col,
             sensitivity=sensibilidad,
         )
-        # Aplicar mecanismo valor a valor
         anon[col] = anon[col].apply(
             lambda x: mech.randomise(x) if pd.notna(x) else x
         )
         accountant.spend(epsilon_por_col, 0)
 
-    # Guardar metadatos de presupuesto
     anon.attrs["epsilon_total"] = epsilon
     anon.attrs["epsilon_gastado"] = sum(e for e, _ in accountant.spent_budget)
     anon.attrs["epsilon_por_columna"] = epsilon_por_col
     anon.attrs["n_columnas_ruido"] = len(columnas_num)
 
     return anon
-
