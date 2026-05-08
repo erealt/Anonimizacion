@@ -18,6 +18,24 @@ def _resultado_identico(df_original, df_anon):
     return df_anon.reset_index(drop=True).equals(df_original.reset_index(drop=True))
 
 
+def _mensaje_tecnica(tecnica):
+    mensajes = {
+        "K-Anonimidad": (
+            "Agrupa registros parecidos para que cada persona quede mezclada con, "
+            "al menos, otras k personas similares."
+        ),
+        "L-Diversidad": (
+            "Ademas de agrupar registros, exige variedad en el dato sensible de cada "
+            "grupo para evitar inferencias directas."
+        ),
+        "Privacidad Diferencial": (
+            "Anade ruido matematico a los datos numericos para proteger a cada persona "
+            "sin eliminar filas del dataset."
+        ),
+    }
+    return mensajes[tecnica]
+
+
 def render():
     df = st.session_state.get("df", None)
     columnas_qi = st.session_state.get("columnas_qi", [])
@@ -36,21 +54,89 @@ def render():
             ["K-Anonimidad", "L-Diversidad", "Privacidad Diferencial"],
             label_visibility="collapsed",
         )
+        st.caption(_mensaje_tecnica(tecnica))
         st.markdown("---")
         st.markdown("<div class='section-header'>Parametros</div>", unsafe_allow_html=True)
 
         if tecnica == "K-Anonimidad":
-            k = st.slider("Valor de k", 2, 20, 3)
-            supp = st.slider("Supresion maxima (%)", 5, 80, 30, step=5)
+            k = st.slider(
+                "Valor de k",
+                2,
+                20,
+                3,
+                help=(
+                    "Numero minimo de registros parecidos que debe haber en cada grupo. "
+                    "Cuanto mayor sea k, mayor privacidad, pero tambien menor detalle."
+                ),
+            )
+            supp = st.slider(
+                "Supresion maxima (%)",
+                5,
+                80,
+                30,
+                step=5,
+                help=(
+                    "Porcentaje maximo de filas que el sistema puede eliminar si es "
+                    "necesario para proteger la privacidad."
+                ),
+            )
             l, epsilon, sensibilidad = 2, 1.0, 1.0
         elif tecnica == "L-Diversidad":
-            k = st.slider("Valor de k", 2, 20, 3)
-            l = st.slider("Valor de l", 2, 10, 2)
-            supp = st.slider("Supresion maxima (%)", 5, 80, 30, step=5)
+            k = st.slider(
+                "Valor de k",
+                2,
+                20,
+                3,
+                help=(
+                    "Tamano minimo de cada grupo de registros parecidos. "
+                    "Es la base sobre la que despues se aplica la diversidad."
+                ),
+            )
+            l = st.slider(
+                "Valor de l",
+                2,
+                10,
+                2,
+                help=(
+                    "Numero minimo de valores sensibles distintos que debe haber dentro "
+                    "de cada grupo."
+                ),
+            )
+            supp = st.slider(
+                "Supresion maxima (%)",
+                5,
+                80,
+                30,
+                step=5,
+                help=(
+                    "Porcentaje maximo de filas que el sistema puede eliminar para "
+                    "alcanzar el nivel de privacidad solicitado."
+                ),
+            )
             epsilon, sensibilidad = 1.0, 1.0
         else:
-            epsilon = st.slider("Epsilon", 0.01, 5.0, 1.0, step=0.01)
-            sensibilidad = st.slider("Sensibilidad", 0.1, 10.0, 1.0, step=0.1)
+            epsilon = st.slider(
+                "Epsilon",
+                0.01,
+                5.0,
+                1.0,
+                step=0.01,
+                help=(
+                    "Controla cuanto ruido se anade. Un valor menor da mas privacidad, "
+                    "pero tambien menos precision."
+                ),
+            )
+            sensibilidad = st.slider(
+                "Sensibilidad",
+                0.1,
+                10.0,
+                1.0,
+                step=0.1,
+                help=(
+                    "Indica cuanto puede influir un solo registro en el resultado. "
+                    "A mayor sensibilidad, mas ruido se necesita."
+                ),
+            )
             k, l, supp = 3, 2, 30
 
         st.markdown("---")

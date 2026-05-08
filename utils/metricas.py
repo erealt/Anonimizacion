@@ -24,40 +24,10 @@ def calcular_metricas_pycanon(df, qi_cols, sa_cols):
         resultado["k_anonymity"] = None
 
     try:
-        alpha, k = anonymity.alpha_k_anonymity(df, qi_cols, sa_cols)
-        resultado["alpha_k_anonymity"] = (float(alpha), int(k))
-    except Exception:
-        resultado["alpha_k_anonymity"] = None
-
-    try:
         resultado["l_diversity"] = int(anonymity.l_diversity(df, qi_cols, sa_cols))
     except Exception:
         resultado["l_diversity"] = None
 
-    try:
-        resultado["entropy_l_diversity"] = int(anonymity.entropy_l_diversity(df, qi_cols, sa_cols))
-    except Exception:
-        resultado["entropy_l_diversity"] = None
-
-    try:
-        resultado["basic_beta_likeness"] = float(anonymity.basic_beta_likeness(df, qi_cols, sa_cols))
-    except Exception:
-        resultado["basic_beta_likeness"] = None
-
-    try:
-        resultado["enhanced_beta_likeness"] = float(anonymity.enhanced_beta_likeness(df, qi_cols, sa_cols))
-    except Exception:
-        resultado["enhanced_beta_likeness"] = None
-
-    try:
-        resultado["t_closeness"] = float(anonymity.t_closeness(df, qi_cols, sa_cols))
-    except Exception:
-        resultado["t_closeness"] = None
-
-    try:
-        resultado["delta_disclosure"] = float(anonymity.delta_disclosure(df, qi_cols, sa_cols))
-    except Exception:
-        resultado["delta_disclosure"] = None
 
     return resultado
 

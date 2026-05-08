@@ -121,8 +121,6 @@ def _anotar_resultado_anjana(df_original, df_anon, qi_cols, hierarchies):
 
 def k_anonimicidad(df, qi_cols, k, supp_level=30):
     """
-    Wrapper ligero sobre ``anjana.anonymity.k_anonymity``.
-
     El algoritmo de generalizacion y supresion se delega por completo a anjana.
     """
     df_clean = _preparar_df(df, qi_cols)
@@ -142,8 +140,6 @@ def k_anonimicidad(df, qi_cols, k, supp_level=30):
 
 def l_diversidad(df, qi_cols, col_sensible, k, l, supp_level=30):
     """
-    Wrapper ligero sobre ``anjana.anonymity.l_diversity``.
-
     El algoritmo de generalizacion y supresion se delega por completo a anjana.
     """
     df_clean = _preparar_df(df, qi_cols)
@@ -167,8 +163,7 @@ def privacidad_diferencial(df, epsilon, sensibilidad):
     """
     Privacidad Diferencial usando diffprivlib (IBM).
 
-    Aplica el mecanismo de Laplace a cada columna numerica,
-    con control de presupuesto de privacidad (composicion secuencial).
+    Aplica el mecanismo de Laplace a cada columna numerica
     """
     anon = df.copy()
     columnas_num = df.select_dtypes(include=[np.number]).columns.tolist()
