@@ -187,22 +187,6 @@ def render():
             st.session_state["params_anon"] = {"k": k, "l": l, "supp": supp}
             st.session_state["attrs_anon"] = dict(df_anon.attrs) if df_anon.attrs else {}
 
-            if len(df_anon) > 0 and columnas_qi and tecnica != "Privacidad Diferencial":
-                with st.spinner("Verificando con pycanon..."):
-                    from pycanon import anonymity
-
-                    verif = {}
-                    verif["k_anonymity"] = int(anonymity.k_anonymity(df_anon, columnas_qi))
-                    if tecnica == "L-Diversidad" and columna_sensible:
-                        verif["l_diversity"] = int(
-                            anonymity.l_diversity(df_anon, columnas_qi, [columna_sensible])
-                        )
-                    st.session_state["verificacion_pycanon"] = verif
-                    st.session_state["verificacion_tecnica"] = tecnica
-            else:
-                st.session_state["verificacion_pycanon"] = {}
-                st.session_state["verificacion_tecnica"] = tecnica
-
         df_anon = st.session_state.get("df_anonimizado")
         tecnica_usada = st.session_state.get("tecnica_usada", tecnica)
 
@@ -226,25 +210,20 @@ def render():
         )
         c3.metric("Retencion de datos", f"{retencion:.1%}")
 
-        verif = st.session_state.get("verificacion_pycanon", {})
         attrs = st.session_state.get("attrs_anon", {})
         salida_identica = bool(
             attrs.get("resultado_identico_original", False)
             or _resultado_identico(df, df_anon)
         )
 
-        if verif or attrs:
+        if attrs:
             st.markdown("---")
             st.markdown(
-                "<div class='section-header'>Verificacion formal (pycanon · IFCA-CSIC)</div>",
+                "<div class='section-header'>Diagnostico del proceso</div>",
                 unsafe_allow_html=True,
             )
 
             badges = []
-            if verif.get("k_anonymity") is not None:
-                badges.append(f"OK k-anonimidad: k = {verif['k_anonymity']}")
-            if verif.get("l_diversity") is not None:
-                badges.append(f"OK l-diversidad: l = {verif['l_diversity']}")
             if "epsilon_total" in attrs:
                 badges.append(
                     "Privacidad diferencial (diffprivlib IBM): "
