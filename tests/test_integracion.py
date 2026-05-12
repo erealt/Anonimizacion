@@ -5,6 +5,7 @@ Tests de integracion del pipeline completo.
 import numpy as np
 import pandas as pd
 import pytest
+from pycanon import anonymity
 
 from utils.anonimizacion import (
     _generar_jerarquias,
@@ -112,6 +113,18 @@ class TestIntegracionDatasetGrande:
         assert isinstance(df_l, pd.DataFrame)
         assert len(df_l) > 0
         assert set(df_l.columns) == set(large_dataframe.columns)
+
+    def test_k_anonimicidad_grande_verificada_con_pycanon(self, large_dataframe, qi_cols):
+        k_solicitado = 5
+        df_k = k_anonimicidad(large_dataframe, qi_cols, k=k_solicitado, supp_level=20)
+        k_real = int(anonymity.k_anonymity(df_k, qi_cols))
+        assert k_real >= k_solicitado
+
+    def test_l_diversidad_grande_verificada_con_pycanon(self, large_dataframe, qi_cols, col_sensible):
+        l_solicitado = 2
+        df_l = l_diversidad(large_dataframe, qi_cols, col_sensible, k=3, l=l_solicitado, supp_level=30)
+        l_real = int(anonymity.l_diversity(df_l, qi_cols, [col_sensible]))
+        assert l_real >= l_solicitado
 
     def test_privacidad_diferencial_grande(self, large_dataframe):
         df_dp = privacidad_diferencial(large_dataframe, epsilon=1.0, sensibilidad=1.0)
