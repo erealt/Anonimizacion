@@ -380,34 +380,6 @@ def render():
         else:
             st.warning("No se pudieron calcular métricas con pycanon para la configuración actual.")
 
-    # ═════════════════════════════════════════════════════════════════════
-    # SECCIÓN 3: RESUMEN DE PARÁMETROS
-    # ═════════════════════════════════════════════════════════════════════
-    st.markdown("---")
-    st.markdown("### Resumen de la anonimización")
-
-    info_items = [f"**Técnica:** {tecnica}"]
-
-    if tecnica == "K-Anonimidad":
-        info_items.append(f"**k solicitado:** {params.get('k', '?')}")
-        info_items.append(f"**Supresión máxima:** {params.get('supp', '?')}%")
-        info_items.append(f"**Librería:** anjana (IFCA-CSIC)")
-    elif tecnica == "L-Diversidad":
-        info_items.append(f"**k solicitado:** {params.get('k', '?')}")
-        info_items.append(f"**l solicitado:** {params.get('l', '?')}")
-        info_items.append(f"**Supresión máxima:** {params.get('supp', '?')}%")
-        info_items.append(f"**Librería:** anjana (IFCA-CSIC)")
-    elif tecnica == "Privacidad Diferencial":
-        info_items.append(f"**ε total:** {attrs.get('epsilon_total', '?')}")
-        info_items.append(f"**Librería:** diffprivlib (IBM)")
-
-    info_items.append(f"**Registros:** {registros_orig} → {registros_anon} ({retencion:.1%} retención)")
-    info_items.append(f"**Verificación:** pycanon (IFCA-CSIC)")
-
-    st.markdown(
-        "<div class='info-box'>" + "<br>".join(info_items) + "</div>",
-        unsafe_allow_html=True,
-    )
 
     # ── Botón continuar ─────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)

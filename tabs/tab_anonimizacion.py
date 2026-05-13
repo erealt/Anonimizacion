@@ -216,36 +216,6 @@ def render():
             or _resultado_identico(df, df_anon)
         )
 
-        if attrs:
-            st.markdown("---")
-            st.markdown(
-                "<div class='section-header'>Diagnostico del proceso</div>",
-                unsafe_allow_html=True,
-            )
-
-            badges = []
-            if "epsilon_total" in attrs:
-                badges.append(
-                    "Privacidad diferencial (diffprivlib IBM): "
-                    f"epsilon = {attrs['epsilon_total']:.2f}, "
-                    f"epsilon/columna = {attrs['epsilon_por_columna']:.3f}, "
-                    f"{attrs['n_columnas_ruido']} columnas con ruido Laplace"
-                )
-            if "anjana_transformation" in attrs:
-                badges.append(
-                    f"Transformacion anjana: {attrs['anjana_transformation']} · "
-                    f"filas suprimidas = {attrs.get('filas_suprimidas', 0)}"
-                )
-
-            if badges:
-                st.markdown(
-                    "<div style='background:#f0fdf4;border:1px solid #86efac;border-radius:6px;"
-                    "padding:1rem 1.2rem;margin-bottom:1rem;font-size:0.88rem;line-height:1.8'>"
-                    + "<br>".join(badges)
-                    + "</div>",
-                    unsafe_allow_html=True,
-                )
-
         if salida_identica:
             st.error(
                 "La salida anonimizada es identica al dataset original. "
