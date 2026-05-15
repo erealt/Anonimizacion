@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from utils.metricas import (
-    calcular_metricas_pycanon,
     riesgo_maximo, riesgo_medio, tasa_unicidad, k_value, riesgo_label,
     generar_grafico_riesgos,
 )
@@ -11,7 +10,6 @@ from utils.metricas import (
 COLOR_BG      = "#ffffff"
 COLOR_CARD    = "#ffffff"
 COLOR_BORDER  = "#d1d5db"
-COLOR_PRIMARY = "#1a3a6b"
 COLOR_TEXT    = "#1a2340"
 COLOR_MUTED   = "#6b7280"
 COLOR_LOW     = "#166534"
@@ -37,7 +35,6 @@ def render():
     df               = st.session_state.get("df")
     df_anon          = st.session_state.get("df_anonimizado")
     columnas_qi      = st.session_state.get("columnas_qi", [])
-    columna_sensible = st.session_state.get("columna_sensible", "")
     tecnica          = st.session_state.get("tecnica_usada", "")
     params           = st.session_state.get("params_anon", {})
     attrs            = st.session_state.get("attrs_anon", {})
@@ -269,117 +266,6 @@ def render():
 
     else:
         st.warning("⚠️ Selecciona cuasi-identificadores en la pestaña de importar para ver métricas de riesgo.")
-
-    # ═════════════════════════════════════════════════════════════════════
-    # SECCIÓN 2: VERIFICACIÓN FORMAL (pycanon)
-    # ═════════════════════════════════════════════════════════════════════
-    if tecnica != "Privacidad Diferencial" and columnas_qi and columna_sensible:
-        st.markdown("---")
-        st.markdown("### Verificación formal (pycanon · IFCA-CSIC)")
-        st.markdown(
-            "<p style='color:#6b7280;font-size:0.88rem;margin-top:-0.5rem'>"
-            "Métricas avanzadas de privacidad calculadas por la librería <code>pycanon</code> "
-            "del Instituto de Física de Cantabria (CSIC). Cada métrica evalúa un aspecto "
-            "distinto de la protección de los datos.</p>",
-            unsafe_allow_html=True,
-        )
-
-        sa = [columna_sensible]
-        with st.spinner("Calculando métricas con pycanon..."):
-            metricas = calcular_metricas_pycanon(df_anon, columnas_qi, sa)
-
-        if metricas:
-            descripciones = {
-                "k_anonymity": (
-                    "K-Anonimidad",
-                    "Tamaño mínimo de grupo de equivalencia. Cada individuo es indistinguible de al menos k-1 otros.",
-                    "k ≥ 5 recomendado",
-                ),
-                "alpha_k_anonymity": (
-                    "(α,k)-Anonimidad",
-                    "Proporción máxima de un valor sensible dentro de un grupo de tamaño k.",
-                    "α < 0.5 recomendado",
-                ),
-                "l_diversity": (
-                    "L-Diversidad",
-                    "Mínimo de valores distintos del atributo sensible en cada grupo.",
-                    "l ≥ 2 recomendado",
-                ),
-                "entropy_l_diversity": (
-                    "Entropy L-Diversidad",
-                    "L-diversidad basada en entropía de Shannon. Más robusta que la básica.",
-                    "l ≥ 2 recomendado",
-                ),
-                "basic_beta_likeness": (
-                    "β-Likeness (básica)",
-                    "Máxima diferencia relativa entre la distribución local y global del sensible.",
-                    "β < 1.0 deseable",
-                ),
-                "enhanced_beta_likeness": (
-                    "β-Likeness (mejorada)",
-                    "Versión mejorada que considera la distribución acumulada.",
-                    "β < 1.0 deseable",
-                ),
-                "t_closeness": (
-                    "T-Closeness",
-                    "Distancia máxima (EMD) entre la distribución del grupo y la distribución global.",
-                    "t < 0.3 recomendado",
-                ),
-                "delta_disclosure": (
-                    "δ-Disclosure",
-                    "Máximo riesgo de divulgación del atributo sensible.",
-                    "δ < 1.0 deseable",
-                ),
-            }
-
-            filas_html = ""
-            for key, valor in metricas.items():
-                if valor is None:
-                    continue
-                nombre, desc, ref = descripciones.get(key, (key, "", ""))
-
-                if isinstance(valor, tuple):
-                    valor_str = f"α = {valor[0]:.4f}, k = {valor[1]}"
-                elif isinstance(valor, float):
-                    valor_str = f"{valor:.4f}"
-                else:
-                    valor_str = str(valor)
-
-                filas_html += f"""
-                <tr>
-                    <td style='padding:0.7rem 1rem;font-weight:600;color:{COLOR_TEXT};font-size:0.88rem;
-                               border-bottom:1px solid {COLOR_BORDER};'>{nombre}</td>
-                    <td style='padding:0.7rem 1rem;color:{COLOR_PRIMARY};font-weight:700;font-size:1.05rem;
-                               border-bottom:1px solid {COLOR_BORDER};text-align:center;'>{valor_str}</td>
-                    <td style='padding:0.7rem 1rem;color:{COLOR_MUTED};font-size:0.82rem;
-                               border-bottom:1px solid {COLOR_BORDER};line-height:1.4;'>
-                        {desc}<br><em style='color:#9ca3af;font-size:0.76rem;'>{ref}</em>
-                    </td>
-                </tr>"""
-
-            st.markdown(f"""
-            <div style='background:{COLOR_CARD};border:1px solid {COLOR_BORDER};border-radius:6px;
-                        overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);'>
-                <table style='width:100%;border-collapse:collapse;'>
-                    <thead>
-                        <tr style='background:#f8f9fb;'>
-                            <th style='padding:0.7rem 1rem;text-align:left;color:{COLOR_MUTED};font-size:0.75rem;
-                                       text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid {COLOR_BORDER};
-                                       width:22%;'>Métrica</th>
-                            <th style='padding:0.7rem 1rem;text-align:center;color:{COLOR_MUTED};font-size:0.75rem;
-                                       text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid {COLOR_BORDER};
-                                       width:18%;'>Valor</th>
-                            <th style='padding:0.7rem 1rem;text-align:left;color:{COLOR_MUTED};font-size:0.75rem;
-                                       text-transform:uppercase;letter-spacing:0.06em;border-bottom:2px solid {COLOR_BORDER};'>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>{filas_html}</tbody>
-                </table>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            st.warning("No se pudieron calcular métricas con pycanon para la configuración actual.")
-
 
     # ── Botón continuar ─────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
