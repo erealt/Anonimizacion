@@ -44,15 +44,16 @@ def render():
         # ── Selección de columnas (siempre accesible) ────────────────────
         st.markdown("---")
         st.markdown("<div class='section-header'>Modificar selección de columnas</div>", unsafe_allow_html=True)
-        st.caption("Puedes cambiar los cuasi-identificadores y el atributo sensible sin recargar el dataset.")
+        st.caption("Puedes cambiar los cuasi-identificadores, el atributo sensible y los identificadores directos sin recargar el dataset.")
 
         col_a, col_b = st.columns(2)
 
         sensible_actual = st.session_state.get("columna_sensible")
-        qi_actual = st.session_state.get("columnas_qi", [])
+        qi_actual       = st.session_state.get("columnas_qi", [])
+        ident_actual    = st.session_state.get("columnas_identificadoras", [])
 
-        opciones_qi = [c for c in todas if c != sensible_actual]
-        default_qi = [c for c in qi_actual if c in opciones_qi]
+        opciones_qi = [c for c in todas if c != sensible_actual and c not in ident_actual]
+        default_qi  = [c for c in qi_actual if c in opciones_qi]
 
         with col_a:
             qi_seleccionado = st.multiselect(
@@ -63,7 +64,7 @@ def render():
                 key="qi_manual_cargado",
             )
 
-        opciones_sens = [c for c in todas if c not in qi_seleccionado]
+        opciones_sens = [c for c in todas if c not in qi_seleccionado and c not in ident_actual]
         idx_defecto = opciones_sens.index(sensible_actual) \
             if sensible_actual in opciones_sens else None
 
@@ -76,15 +77,26 @@ def render():
                 key="sens_manual_cargado",
             )
 
-        # Guardar y limpiar resultado anterior si cambiaron los QI
-        qi_cambio = qi_seleccionado != st.session_state.get("columnas_qi", [])
-        sens_cambio = sensible_seleccionado != st.session_state.get("columna_sensible")
+        opciones_ident = [c for c in todas if c not in qi_seleccionado and c != sensible_seleccionado]
+        default_ident  = [c for c in ident_actual if c in opciones_ident]
+        identificadores_directos = st.multiselect(
+            "Identificadores directos a seudonimizar (opcional)",
+            opciones_ident,
+            default=default_ident,
+            placeholder="Ej.: nombre, dni, email, teléfono...",
+            key="ident_manual_cargado",
+            help="Estas columnas se seudonimizaran antes de la anonimización formal y no se usarán como QI.",
+        )
 
-        st.session_state["columnas_qi"] = qi_seleccionado
-        st.session_state["columna_sensible"] = sensible_seleccionado
+        qi_cambio    = qi_seleccionado       != st.session_state.get("columnas_qi", [])
+        sens_cambio  = sensible_seleccionado != st.session_state.get("columna_sensible")
+        ident_cambio = identificadores_directos != st.session_state.get("columnas_identificadoras", [])
 
-        if qi_cambio or sens_cambio:
-            # Invalidar resultado de anonimización previo (datos stale)
+        st.session_state["columnas_qi"]             = qi_seleccionado
+        st.session_state["columna_sensible"]         = sensible_seleccionado
+        st.session_state["columnas_identificadoras"] = identificadores_directos
+
+        if qi_cambio or sens_cambio or ident_cambio:
             st.session_state.pop("df_anonimizado", None)
             st.session_state.pop("tecnica_usada", None)
 
@@ -95,7 +107,7 @@ def render():
         with col_nuevo:
             if st.button("📂 Cargar un fichero diferente", use_container_width=True):
                 for key in ["df", "fuente", "metodo", "hash_archivos",
-                            "nuniques", "columnas_qi", "columna_sensible",
+                            "nuniques", "columnas_qi", "columna_sensible", "columnas_identificadoras",
                             "df_anonimizado", "tecnica_usada"]:
                     st.session_state.pop(key, None)
                 st.session_state["abrir_dialogo"] = True
@@ -157,9 +169,9 @@ def render():
             "fuente":        etiqueta_fuente,
             "metodo":        metodo,
             "hash_archivos": hash_actual,
-            # Resetear selección manual al cargar nuevo fichero
-            "columnas_qi":       [],
-            "columna_sensible":  None,
+            "columnas_qi":             [],
+            "columna_sensible":        None,
+            "columnas_identificadoras": [],
         })
         st.rerun()
 
@@ -186,13 +198,11 @@ def render():
 
     col_a, col_b = st.columns(2)
 
-    # Leemos el estado actual para poder filtrar las listas
     sensible_actual = st.session_state.get("columna_sensible")
     qi_actual       = st.session_state.get("columnas_qi", [])
+    ident_actual    = st.session_state.get("columnas_identificadoras", [])
 
-    # Opciones de QI: excluir el atributo sensible ya elegido
-    opciones_qi = [c for c in todas if c != sensible_actual]
-    # Aseguramos que el default no contenga columnas ya no disponibles
+    opciones_qi = [c for c in todas if c != sensible_actual and c not in ident_actual]
     default_qi  = [c for c in qi_actual if c in opciones_qi]
 
     with col_a:
@@ -204,8 +214,7 @@ def render():
             key="qi_manual",
         )
 
-    # Opciones de sensible: excluir los QI ya elegidos
-    opciones_sens = [c for c in todas if c not in qi_seleccionado]
+    opciones_sens = [c for c in todas if c not in qi_seleccionado and c not in ident_actual]
     idx_defecto   = opciones_sens.index(sensible_actual) \
         if sensible_actual in opciones_sens else None
 
@@ -218,9 +227,20 @@ def render():
             key="sens_manual",
         )
 
-    # Guardar en sesión
-    st.session_state["columnas_qi"]      = qi_seleccionado
-    st.session_state["columna_sensible"] = sensible_seleccionado
+    opciones_ident = [c for c in todas if c not in qi_seleccionado and c != sensible_seleccionado]
+    default_ident  = [c for c in ident_actual if c in opciones_ident]
+    identificadores_directos = st.multiselect(
+        "Identificadores directos a seudonimizar (opcional)",
+        opciones_ident,
+        default=default_ident,
+        placeholder="Ej.: nombre, dni, email, teléfono...",
+        key="ident_manual",
+        help="Estas columnas se seudonimizaran antes de la anonimización formal y no se usarán como QI.",
+    )
+
+    st.session_state["columnas_qi"]             = qi_seleccionado
+    st.session_state["columna_sensible"]         = sensible_seleccionado
+    st.session_state["columnas_identificadoras"] = identificadores_directos
 
     # ── Botón continuar ──────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)

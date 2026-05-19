@@ -1,6 +1,7 @@
 import streamlit as st
 
 from utils.anonimizacion import (
+    aplicar_preprocesado,
     k_anonimicidad,
     l_diversidad,
     privacidad_diferencial,
@@ -40,6 +41,7 @@ def render():
     df = st.session_state.get("df", None)
     columnas_qi = st.session_state.get("columnas_qi", [])
     columna_sensible = st.session_state.get("columna_sensible", "")
+    columnas_ident = st.session_state.get("columnas_identificadoras", [])
 
     if df is None:
         st.info("Ve a la pestana Importar datos para cargar un dataset.")
@@ -56,6 +58,13 @@ def render():
         )
         st.caption(_mensaje_tecnica(tecnica))
         st.markdown("---")
+
+        if columnas_ident:
+            st.markdown("<div class='section-header'>Preprocesado previo</div>", unsafe_allow_html=True)
+            st.caption("Se aplicará antes de la anonimización formal:")
+            st.caption(f"Seudonimizacion de identificadores directos: {', '.join(columnas_ident)}")
+            st.markdown("---")
+
         st.markdown("<div class='section-header'>Parametros</div>", unsafe_allow_html=True)
 
         if tecnica == "K-Anonimidad":
@@ -157,20 +166,25 @@ def render():
             return
 
         if ejecutar:
-            if not columnas_qi:
-                st.warning("Selecciona cuasi-identificadores en la pestana Importar datos antes de anonimizar.")
+            if tecnica in ("K-Anonimidad", "L-Diversidad") and not columnas_qi:
+                st.warning("Selecciona cuasi-identificadores en la pestaña Importar datos antes de anonimizar.")
+                return
+            if tecnica == "L-Diversidad" and not columna_sensible:
+                st.warning("Selecciona un atributo sensible en la pestaña Importar datos antes de aplicar L-Diversidad.")
                 return
 
-            with st.spinner("Aplicando anonimización (anjana · IFCA-CSIC)..."):
+            with st.spinner("Aplicando preprocesado y anonimización..."):
                 try:
+                    df_trabajo, resumen_preprocesado = aplicar_preprocesado(df, columnas_ident)
+
                     if tecnica == "K-Anonimidad":
-                        df_anon = k_anonimicidad(df, columnas_qi, k, supp_level=supp)
+                        df_anon = k_anonimicidad(df_trabajo, columnas_qi, k, supp_level=supp)
                     elif tecnica == "L-Diversidad":
                         df_anon = l_diversidad(
-                            df, columnas_qi, columna_sensible, k, l, supp_level=supp
+                            df_trabajo, columnas_qi, columna_sensible, k, l, supp_level=supp
                         )
                     else:
-                        df_anon = privacidad_diferencial(df, epsilon, sensibilidad)
+                        df_anon = privacidad_diferencial(df_trabajo, epsilon, sensibilidad)
                 except Exception as e:
                     st.error(f"Error durante la anonimización: {e}")
                     return
@@ -186,6 +200,7 @@ def render():
             st.session_state["tecnica_usada"] = tecnica
             st.session_state["params_anon"] = {"k": k, "l": l, "supp": supp}
             st.session_state["attrs_anon"] = dict(df_anon.attrs) if df_anon.attrs else {}
+            st.session_state["resumen_preprocesado"] = resumen_preprocesado
 
         df_anon = st.session_state.get("df_anonimizado")
         tecnica_usada = st.session_state.get("tecnica_usada", tecnica)
@@ -209,6 +224,14 @@ def render():
             delta_color="inverse",
         )
         c3.metric("Retencion de datos", f"{retencion:.1%}")
+
+        resumen_prev = st.session_state.get("resumen_preprocesado", [])
+        if resumen_prev:
+            st.markdown("**Preprocesado aplicado**")
+            for linea in resumen_prev:
+                st.caption(f"· {linea}")
+        else:
+            st.caption("Sin preprocesado previo.")
 
         attrs = st.session_state.get("attrs_anon", {})
         salida_identica = bool(

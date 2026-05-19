@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from hashlib import sha256
 from anjana.anonymity import k_anonymity as _anjana_k_anon
 from anjana.anonymity import l_diversity as _anjana_l_div
 from anjana.anonymity.utils.utils import get_transformation as _anjana_get_transformation
@@ -187,3 +188,35 @@ def privacidad_diferencial(df, epsilon, sensibilidad):
     anon.attrs["n_columnas_ruido"] = len(columnas_num)
 
     return anon
+
+
+def _seudonimo_determinista(columna, valor):
+    """Genera un seudonimo estable para un valor concreto."""
+    if pd.isna(valor):
+        return valor
+
+    token = sha256(f"{columna}::{valor}".encode("utf-8")).hexdigest()[:12].upper()
+    return f"{columna}_ID_{token}"
+
+
+def seudonimizar_columnas(df, columnas):
+    """Seudonimiza identificadores directos antes de la anonimizacion formal."""
+    presentes = [c for c in (columnas or []) if c in df.columns]
+    if not presentes:
+        return df.copy(), []
+
+    df_seud = df.copy()
+    for col in presentes:
+        df_seud[col] = df_seud[col].map(lambda valor: _seudonimo_determinista(col, valor))
+
+    return df_seud, presentes
+
+
+def aplicar_preprocesado(df, columnas_directas=None):
+    df_trabajo, seudonimizadas = seudonimizar_columnas(df, columnas_directas)
+    resumen = []
+    if seudonimizadas:
+        resumen.append(
+            f"Seudonimizacion de identificadores directos: {', '.join(seudonimizadas)}"
+        )
+    return df_trabajo, resumen
