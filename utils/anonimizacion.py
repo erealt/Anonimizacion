@@ -200,7 +200,7 @@ def _seudonimo_determinista(columna, valor):
 
 
 def seudonimizar_columnas(df, columnas):
-    """Seudonimiza identificadores directos antes de la anonimizacion formal."""
+    """Seudonimiza identificadores directos"""
     presentes = [c for c in (columnas or []) if c in df.columns]
     if not presentes:
         return df.copy(), []
@@ -212,11 +212,56 @@ def seudonimizar_columnas(df, columnas):
     return df_seud, presentes
 
 
-def aplicar_preprocesado(df, columnas_directas=None):
+def top_coding_columna(serie, percentil=90):
+    """Aplica top-coding a una Serie numerica: valores por encima del percentil se capan al umbral."""
+    if not pd.api.types.is_numeric_dtype(serie):
+        return serie
+    datos = serie.dropna()
+    if datos.empty:
+        return serie
+    umbral = np.percentile(datos, percentil)
+    return serie.where(serie.isna() | (serie <= umbral), umbral)
+
+
+def bottom_coding_columna(serie, percentil=10):
+    """Aplica bottom-coding a una Serie numerica: valores por debajo del percentil se elevan al umbral."""
+    if not pd.api.types.is_numeric_dtype(serie):
+        return serie
+    datos = serie.dropna()
+    if datos.empty:
+        return serie
+    umbral = np.percentile(datos, percentil)
+    return serie.where(serie.isna() | (serie >= umbral), umbral)
+
+
+def aplicar_preprocesado(df, columnas_directas=None, qi_cols=None, percentil_top=90, percentil_bottom=10):
     df_trabajo, seudonimizadas = seudonimizar_columnas(df, columnas_directas)
     resumen = []
     if seudonimizadas:
         resumen.append(
             f"Seudonimizacion de identificadores directos: {', '.join(seudonimizadas)}"
         )
+
+    cols_num = [
+        c for c in (qi_cols or [])
+        if c in df_trabajo.columns and pd.api.types.is_numeric_dtype(df_trabajo[c])
+    ]
+    if cols_num:
+        for col in cols_num:
+            # Calcular ambos umbrales sobre los datos originales antes de transformar
+            datos_originales = df_trabajo[col].dropna()
+            umbral_top = np.percentile(datos_originales, percentil_top)
+            umbral_bottom = np.percentile(datos_originales, percentil_bottom)
+            df_trabajo[col] = (
+                df_trabajo[col]
+                .where(df_trabajo[col].isna() | (df_trabajo[col] <= umbral_top), umbral_top)
+                .where(df_trabajo[col].isna() | (df_trabajo[col] >= umbral_bottom), umbral_bottom)
+            )
+        resumen.append(
+            f"Top-coding (p{percentil_top}) aplicado a: {', '.join(cols_num)}"
+        )
+        resumen.append(
+            f"Bottom-coding (p{percentil_bottom}) aplicado a: {', '.join(cols_num)}"
+        )
+
     return df_trabajo, resumen

@@ -175,7 +175,8 @@ def render():
 
             with st.spinner("Aplicando preprocesado y anonimización..."):
                 try:
-                    df_trabajo, resumen_preprocesado = aplicar_preprocesado(df, columnas_ident)
+                    qi_para_top = columnas_qi if tecnica in ("K-Anonimidad", "L-Diversidad") else None
+                    df_trabajo, resumen_preprocesado = aplicar_preprocesado(df, columnas_ident, qi_cols=qi_para_top)
 
                     if tecnica == "K-Anonimidad":
                         df_anon = k_anonimicidad(df_trabajo, columnas_qi, k, supp_level=supp)
