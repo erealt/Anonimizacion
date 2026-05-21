@@ -13,7 +13,7 @@ except ImportError:
 def _detectar_encoding(contenido_bytes):
     """Detecta encoding probando solo los primeros 1 KB (no el fichero entero)."""
     muestra = contenido_bytes[:1024]
-    for enc in ["utf-8", "latin-1", "cp1252"]:
+    for enc in ["utf-8", "latin-1", "cp1252", "utf-8-sig"]:
         try:
             muestra.decode(enc)
             return enc

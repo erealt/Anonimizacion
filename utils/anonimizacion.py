@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import unicodedata
 from hashlib import sha256
 from anjana.anonymity import k_anonymity as _anjana_k_anon
 from anjana.anonymity import l_diversity as _anjana_l_div
@@ -233,15 +234,25 @@ def bottom_coding_columna(serie, percentil=10):
     umbral = np.percentile(datos, percentil)
     return serie.where(serie.isna() | (serie >= umbral), umbral)
 
+def _normalizar_texto(s):
+    if pd.isna(s):
+        return s
+    s = str(s).strip().lower()
+    s = " ".join(s.split())
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return s
+
 
 def aplicar_preprocesado(df, columnas_directas=None, qi_cols=None, percentil_top=90, percentil_bottom=10):
+    #1. SEUDONIMIZACION
     df_trabajo, seudonimizadas = seudonimizar_columnas(df, columnas_directas)
     resumen = []
     if seudonimizadas:
         resumen.append(
             f"Seudonimizacion de identificadores directos: {', '.join(seudonimizadas)}"
         )
-
+    # 2. TOP-CODING + BOTTON-CODING
     cols_num = [
         c for c in (qi_cols or [])
         if c in df_trabajo.columns and pd.api.types.is_numeric_dtype(df_trabajo[c])
@@ -263,5 +274,21 @@ def aplicar_preprocesado(df, columnas_directas=None, qi_cols=None, percentil_top
         resumen.append(
             f"Bottom-coding (p{percentil_bottom}) aplicado a: {', '.join(cols_num)}"
         )
+    #3. NORMALIZACIÓN DE TEXTOS
+    cols_texto = [
+        c for c in (qi_cols or [])  
+        if c in df_trabajo.columns and pd.api.types.is_string_dtype(df_trabajo[c])
+    ]
+    if cols_texto:
+        for col in cols_texto:
+            df_trabajo[col] = df_trabajo[col].map(_normalizar_texto)
+        resumen.append(
+            f"Normalización de textos (strip + lower + acentos) aplicada a: {', '.join(cols_texto)}"
+        )
+        resumen.append(
+            "Valores únicos por columna después de normalización: " +
+            ", ".join([f"{col}: {df_trabajo[col].nunique()}" for col in cols_texto])
+        )
+
 
     return df_trabajo, resumen
