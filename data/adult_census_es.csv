@@ -1,0 +1,1001 @@
+edad,clase_trabajadora,nivel_educativo,anos_educacion,estado_civil,ocupacion,relacion_familiar,raza,sexo,horas_semana,pais_origen,ingresos
+23,Privada,Bachillerato,13,Soltero/a,Ventas,Sin familia,Blanco/a,Hombre,43,China,<=50K
+30,Privada,Algo de universidad,10,Divorciado/a,Administración,Cónyuge,Blanco/a,Mujer,33,Estados Unidos,>50K
+28,Autónomo no inc.,Algo de universidad,10,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,14,Estados Unidos,<=50K
+30,Privada,Secundaria,9,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,51,Estados Unidos,<=50K
+21,Privada,Secundaria,9,Casado/a,Servicios domésticos,Sin familia,Negro/a,Hombre,53,Estados Unidos,<=50K
+24,Privada,Grado universitario,13,Casado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,21,Estados Unidos,<=50K
+45,Autónomo no inc.,Grado universitario,13,Casado/a,Construcción/Reparación,Cónyuge,Negro/a,Hombre,50,Estados Unidos,<=50K
+35,Privada,Grado universitario,13,Soltero/a,Agricultura,Hijo/a,Blanco/a,Hombre,35,Estados Unidos,>50K
+57,Privada,Secundaria,9,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,44,Estados Unidos,<=50K
+49,Privada,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,>50K
+44,Gobierno local,Grado universitario,13,Casado/a,Agricultura,Hijo/a,Blanco/a,Mujer,53,Estados Unidos,>50K
+34,Privada,Grado universitario,13,Soltero/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,35,Estados Unidos,<=50K
+43,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Soltero/a,Asiático/a,Hombre,38,Estados Unidos,>50K
+24,Privada,Secundaria,9,Divorciado/a,Técnico especializado,Cónyuge,Negro/a,Hombre,28,Estados Unidos,<=50K
+42,Privada,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,39,Estados Unidos,<=50K
+26,Gobierno federal,Algo de universidad,10,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,40,Estados Unidos,<=50K
+46,Privada,Grado universitario,13,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,25,Estados Unidos,>50K
+33,Privada,Grado universitario,13,Divorciado/a,Ventas,Cónyuge,Blanco/a,Mujer,46,Estados Unidos,<=50K
+19,Privada,Grado universitario,13,Soltero/a,Agricultura,Sin familia,Blanco/a,Mujer,54,Estados Unidos,<=50K
+40,Privada,Bachillerato,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,50,Estados Unidos,>50K
+47,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Otro familiar,Blanco/a,Hombre,28,Estados Unidos,<=50K
+20,Privada,Máster,14,Casado/a,Agricultura,Sin familia,Blanco/a,Hombre,30,Estados Unidos,>50K
+19,Autónomo no inc.,Algo de universidad,10,Casado/a,Otros servicios,Cónyuge,Negro/a,Hombre,39,India,<=50K
+36,Gobierno autonómico,Máster,14,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,48,Estados Unidos,>50K
+47,Privada,Secundaria,9,Casado/a,Ventas,Soltero/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+49,Privada,Algo de universidad,10,Casado/a,Operador maquinaria,Otro familiar,Negro/a,Mujer,52,México,<=50K
+56,Privada,Grado universitario,13,Soltero/a,Agricultura,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,>50K
+37,Privada,Algo de universidad,10,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,33,Estados Unidos,<=50K
+58,Privada,Secundaria,9,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+38,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Mujer,45,El Salvador,<=50K
+27,Privada,Bachillerato,13,Casado/a,Ventas,Sin familia,Blanco/a,Mujer,59,Estados Unidos,<=50K
+42,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,59,Estados Unidos,<=50K
+34,Privada,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,62,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Soltero/a,Administración,Hijo/a,Negro/a,Hombre,41,Estados Unidos,<=50K
+31,Privada,Grado universitario,13,Casado/a,Transporte,Cónyuge,Blanco/a,Mujer,42,Estados Unidos,<=50K
+42,Autónomo inc.,Algo de universidad,10,Casado/a,Operador maquinaria,Sin familia,Indígena americano/a,Hombre,46,Estados Unidos,<=50K
+29,Gobierno local,FP Superior,12,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,53,Estados Unidos,<=50K
+31,Gobierno local,Secundaria,9,Casado/a,Agricultura,Cónyuge,Blanco/a,Hombre,51,Canadá,<=50K
+62,Privada,Algo de universidad,10,Casado/a,Otros servicios,Sin familia,Blanco/a,Mujer,52,Estados Unidos,<=50K
+28,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,39,Estados Unidos,<=50K
+32,Autónomo inc.,Grado universitario,13,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,42,Estados Unidos,>50K
+29,Privada,Grado universitario,13,Divorciado/a,Administración,Esposo/a,Blanco/a,Mujer,56,Estados Unidos,>50K
+29,Privada,Bachillerato,13,Soltero/a,Operador maquinaria,Sin familia,Asiático/a,Hombre,39,Estados Unidos,<=50K
+33,Gobierno autonómico,Bachillerato,13,Separado/a,Técnico especializado,Esposo/a,Blanco/a,Hombre,45,Guatemala,>50K
+44,Privada,Secundaria,9,Soltero/a,Administración,Sin familia,Blanco/a,Hombre,40,Estados Unidos,<=50K
+36,Privada,Algo de universidad,10,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,51,Estados Unidos,<=50K
+17,Autónomo inc.,Secundaria,9,Casado/a,Agricultura,Otro familiar,Negro/a,Mujer,44,Estados Unidos,<=50K
+47,Gobierno local,Bachillerato,13,Casado/a,Construcción/Reparación,Otro familiar,Indígena americano/a,Hombre,38,Estados Unidos,<=50K
+42,Gobierno federal,Grado universitario,13,Divorciado/a,Administración,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,>50K
+57,Gobierno local,Grado universitario,13,Casado/a,Administración,Cónyuge,Asiático/a,Mujer,43,Estados Unidos,<=50K
+51,Privada,Bachillerato,13,Soltero/a,Ventas,Sin familia,Blanco/a,Hombre,58,Estados Unidos,>50K
+51,Privada,Bachillerato,13,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,41,Estados Unidos,<=50K
+17,Privada,FP Medio,11,Casado/a,Administración,Sin familia,Blanco/a,Hombre,57,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Viudo/a,Administración,Cónyuge,Blanco/a,Mujer,49,Estados Unidos,<=50K
+23,Privada,FP Medio,11,Divorciado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+27,Privada,Bachillerato,13,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,33,Estados Unidos,>50K
+44,Privada,FP Superior,12,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,54,Estados Unidos,<=50K
+30,Privada,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+38,Privada,Bachillerato,13,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,51,Estados Unidos,<=50K
+24,Privada,Bachillerato,13,Soltero/a,Ventas,Sin familia,Blanco/a,Hombre,32,Estados Unidos,<=50K
+68,Autónomo no inc.,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,52,Estados Unidos,<=50K
+38,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+17,Gobierno autonómico,Bachillerato,13,Casado/a,Servicios domésticos,Esposo/a,Blanco/a,Hombre,48,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,42,Estados Unidos,<=50K
+32,Privada,Algo de universidad,10,Divorciado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,36,Estados Unidos,<=50K
+30,Privada,Grado universitario,13,Divorciado/a,Administración,Hijo/a,Blanco/a,Hombre,49,México,>50K
+40,Privada,Bachillerato,13,Soltero/a,Ventas,Otro familiar,Blanco/a,Mujer,41,Estados Unidos,>50K
+33,Autónomo inc.,Secundaria,9,Divorciado/a,Construcción/Reparación,Esposo/a,Blanco/a,Hombre,36,Estados Unidos,<=50K
+29,Privada,Grado universitario,13,Divorciado/a,Ejecutivo/Directivo,Esposo/a,Blanco/a,Hombre,13,Estados Unidos,>50K
+26,Gobierno local,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,43,Estados Unidos,<=50K
+31,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Mujer,44,Estados Unidos,<=50K
+54,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,34,Estados Unidos,<=50K
+24,Gobierno local,Secundaria,9,Casado/a,Administración,Soltero/a,Blanco/a,Hombre,33,Estados Unidos,<=50K
+35,Gobierno local,Máster,14,Divorciado/a,Otros servicios,Soltero/a,Blanco/a,Hombre,40,Estados Unidos,>50K
+20,Autónomo no inc.,Máster,14,Soltero/a,Administración,Cónyuge,Indígena americano/a,Hombre,62,Estados Unidos,>50K
+71,Privada,Bachillerato,13,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,46,Estados Unidos,<=50K
+35,Privada,Grado universitario,13,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,47,Estados Unidos,>50K
+48,Privada,Secundaria,9,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Hombre,38,El Salvador,<=50K
+27,Sin empleo remunerado,Secundaria,9,Divorciado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,38,Estados Unidos,<=50K
+71,Privada,Grado universitario,13,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,26,Estados Unidos,<=50K
+41,Gobierno local,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,<=50K
+36,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,40,Estados Unidos,<=50K
+33,Privada,Grado universitario,13,Soltero/a,Transporte,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,<=50K
+17,Gobierno local,Grado universitario,13,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,61,Estados Unidos,>50K
+54,Privada,Algo de universidad,10,Separado/a,Operador maquinaria,Cónyuge,Negro/a,Hombre,13,Estados Unidos,<=50K
+33,Privada,Algo de universidad,10,Divorciado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,56,Estados Unidos,<=50K
+21,Privada,Bachillerato,13,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Mujer,41,Estados Unidos,<=50K
+31,Privada,Bachillerato,13,Soltero/a,Transporte,Sin familia,Blanco/a,Hombre,46,Estados Unidos,>50K
+35,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,49,Estados Unidos,>50K
+18,Privada,Grado universitario,13,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,30,Filipinas,>50K
+45,Privada,Secundaria,9,Divorciado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,21,Estados Unidos,<=50K
+63,Privada,Algo de universidad,10,Soltero/a,Operador maquinaria,Sin familia,Blanco/a,Mujer,39,Estados Unidos,<=50K
+20,Privada,FP Superior,12,Soltero/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,37,Estados Unidos,<=50K
+18,Gobierno autonómico,Máster,14,Casado/a,Otros servicios,Soltero/a,Blanco/a,Hombre,39,Estados Unidos,>50K
+43,Gobierno autonómico,Máster,14,Divorciado/a,Transporte,Otro familiar,Blanco/a,Mujer,37,Estados Unidos,>50K
+19,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,46,Estados Unidos,<=50K
+29,Privada,FP Superior,12,Soltero/a,Ejecutivo/Directivo,Cónyuge,Negro/a,Hombre,52,Estados Unidos,<=50K
+47,Autónomo no inc.,Primaria incompleta,2,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,40,Estados Unidos,<=50K
+17,Autónomo no inc.,Algo de universidad,10,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,18,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Separado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,25,Estados Unidos,>50K
+68,Privada,Primaria incompleta,2,Casado/a,Seguridad,Sin familia,Blanco/a,Mujer,32,Estados Unidos,<=50K
+31,Privada,Grado universitario,13,Casado/a,Técnico especializado,Soltero/a,Negro/a,Hombre,32,México,<=50K
+33,Autónomo no inc.,Grado universitario,13,Casado/a,Transporte,Cónyuge,Blanco/a,Mujer,25,Estados Unidos,<=50K
+27,Gobierno local,Algo de universidad,10,Casado/a,Agricultura,Soltero/a,Negro/a,Hombre,41,Estados Unidos,<=50K
+26,Privada,Secundaria,9,Casado/a,Otros servicios,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Mujer,29,Estados Unidos,>50K
+50,Gobierno local,Grado universitario,13,Soltero/a,Otros servicios,Sin familia,Blanco/a,Mujer,45,Estados Unidos,<=50K
+33,Autónomo no inc.,Algo de universidad,10,Soltero/a,Transporte,Hijo/a,Blanco/a,Hombre,29,Estados Unidos,<=50K
+38,Privada,Secundaria,9,Divorciado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+53,Gobierno local,Bachillerato,13,Separado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,22,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Soltero/a,Servicios domésticos,Soltero/a,Blanco/a,Hombre,51,Estados Unidos,>50K
+36,Autónomo no inc.,Secundaria,9,Casado/a,Construcción/Reparación,Soltero/a,Blanco/a,Mujer,15,Estados Unidos,<=50K
+46,Privada,Bachillerato,13,Soltero/a,Otros servicios,Cónyuge,Negro/a,Hombre,51,Estados Unidos,>50K
+36,Privada,Secundaria,9,Casado/a,Servicios domésticos,Cónyuge,Negro/a,Hombre,47,Estados Unidos,<=50K
+38,Privada,FP Superior,12,Divorciado/a,Servicios domésticos,Cónyuge,Negro/a,Hombre,37,Estados Unidos,<=50K
+43,Privada,Bachillerato,13,Casado/a,Agricultura,Sin familia,Blanco/a,Mujer,47,Estados Unidos,<=50K
+42,Privada,Algo de universidad,10,Divorciado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,30,Estados Unidos,<=50K
+34,Privada,Secundaria,9,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,39,Estados Unidos,<=50K
+37,Privada,Algo de universidad,10,Viudo/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,33,Estados Unidos,<=50K
+26,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Mujer,34,Estados Unidos,<=50K
+43,Autónomo no inc.,Algo de universidad,10,Soltero/a,Técnico especializado,Esposo/a,Blanco/a,Mujer,48,Estados Unidos,<=50K
+43,Autónomo no inc.,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Cónyuge,Negro/a,Hombre,66,Estados Unidos,<=50K
+24,Autónomo no inc.,Secundaria,9,Divorciado/a,Ventas,Sin familia,Blanco/a,Mujer,33,Haití,>50K
+23,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Hijo/a,Negro/a,Mujer,46,Estados Unidos,<=50K
+17,Privada,Doctorado,16,Casado/a,Transporte,Sin familia,Blanco/a,Mujer,29,Estados Unidos,>50K
+17,Privada,FP Medio,11,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,33,Estados Unidos,<=50K
+42,Privada,Algo de universidad,10,Soltero/a,Administración,Hijo/a,Blanco/a,Mujer,36,Estados Unidos,<=50K
+42,Privada,Secundaria,9,Casado/a,Operador maquinaria,Cónyuge,Asiático/a,Hombre,38,Estados Unidos,<=50K
+17,Autónomo inc.,Secundaria,9,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,43,Estados Unidos,<=50K
+49,Privada,Grado universitario,13,Soltero/a,Ventas,Esposo/a,Blanco/a,Hombre,54,Estados Unidos,>50K
+38,Gobierno local,Bachillerato,13,Casado/a,Administración,Soltero/a,Blanco/a,Hombre,31,Estados Unidos,<=50K
+39,Gobierno local,Secundaria,9,Divorciado/a,Administración,Sin familia,Blanco/a,Hombre,45,Estados Unidos,<=50K
+25,Privada,Máster,14,Casado/a,Otros servicios,Hijo/a,Negro/a,Hombre,47,Estados Unidos,>50K
+37,Privada,FP Superior,12,Divorciado/a,Técnico especializado,Soltero/a,Blanco/a,Mujer,64,Estados Unidos,<=50K
+23,Privada,Bachillerato,13,Soltero/a,Fuerzas armadas,Cónyuge,Asiático/a,Hombre,59,Estados Unidos,>50K
+42,Autónomo no inc.,FP Superior,12,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,57,Estados Unidos,<=50K
+54,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,36,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,36,Estados Unidos,<=50K
+38,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,53,Estados Unidos,<=50K
+46,Privada,Máster,14,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,46,Estados Unidos,>50K
+35,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,46,Estados Unidos,<=50K
+57,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,49,Estados Unidos,<=50K
+40,Privada,Máster,14,Divorciado/a,Operador maquinaria,Hijo/a,Blanco/a,Mujer,28,Estados Unidos,>50K
+53,Gobierno local,Algo de universidad,10,Casado/a,Ventas,Hijo/a,Blanco/a,Mujer,44,Estados Unidos,<=50K
+47,Privada,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,<=50K
+44,Gobierno federal,Algo de universidad,10,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,31,Estados Unidos,<=50K
+56,Privada,Doctorado,16,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,19,Estados Unidos,>50K
+41,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Esposo/a,Blanco/a,Mujer,33,Estados Unidos,<=50K
+30,Privada,Bachillerato,13,Soltero/a,Ejecutivo/Directivo,Hijo/a,Negro/a,Hombre,37,Estados Unidos,<=50K
+22,Privada,Primaria incompleta,2,Soltero/a,Ventas,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+25,Privada,Bachillerato,13,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,<=50K
+31,Privada,Primaria incompleta,2,Soltero/a,Ventas,Otro familiar,Blanco/a,Mujer,23,Estados Unidos,<=50K
+31,Autónomo inc.,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,44,Estados Unidos,>50K
+39,Privada,Secundaria,9,Casado/a,Ventas,Hijo/a,Negro/a,Hombre,48,Estados Unidos,<=50K
+32,Gobierno local,Bachillerato,13,Soltero/a,Construcción/Reparación,Esposo/a,Negro/a,Mujer,45,Estados Unidos,<=50K
+31,Privada,Algo de universidad,10,Soltero/a,Construcción/Reparación,Soltero/a,Blanco/a,Mujer,37,Estados Unidos,<=50K
+70,Autónomo no inc.,Algo de universidad,10,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,<=50K
+44,Privada,Algo de universidad,10,Divorciado/a,Administración,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+25,Privada,Grado universitario,13,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,45,Estados Unidos,>50K
+30,Privada,Algo de universidad,10,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,35,Haití,<=50K
+18,Privada,Secundaria,9,Casado/a,Técnico especializado,Esposo/a,Blanco/a,Mujer,50,Estados Unidos,<=50K
+53,Autónomo no inc.,Grado universitario,13,Casado/a,Administración,Hijo/a,Blanco/a,Hombre,36,Estados Unidos,<=50K
+39,Privada,Bachillerato,13,Casado/a,Servicios domésticos,Sin familia,Asiático/a,Mujer,26,Estados Unidos,<=50K
+17,Gobierno federal,Bachillerato,13,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,64,Estados Unidos,>50K
+26,Autónomo no inc.,FP Superior,12,Separado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,12,Estados Unidos,>50K
+36,Privada,Secundaria,9,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,51,Estados Unidos,<=50K
+39,Privada,Bachillerato,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,60,Estados Unidos,>50K
+27,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Mujer,55,Estados Unidos,<=50K
+27,Privada,Bachillerato,13,Separado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,50,Estados Unidos,<=50K
+41,Autónomo no inc.,Secundaria,9,Divorciado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,28,Estados Unidos,<=50K
+56,Autónomo no inc.,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Negro/a,Mujer,61,Estados Unidos,<=50K
+17,Privada,Máster,14,Casado/a,Técnico especializado,Cónyuge,Negro/a,Hombre,16,Estados Unidos,<=50K
+41,Gobierno federal,FP Medio,11,Casado/a,Operador maquinaria,Hijo/a,Blanco/a,Hombre,43,Estados Unidos,<=50K
+24,Privada,Doctorado,16,Separado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,46,Estados Unidos,>50K
+38,Gobierno federal,Grado universitario,13,Divorciado/a,Ventas,Hijo/a,Blanco/a,Mujer,22,Estados Unidos,>50K
+42,Autónomo no inc.,Algo de universidad,10,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,50,Guatemala,<=50K
+54,Privada,Secundaria,9,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+19,Privada,Algo de universidad,10,Soltero/a,Fuerzas armadas,Cónyuge,Blanco/a,Hombre,26,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,57,Estados Unidos,<=50K
+66,Privada,Secundaria,9,Divorciado/a,Ventas,Sin familia,Blanco/a,Hombre,36,Estados Unidos,<=50K
+37,Privada,Bachillerato,13,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,55,Estados Unidos,<=50K
+32,Privada,Bachillerato,13,Casado/a,Ventas,Sin familia,Otro,Hombre,29,Filipinas,>50K
+62,Autónomo no inc.,Bachillerato,13,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,27,Estados Unidos,<=50K
+19,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,25,Alemania,<=50K
+51,Gobierno federal,Algo de universidad,10,Soltero/a,Administración,Hijo/a,Blanco/a,Hombre,37,Estados Unidos,<=50K
+17,Autónomo no inc.,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,38,Estados Unidos,>50K
+25,Privada,FP Medio,11,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,29,Estados Unidos,<=50K
+31,Privada,FP Medio,11,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,39,Estados Unidos,<=50K
+41,Privada,Máster,14,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,41,Vietnam,>50K
+23,Privada,Secundaria,9,Viudo/a,Ventas,Cónyuge,Blanco/a,Hombre,46,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Casado/a,Transporte,Sin familia,Blanco/a,Hombre,34,Estados Unidos,<=50K
+36,Privada,Algo de universidad,10,Separado/a,Transporte,Sin familia,Blanco/a,Hombre,30,Estados Unidos,<=50K
+28,Privada,Grado universitario,13,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,40,Estados Unidos,>50K
+53,Privada,Algo de universidad,10,Soltero/a,Agricultura,Esposo/a,Blanco/a,Hombre,30,Estados Unidos,<=50K
+37,Gobierno local,Secundaria,9,Divorciado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,31,Estados Unidos,<=50K
+17,Autónomo no inc.,Secundaria,9,Soltero/a,Operador maquinaria,Cónyuge,Negro/a,Mujer,42,Estados Unidos,<=50K
+50,Privada,FP Superior,12,Soltero/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,47,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Soltero/a,Técnico especializado,Esposo/a,Blanco/a,Hombre,49,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Casado/a,Agricultura,Hijo/a,Blanco/a,Mujer,39,Estados Unidos,<=50K
+61,Gobierno local,Bachillerato,13,Soltero/a,Ejecutivo/Directivo,Otro familiar,Blanco/a,Hombre,42,Estados Unidos,<=50K
+34,Autónomo inc.,Secundaria,9,Casado/a,Administración,Otro familiar,Blanco/a,Mujer,16,Estados Unidos,<=50K
+30,Privada,Secundaria,9,Soltero/a,Otros servicios,Sin familia,Blanco/a,Mujer,35,Estados Unidos,<=50K
+38,Privada,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+31,Privada,Grado universitario,13,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,49,Estados Unidos,>50K
+47,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,48,Estados Unidos,<=50K
+39,Privada,Máster,14,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,53,México,>50K
+32,Gobierno local,Grado universitario,13,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,49,Estados Unidos,>50K
+46,Privada,Grado universitario,13,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Casado/a,Agricultura,Otro familiar,Blanco/a,Hombre,49,Estados Unidos,>50K
+47,Privada,Secundaria,9,Viudo/a,Transporte,Hijo/a,Blanco/a,Mujer,32,Estados Unidos,<=50K
+41,Autónomo inc.,FP Superior,12,Divorciado/a,Ventas,Hijo/a,Blanco/a,Hombre,47,Estados Unidos,<=50K
+49,Privada,Secundaria,9,Soltero/a,Ventas,Sin familia,Blanco/a,Mujer,42,Estados Unidos,<=50K
+34,Privada,Máster,14,Soltero/a,Operador maquinaria,Hijo/a,Blanco/a,Hombre,11,Estados Unidos,<=50K
+32,Privada,Bachillerato,13,Casado/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,13,Estados Unidos,<=50K
+26,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,<=50K
+44,Privada,Máster,14,Casado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,72,Estados Unidos,<=50K
+37,Privada,Primaria incompleta,2,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,52,Estados Unidos,<=50K
+48,Privada,Grado universitario,13,Separado/a,Transporte,Cónyuge,Blanco/a,Mujer,58,Estados Unidos,>50K
+39,Privada,Bachillerato,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,32,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,37,México,<=50K
+42,Privada,FP Medio,11,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,<=50K
+72,Privada,Bachillerato,13,Divorciado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,34,Estados Unidos,<=50K
+61,Privada,Algo de universidad,10,Soltero/a,Administración,Sin familia,Blanco/a,Mujer,31,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Sin familia,Blanco/a,Mujer,31,Estados Unidos,<=50K
+25,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+17,Privada,Doctorado,16,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,55,Estados Unidos,<=50K
+36,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,44,Estados Unidos,>50K
+36,Gobierno local,Secundaria,9,Soltero/a,Servicios domésticos,Cónyuge,Asiático/a,Hombre,42,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Divorciado/a,Operador maquinaria,Otro familiar,Blanco/a,Hombre,15,Estados Unidos,<=50K
+21,Gobierno autonómico,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,50,Estados Unidos,<=50K
+41,Gobierno local,Bachillerato,13,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Hombre,61,Estados Unidos,<=50K
+36,Gobierno autonómico,Secundaria,9,Soltero/a,Ventas,Cónyuge,Blanco/a,Mujer,25,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Soltero/a,Servicios domésticos,Cónyuge,Blanco/a,Mujer,10,Estados Unidos,<=50K
+53,Gobierno local,Bachillerato,13,Soltero/a,Administración,Hijo/a,Blanco/a,Hombre,37,México,<=50K
+63,Autónomo no inc.,Grado universitario,13,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,>50K
+31,Privada,Grado universitario,13,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,50,Estados Unidos,<=50K
+45,Privada,Bachillerato,13,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+39,Gobierno local,Bachillerato,13,Separado/a,Ventas,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,<=50K
+35,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,40,México,<=50K
+34,Privada,Algo de universidad,10,Soltero/a,Servicios domésticos,Sin familia,Blanco/a,Hombre,47,Estados Unidos,<=50K
+38,Privada,Secundaria,9,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Hombre,52,Estados Unidos,<=50K
+41,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Hijo/a,Blanco/a,Mujer,56,Estados Unidos,>50K
+29,Privada,Grado universitario,13,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+34,Privada,Grado universitario,13,Casado/a,Operador maquinaria,Esposo/a,Blanco/a,Hombre,30,México,>50K
+37,Privada,Secundaria,9,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,63,Estados Unidos,<=50K
+24,Privada,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Asiático/a,Mujer,52,Estados Unidos,<=50K
+19,Privada,Algo de universidad,10,Casado/a,Operador maquinaria,Hijo/a,Blanco/a,Hombre,37,Estados Unidos,<=50K
+33,Gobierno local,Algo de universidad,10,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,65,Estados Unidos,<=50K
+51,Privada,Grado universitario,13,Casado/a,Agricultura,Cónyuge,Blanco/a,Mujer,23,Estados Unidos,<=50K
+17,Gobierno federal,Bachillerato,13,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,>50K
+48,Privada,Bachillerato,13,Divorciado/a,Servicios domésticos,Hijo/a,Blanco/a,Hombre,11,Estados Unidos,<=50K
+39,Gobierno autonómico,Bachillerato,13,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Mujer,58,Estados Unidos,<=50K
+50,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,31,Italia,<=50K
+46,Privada,Secundaria,9,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,48,Estados Unidos,<=50K
+28,Gobierno autonómico,Máster,14,Soltero/a,Fuerzas armadas,Hijo/a,Asiático/a,Mujer,39,Estados Unidos,>50K
+29,Privada,Secundaria,9,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,32,Estados Unidos,<=50K
+22,Privada,FP Medio,11,Casado/a,Administración,Esposo/a,Blanco/a,Hombre,50,Estados Unidos,<=50K
+23,Gobierno autonómico,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Hombre,38,Estados Unidos,<=50K
+66,Privada,Bachillerato,13,Casado/a,Administración,Cónyuge,Blanco/a,Mujer,17,Estados Unidos,<=50K
+43,Privada,Máster,14,Casado/a,Seguridad,Soltero/a,Blanco/a,Mujer,44,Vietnam,>50K
+32,Privada,Bachillerato,13,Soltero/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,20,Estados Unidos,>50K
+38,Gobierno autonómico,Grado universitario,13,Casado/a,Administración,Sin familia,Blanco/a,Mujer,46,Estados Unidos,<=50K
+41,Autónomo no inc.,Secundaria,9,Casado/a,Técnico especializado,Cónyuge,Negro/a,Hombre,25,Estados Unidos,<=50K
+28,Gobierno federal,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,26,Estados Unidos,<=50K
+28,Gobierno local,Primaria incompleta,2,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,21,Estados Unidos,<=50K
+39,Privada,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,47,Estados Unidos,<=50K
+18,Privada,Bachillerato,13,Casado/a,Transporte,Cónyuge,Negro/a,Hombre,40,Estados Unidos,>50K
+45,Autónomo no inc.,Algo de universidad,10,Casado/a,Agricultura,Soltero/a,Negro/a,Hombre,71,Estados Unidos,<=50K
+33,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Otro familiar,Blanco/a,Mujer,1,Estados Unidos,<=50K
+38,Privada,Grado universitario,13,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,48,Estados Unidos,<=50K
+39,Privada,Secundaria,9,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,52,Estados Unidos,<=50K
+28,Privada,Algo de universidad,10,Casado/a,Otros servicios,Soltero/a,Blanco/a,Hombre,27,Estados Unidos,<=50K
+34,Privada,Algo de universidad,10,Soltero/a,Transporte,Cónyuge,Blanco/a,Mujer,53,Estados Unidos,<=50K
+56,Privada,Bachillerato,13,Divorciado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,19,Estados Unidos,>50K
+17,Privada,Grado universitario,13,Casado/a,Administración,Hijo/a,Blanco/a,Mujer,49,Filipinas,<=50K
+52,Privada,FP Medio,11,Soltero/a,Otros servicios,Esposo/a,Blanco/a,Mujer,51,Estados Unidos,<=50K
+21,Gobierno autonómico,FP Superior,12,Soltero/a,Otros servicios,Sin familia,Negro/a,Hombre,25,Estados Unidos,<=50K
+43,Autónomo no inc.,Secundaria,9,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,33,China,<=50K
+48,Autónomo inc.,Secundaria,9,Separado/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,27,Estados Unidos,<=50K
+41,Privada,Bachillerato,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,56,Estados Unidos,<=50K
+29,Privada,Secundaria,9,Soltero/a,Agricultura,Cónyuge,Blanco/a,Mujer,49,Estados Unidos,<=50K
+24,Privada,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,26,Estados Unidos,<=50K
+61,Privada,Bachillerato,13,Casado/a,Seguridad,Sin familia,Blanco/a,Hombre,32,Estados Unidos,<=50K
+57,Privada,Algo de universidad,10,Casado/a,Administración,Soltero/a,Blanco/a,Hombre,34,Estados Unidos,<=50K
+57,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,32,Estados Unidos,<=50K
+50,Gobierno autonómico,Secundaria,9,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,24,Estados Unidos,<=50K
+57,Privada,Bachillerato,13,Separado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,54,Estados Unidos,>50K
+46,Gobierno local,Máster,14,Casado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Hombre,21,Estados Unidos,>50K
+59,Privada,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,48,Cuba,<=50K
+32,Privada,Máster,14,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,45,Estados Unidos,>50K
+17,Privada,Grado universitario,13,Casado/a,Ventas,Sin familia,Blanco/a,Mujer,34,Estados Unidos,>50K
+42,Privada,Algo de universidad,10,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,46,Estados Unidos,<=50K
+58,Privada,Máster,14,Soltero/a,Operador maquinaria,Otro familiar,Negro/a,Mujer,51,Estados Unidos,>50K
+56,Autónomo no inc.,Secundaria,9,Casado/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,48,Estados Unidos,<=50K
+48,Privada,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,>50K
+44,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,42,Estados Unidos,>50K
+48,Privada,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,39,Estados Unidos,<=50K
+45,Gobierno local,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,27,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Soltero/a,Construcción/Reparación,Esposo/a,Asiático/a,Hombre,46,Estados Unidos,>50K
+47,Gobierno local,Bachillerato,13,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,40,Estados Unidos,<=50K
+40,Autónomo no inc.,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,41,Estados Unidos,<=50K
+39,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Esposo/a,Blanco/a,Hombre,60,Estados Unidos,>50K
+39,Privada,Algo de universidad,10,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,21,Cuba,<=50K
+17,Privada,Secundaria,9,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,56,Estados Unidos,<=50K
+45,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,66,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,42,Estados Unidos,<=50K
+23,Privada,Grado universitario,13,Divorciado/a,Transporte,Otro familiar,Blanco/a,Hombre,50,Estados Unidos,<=50K
+34,Privada,FP Superior,12,Soltero/a,Administración,Cónyuge,Blanco/a,Hombre,57,Estados Unidos,<=50K
+34,Privada,Máster,14,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,51,Estados Unidos,>50K
+23,Privada,Algo de universidad,10,Casado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,31,Estados Unidos,<=50K
+35,Privada,Grado universitario,13,Soltero/a,Ventas,Cónyuge,Blanco/a,Mujer,65,Estados Unidos,>50K
+47,Privada,Bachillerato,13,Soltero/a,Ventas,Sin familia,Blanco/a,Mujer,47,Estados Unidos,<=50K
+42,Autónomo no inc.,Secundaria,9,Soltero/a,Agricultura,Sin familia,Blanco/a,Mujer,42,Estados Unidos,<=50K
+25,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Hijo/a,Negro/a,Hombre,51,Estados Unidos,<=50K
+40,Privada,Grado universitario,13,Soltero/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+19,Privada,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,53,Estados Unidos,<=50K
+47,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Hijo/a,Blanco/a,Mujer,49,Estados Unidos,<=50K
+33,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Esposo/a,Negro/a,Hombre,45,Estados Unidos,<=50K
+31,Privada,Bachillerato,13,Casado/a,Fuerzas armadas,Cónyuge,Blanco/a,Mujer,47,Estados Unidos,<=50K
+36,Privada,Bachillerato,13,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Mujer,33,Estados Unidos,<=50K
+55,Privada,Grado universitario,13,Soltero/a,Ventas,Sin familia,Negro/a,Hombre,47,Estados Unidos,<=50K
+60,Privada,Algo de universidad,10,Divorciado/a,Seguridad,Soltero/a,Blanco/a,Hombre,34,Estados Unidos,>50K
+52,Privada,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Hombre,46,Estados Unidos,<=50K
+38,Privada,Grado universitario,13,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,24,Estados Unidos,>50K
+32,Privada,Grado universitario,13,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,61,Estados Unidos,<=50K
+25,Privada,Bachillerato,13,Divorciado/a,Construcción/Reparación,Soltero/a,Blanco/a,Mujer,76,Estados Unidos,<=50K
+27,Privada,FP Superior,12,Soltero/a,Otros servicios,Cónyuge,Negro/a,Hombre,38,Estados Unidos,<=50K
+26,Autónomo inc.,Primaria incompleta,2,Casado/a,Agricultura,Sin familia,Asiático/a,Hombre,51,Estados Unidos,<=50K
+35,Privada,Máster,14,Soltero/a,Transporte,Soltero/a,Blanco/a,Mujer,34,Estados Unidos,>50K
+29,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Asiático/a,Hombre,31,Estados Unidos,<=50K
+17,Autónomo no inc.,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,34,Estados Unidos,<=50K
+33,Privada,FP Superior,12,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Mujer,43,Estados Unidos,<=50K
+41,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Hijo/a,Blanco/a,Mujer,27,Estados Unidos,<=50K
+22,Autónomo no inc.,Secundaria,9,Soltero/a,Operador maquinaria,Esposo/a,Blanco/a,Hombre,12,Estados Unidos,<=50K
+22,Privada,Grado universitario,13,Divorciado/a,Administración,Otro familiar,Blanco/a,Mujer,34,Estados Unidos,<=50K
+31,Autónomo no inc.,Bachillerato,13,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,16,Estados Unidos,<=50K
+21,Privada,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,47,Estados Unidos,<=50K
+43,Privada,FP Medio,11,Separado/a,Ventas,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+39,Gobierno federal,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,>50K
+41,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,44,Estados Unidos,>50K
+29,Gobierno local,Secundaria,9,Divorciado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,31,Estados Unidos,<=50K
+53,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,35,México,<=50K
+29,Privada,Secundaria,9,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+41,Privada,Algo de universidad,10,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+47,Privada,FP Medio,11,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,26,Estados Unidos,<=50K
+28,Privada,Máster,14,Soltero/a,Seguridad,Cónyuge,Blanco/a,Mujer,25,Estados Unidos,<=50K
+42,Privada,Algo de universidad,10,Separado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,46,Estados Unidos,<=50K
+23,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Otro familiar,Negro/a,Mujer,24,Estados Unidos,<=50K
+23,Gobierno autonómico,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,43,Estados Unidos,<=50K
+49,Autónomo inc.,Grado universitario,13,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,41,Estados Unidos,<=50K
+34,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,<=50K
+40,Privada,Secundaria,9,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,60,Estados Unidos,<=50K
+34,Autónomo no inc.,Secundaria,9,Separado/a,Transporte,Sin familia,Blanco/a,Hombre,48,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Divorciado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,46,Estados Unidos,<=50K
+43,Privada,Algo de universidad,10,Divorciado/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,64,Japón,<=50K
+37,Privada,Bachillerato,13,Casado/a,Otros servicios,Hijo/a,Blanco/a,Hombre,45,Estados Unidos,>50K
+17,Autónomo inc.,Grado universitario,13,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,52,Estados Unidos,>50K
+37,Privada,Grado universitario,13,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,29,Estados Unidos,<=50K
+43,Privada,Máster,14,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,>50K
+40,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,40,Alemania,<=50K
+35,Privada,Secundaria,9,Soltero/a,Transporte,Sin familia,Blanco/a,Hombre,32,Estados Unidos,<=50K
+24,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,18,Estados Unidos,<=50K
+22,Gobierno local,Secundaria,9,Casado/a,Administración,Sin familia,Asiático/a,Hombre,36,Estados Unidos,<=50K
+55,Privada,Grado universitario,13,Divorciado/a,Otros servicios,Hijo/a,Blanco/a,Mujer,57,Estados Unidos,>50K
+39,Gobierno federal,Secundaria,9,Casado/a,Agricultura,Cónyuge,Blanco/a,Hombre,55,Estados Unidos,<=50K
+46,Privada,Bachillerato,13,Casado/a,Técnico especializado,Soltero/a,Asiático/a,Hombre,18,Estados Unidos,>50K
+55,Autónomo inc.,Máster,14,Casado/a,Operador maquinaria,Cónyuge,Indígena americano/a,Mujer,25,Estados Unidos,<=50K
+54,Privada,Máster,14,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,53,Estados Unidos,>50K
+33,Privada,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+23,Privada,Bachillerato,13,Soltero/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,44,Estados Unidos,<=50K
+30,Privada,Secundaria,9,Casado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,38,Estados Unidos,<=50K
+39,Privada,Máster,14,Divorciado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,33,Estados Unidos,>50K
+29,Privada,Grado universitario,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,40,Filipinas,>50K
+17,Gobierno local,Bachillerato,13,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,32,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Soltero/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,11,Estados Unidos,<=50K
+60,Privada,Bachillerato,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+33,Privada,Secundaria,9,Casado/a,Otros servicios,Otro familiar,Blanco/a,Mujer,47,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,31,Polonia,<=50K
+45,Privada,FP Superior,12,Casado/a,Administración,Sin familia,Blanco/a,Mujer,53,Estados Unidos,<=50K
+52,Privada,Máster,14,Soltero/a,Transporte,Hijo/a,Blanco/a,Hombre,42,Estados Unidos,>50K
+46,Privada,FP Superior,12,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Mujer,31,Estados Unidos,<=50K
+49,Privada,Secundaria,9,Divorciado/a,Administración,Cónyuge,Blanco/a,Hombre,60,Estados Unidos,<=50K
+46,Autónomo no inc.,Algo de universidad,10,Casado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,24,Estados Unidos,<=50K
+34,Gobierno local,Algo de universidad,10,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,14,Estados Unidos,<=50K
+56,Privada,Algo de universidad,10,Soltero/a,Servicios domésticos,Cónyuge,Negro/a,Hombre,13,Estados Unidos,<=50K
+27,Privada,Secundaria,9,Casado/a,Agricultura,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+62,Gobierno local,Grado universitario,13,Soltero/a,Otros servicios,Soltero/a,Blanco/a,Hombre,42,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,26,Estados Unidos,<=50K
+28,Privada,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,43,Estados Unidos,<=50K
+38,Gobierno federal,Máster,14,Divorciado/a,Administración,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,>50K
+19,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Hombre,32,Estados Unidos,<=50K
+30,Privada,Secundaria,9,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Mujer,52,Estados Unidos,>50K
+60,Privada,Grado universitario,13,Soltero/a,Administración,Sin familia,Blanco/a,Hombre,48,Estados Unidos,>50K
+32,Privada,Grado universitario,13,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,19,Estados Unidos,>50K
+26,Privada,Bachillerato,13,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+63,Privada,Algo de universidad,10,Soltero/a,Agricultura,Sin familia,Blanco/a,Hombre,39,Estados Unidos,<=50K
+31,Privada,Grado universitario,13,Divorciado/a,Construcción/Reparación,Esposo/a,Blanco/a,Hombre,65,Estados Unidos,>50K
+47,Privada,Secundaria,9,Casado/a,Operador maquinaria,Hijo/a,Blanco/a,Hombre,52,Filipinas,<=50K
+40,Gobierno autonómico,Secundaria,9,Casado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,28,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Soltero/a,Administración,Cónyuge,Blanco/a,Mujer,31,Estados Unidos,<=50K
+40,Gobierno autonómico,Bachillerato,13,Divorciado/a,Ventas,Sin familia,Blanco/a,Hombre,46,Estados Unidos,<=50K
+23,Autónomo no inc.,Algo de universidad,10,Casado/a,Ventas,Sin familia,Negro/a,Hombre,35,Estados Unidos,<=50K
+40,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,56,Estados Unidos,<=50K
+28,Gobierno local,Grado universitario,13,Divorciado/a,Transporte,Cónyuge,Blanco/a,Hombre,42,Estados Unidos,>50K
+28,Gobierno local,Bachillerato,13,Soltero/a,Servicios domésticos,Cónyuge,Blanco/a,Mujer,50,Estados Unidos,<=50K
+72,Gobierno local,Secundaria,9,Divorciado/a,Operador maquinaria,Soltero/a,Blanco/a,Hombre,46,Japón,<=50K
+30,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,50,Estados Unidos,<=50K
+34,Privada,Grado universitario,13,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,22,Estados Unidos,<=50K
+54,Privada,Secundaria,9,Separado/a,Ventas,Sin familia,Blanco/a,Mujer,46,Estados Unidos,<=50K
+56,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,46,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Divorciado/a,Construcción/Reparación,Otro familiar,Blanco/a,Hombre,38,Estados Unidos,<=50K
+39,Privada,FP Superior,12,Divorciado/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,>50K
+65,Privada,Máster,14,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,>50K
+17,Privada,Doctorado,16,Soltero/a,Seguridad,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,>50K
+23,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,61,Cuba,<=50K
+26,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,53,Estados Unidos,<=50K
+26,Autónomo no inc.,Primaria incompleta,2,Casado/a,Transporte,Otro familiar,Blanco/a,Hombre,24,Estados Unidos,<=50K
+30,Autónomo no inc.,Secundaria,9,Divorciado/a,Transporte,Sin familia,Negro/a,Hombre,52,Estados Unidos,<=50K
+34,Privada,Secundaria,9,Divorciado/a,Fuerzas armadas,Cónyuge,Blanco/a,Mujer,27,Estados Unidos,<=50K
+55,Privada,Secundaria,9,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+19,Autónomo no inc.,Bachillerato,13,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,44,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,49,Estados Unidos,<=50K
+37,Privada,Grado universitario,13,Casado/a,Ventas,Soltero/a,Blanco/a,Hombre,37,Estados Unidos,>50K
+49,Privada,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Cónyuge,Negro/a,Hombre,65,Estados Unidos,<=50K
+54,Privada,Grado universitario,13,Soltero/a,Ventas,Cónyuge,Blanco/a,Mujer,44,Estados Unidos,>50K
+44,Privada,Secundaria,9,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,17,Estados Unidos,<=50K
+28,Autónomo inc.,Bachillerato,13,Soltero/a,Otros servicios,Sin familia,Negro/a,Hombre,21,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Soltero/a,Seguridad,Soltero/a,Blanco/a,Hombre,51,Estados Unidos,<=50K
+34,Privada,Bachillerato,13,Soltero/a,Administración,Sin familia,Blanco/a,Mujer,45,Estados Unidos,<=50K
+27,Privada,Máster,14,Soltero/a,Seguridad,Cónyuge,Blanco/a,Mujer,19,Estados Unidos,>50K
+36,Privada,Secundaria,9,Soltero/a,Ventas,Cónyuge,Blanco/a,Mujer,45,Estados Unidos,<=50K
+54,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Negro/a,Hombre,49,Estados Unidos,<=50K
+18,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,26,Estados Unidos,<=50K
+30,Privada,Máster,14,Soltero/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,45,Estados Unidos,>50K
+50,Gobierno federal,Bachillerato,13,Separado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,32,Estados Unidos,<=50K
+48,Privada,Grado universitario,13,Soltero/a,Otros servicios,Cónyuge,Negro/a,Mujer,34,Estados Unidos,<=50K
+35,Gobierno federal,Secundaria,9,Casado/a,Transporte,Hijo/a,Blanco/a,Hombre,61,Estados Unidos,<=50K
+26,Autónomo inc.,Grado universitario,13,Soltero/a,Técnico especializado,Otro familiar,Blanco/a,Hombre,67,Estados Unidos,<=50K
+42,Privada,Secundaria,9,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,47,Estados Unidos,<=50K
+50,Privada,Bachillerato,13,Casado/a,Ventas,Soltero/a,Blanco/a,Hombre,31,Estados Unidos,<=50K
+17,Gobierno local,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Hombre,51,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Casado/a,Transporte,Sin familia,Blanco/a,Hombre,60,Estados Unidos,<=50K
+39,Privada,Secundaria,9,Viudo/a,Administración,Soltero/a,Blanco/a,Hombre,59,Estados Unidos,<=50K
+19,Privada,FP Medio,11,Soltero/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,48,Estados Unidos,<=50K
+36,Autónomo inc.,Algo de universidad,10,Casado/a,Otros servicios,Hijo/a,Negro/a,Hombre,34,Estados Unidos,<=50K
+35,Gobierno autonómico,Secundaria,9,Viudo/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,58,Guatemala,<=50K
+41,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Otro familiar,Blanco/a,Mujer,33,Estados Unidos,<=50K
+24,Privada,Bachillerato,13,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,30,Estados Unidos,<=50K
+37,Privada,Bachillerato,13,Separado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,50,Estados Unidos,<=50K
+32,Privada,Bachillerato,13,Casado/a,Agricultura,Cónyuge,Blanco/a,Hombre,43,Estados Unidos,>50K
+35,Gobierno federal,Bachillerato,13,Divorciado/a,Operador maquinaria,Soltero/a,Negro/a,Hombre,42,Estados Unidos,>50K
+29,Privada,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,29,Estados Unidos,<=50K
+56,Autónomo no inc.,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+36,Privada,Algo de universidad,10,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,44,Estados Unidos,<=50K
+55,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Soltero/a,Negro/a,Mujer,33,Estados Unidos,<=50K
+21,Privada,Algo de universidad,10,Casado/a,Ventas,Otro familiar,Blanco/a,Hombre,26,Estados Unidos,<=50K
+27,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Otro familiar,Blanco/a,Hombre,27,Estados Unidos,<=50K
+33,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,49,Estados Unidos,<=50K
+31,Gobierno local,Bachillerato,13,Divorciado/a,Técnico especializado,Cónyuge,Negro/a,Hombre,36,Estados Unidos,<=50K
+46,Privada,FP Superior,12,Divorciado/a,Ventas,Cónyuge,Blanco/a,Mujer,30,México,<=50K
+55,Privada,Máster,14,Soltero/a,Ventas,Esposo/a,Blanco/a,Hombre,32,Estados Unidos,>50K
+47,Gobierno local,Secundaria,9,Casado/a,Servicios domésticos,Hijo/a,Blanco/a,Hombre,30,Estados Unidos,<=50K
+57,Autónomo inc.,Algo de universidad,10,Casado/a,Transporte,Cónyuge,Blanco/a,Mujer,44,Alemania,<=50K
+48,Gobierno federal,Secundaria,9,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,47,Estados Unidos,<=50K
+23,Autónomo no inc.,Secundaria,9,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,45,Estados Unidos,<=50K
+26,Gobierno local,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,8,Estados Unidos,<=50K
+47,Gobierno federal,Secundaria,9,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,50,Estados Unidos,<=50K
+53,Privada,FP Superior,12,Casado/a,Operador maquinaria,Otro familiar,Blanco/a,Hombre,38,Estados Unidos,<=50K
+42,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,62,Estados Unidos,<=50K
+45,Autónomo no inc.,FP Medio,11,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,<=50K
+70,Privada,Algo de universidad,10,Casado/a,Ventas,Soltero/a,Blanco/a,Hombre,55,México,<=50K
+21,Privada,Secundaria,9,Soltero/a,Administración,Hijo/a,Blanco/a,Mujer,44,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Soltero/a,Administración,Cónyuge,Blanco/a,Hombre,46,Estados Unidos,<=50K
+38,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Negro/a,Mujer,49,Estados Unidos,<=50K
+36,Privada,Máster,14,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,60,Estados Unidos,>50K
+28,Privada,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,32,Estados Unidos,>50K
+53,Privada,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Mujer,37,Estados Unidos,>50K
+34,Privada,Grado universitario,13,Separado/a,Servicios domésticos,Esposo/a,Blanco/a,Hombre,30,Estados Unidos,>50K
+28,Privada,Grado universitario,13,Casado/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,65,Estados Unidos,<=50K
+50,Privada,Algo de universidad,10,Soltero/a,Ventas,Hijo/a,Blanco/a,Mujer,66,Estados Unidos,<=50K
+55,Privada,Secundaria,9,Separado/a,Ventas,Cónyuge,Blanco/a,Mujer,20,Estados Unidos,<=50K
+42,Gobierno local,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Negro/a,Hombre,50,Estados Unidos,<=50K
+26,Autónomo no inc.,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,33,Estados Unidos,<=50K
+34,Autónomo no inc.,Secundaria,9,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+39,Gobierno local,Secundaria,9,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Mujer,29,Alemania,<=50K
+45,Privada,Algo de universidad,10,Soltero/a,Operador maquinaria,Soltero/a,Blanco/a,Mujer,37,Estados Unidos,<=50K
+35,Privada,Algo de universidad,10,Viudo/a,Otros servicios,Sin familia,Asiático/a,Mujer,32,Estados Unidos,<=50K
+51,Privada,Máster,14,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,37,Estados Unidos,>50K
+27,Privada,Algo de universidad,10,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,48,Estados Unidos,>50K
+59,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,52,Estados Unidos,>50K
+40,Privada,Secundaria,9,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,39,Estados Unidos,<=50K
+17,Gobierno autonómico,Grado universitario,13,Casado/a,Transporte,Hijo/a,Blanco/a,Hombre,33,Estados Unidos,>50K
+34,Autónomo inc.,Secundaria,9,Casado/a,Servicios domésticos,Hijo/a,Blanco/a,Hombre,43,Estados Unidos,<=50K
+25,Privada,Algo de universidad,10,Soltero/a,Administración,Cónyuge,Blanco/a,Mujer,32,Estados Unidos,<=50K
+20,Gobierno local,Secundaria,9,Soltero/a,Servicios domésticos,Cónyuge,Blanco/a,Mujer,39,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,26,Estados Unidos,<=50K
+17,Privada,FP Superior,12,Soltero/a,Construcción/Reparación,Sin familia,Negro/a,Hombre,71,El Salvador,>50K
+17,Gobierno autonómico,Bachillerato,13,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,35,Portugal,<=50K
+27,Privada,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+35,Privada,FP Medio,11,Casado/a,Operador maquinaria,Soltero/a,Blanco/a,Mujer,45,Estados Unidos,>50K
+33,Privada,Secundaria,9,Soltero/a,Otros servicios,Soltero/a,Blanco/a,Mujer,40,Estados Unidos,<=50K
+22,Gobierno autonómico,FP Superior,12,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,>50K
+54,Privada,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Hombre,32,Estados Unidos,<=50K
+51,Privada,Algo de universidad,10,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,33,Estados Unidos,>50K
+38,Gobierno federal,Bachillerato,13,Divorciado/a,Transporte,Sin familia,Blanco/a,Hombre,45,Estados Unidos,<=50K
+17,Gobierno local,Algo de universidad,10,Separado/a,Seguridad,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,32,Estados Unidos,>50K
+36,Privada,Algo de universidad,10,Casado/a,Servicios domésticos,Hijo/a,Blanco/a,Hombre,16,Estados Unidos,<=50K
+48,Privada,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,26,Estados Unidos,<=50K
+36,Privada,Bachillerato,13,Separado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,54,Estados Unidos,<=50K
+33,Privada,Algo de universidad,10,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,<=50K
+23,Privada,Grado universitario,13,Soltero/a,Transporte,Cónyuge,Blanco/a,Mujer,29,Estados Unidos,>50K
+17,Privada,Grado universitario,13,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,>50K
+52,Gobierno local,Bachillerato,13,Soltero/a,Ventas,Cónyuge,Blanco/a,Mujer,59,Estados Unidos,>50K
+40,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,51,Estados Unidos,<=50K
+23,Privada,Bachillerato,13,Soltero/a,Transporte,Sin familia,Blanco/a,Hombre,29,Estados Unidos,<=50K
+32,Privada,Grado universitario,13,Divorciado/a,Otros servicios,Hijo/a,Blanco/a,Mujer,43,Estados Unidos,>50K
+36,Privada,Secundaria,9,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,30,Estados Unidos,<=50K
+39,Privada,Bachillerato,13,Soltero/a,Transporte,Otro familiar,Blanco/a,Hombre,52,Estados Unidos,<=50K
+32,Privada,Máster,14,Soltero/a,Transporte,Sin familia,Blanco/a,Hombre,32,Estados Unidos,>50K
+19,Sin empleo remunerado,Algo de universidad,10,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,54,Estados Unidos,<=50K
+55,Privada,Secundaria,9,Viudo/a,Agricultura,Hijo/a,Blanco/a,Mujer,55,Estados Unidos,<=50K
+33,Privada,Secundaria,9,Divorciado/a,Seguridad,Sin familia,Blanco/a,Mujer,62,Estados Unidos,<=50K
+37,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,42,Estados Unidos,>50K
+33,Privada,FP Superior,12,Soltero/a,Administración,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,>50K
+31,Gobierno federal,FP Superior,12,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,21,México,>50K
+35,Privada,Secundaria,9,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Mujer,54,Estados Unidos,<=50K
+39,Gobierno federal,Bachillerato,13,Casado/a,Ventas,Otro familiar,Blanco/a,Hombre,32,Estados Unidos,<=50K
+47,Privada,Grado universitario,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,56,Estados Unidos,>50K
+23,Privada,Grado universitario,13,Divorciado/a,Ventas,Sin familia,Blanco/a,Mujer,45,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+31,Privada,FP Medio,11,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,32,México,<=50K
+21,Privada,Secundaria,9,Divorciado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,48,Estados Unidos,<=50K
+24,Privada,Secundaria,9,Casado/a,Agricultura,Cónyuge,Negro/a,Mujer,27,Estados Unidos,<=50K
+37,Gobierno local,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+55,Privada,Bachillerato,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,35,México,<=50K
+55,Privada,Secundaria,9,Soltero/a,Ventas,Cónyuge,Blanco/a,Mujer,24,Estados Unidos,<=50K
+53,Sin empleo remunerado,Algo de universidad,10,Soltero/a,Otros servicios,Soltero/a,Indígena americano/a,Mujer,43,Estados Unidos,<=50K
+35,Autónomo no inc.,FP Medio,11,Casado/a,Otros servicios,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,>50K
+39,Autónomo no inc.,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Esposo/a,Blanco/a,Mujer,38,Estados Unidos,<=50K
+56,Privada,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,22,Estados Unidos,<=50K
+34,Autónomo inc.,Primaria incompleta,2,Casado/a,Ejecutivo/Directivo,Sin familia,Asiático/a,Hombre,45,México,<=50K
+32,Gobierno autonómico,Máster,14,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,43,Estados Unidos,>50K
+34,Gobierno autonómico,Secundaria,9,Casado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Hombre,32,Estados Unidos,<=50K
+47,Privada,Grado universitario,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,41,Estados Unidos,>50K
+35,Privada,Primaria incompleta,2,Divorciado/a,Transporte,Hijo/a,Blanco/a,Hombre,32,Estados Unidos,<=50K
+60,Privada,Secundaria,9,Casado/a,Técnico especializado,Cónyuge,Negro/a,Mujer,22,Estados Unidos,<=50K
+26,Privada,Algo de universidad,10,Separado/a,Transporte,Esposo/a,Blanco/a,Hombre,53,Estados Unidos,<=50K
+22,Privada,Bachillerato,13,Casado/a,Otros servicios,Hijo/a,Blanco/a,Hombre,67,Estados Unidos,<=50K
+20,Privada,Secundaria,9,Soltero/a,Administración,Cónyuge,Negro/a,Mujer,44,Estados Unidos,<=50K
+19,Privada,Algo de universidad,10,Viudo/a,Administración,Hijo/a,Blanco/a,Hombre,39,México,<=50K
+60,Privada,Secundaria,9,Casado/a,Administración,Cónyuge,Negro/a,Mujer,35,Estados Unidos,<=50K
+66,Privada,Bachillerato,13,Casado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,46,Estados Unidos,<=50K
+33,Gobierno local,Grado universitario,13,Casado/a,Ventas,Cónyuge,Indígena americano/a,Hombre,26,Estados Unidos,<=50K
+25,Gobierno autonómico,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,42,Estados Unidos,<=50K
+22,Gobierno autonómico,Secundaria,9,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,30,Estados Unidos,<=50K
+21,Privada,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,25,Estados Unidos,<=50K
+18,Privada,Grado universitario,13,Soltero/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,51,Estados Unidos,>50K
+44,Privada,Grado universitario,13,Soltero/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,46,Estados Unidos,>50K
+62,Privada,Máster,14,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,51,Filipinas,>50K
+17,Privada,Bachillerato,13,Soltero/a,Administración,Sin familia,Blanco/a,Hombre,65,Estados Unidos,<=50K
+39,Privada,Algo de universidad,10,Separado/a,Ventas,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,<=50K
+17,Autónomo no inc.,Bachillerato,13,Divorciado/a,Ventas,Cónyuge,Blanco/a,Mujer,41,Estados Unidos,<=50K
+45,Privada,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+48,Gobierno local,Bachillerato,13,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,<=50K
+32,Privada,Grado universitario,13,Separado/a,Administración,Soltero/a,Blanco/a,Mujer,43,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Soltero/a,Administración,Cónyuge,Blanco/a,Mujer,30,Estados Unidos,<=50K
+37,Privada,Bachillerato,13,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,57,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Casado/a,Administración,Soltero/a,Blanco/a,Hombre,38,Estados Unidos,<=50K
+58,Privada,Grado universitario,13,Casado/a,Administración,Sin familia,Blanco/a,Hombre,36,Estados Unidos,>50K
+33,Gobierno local,Algo de universidad,10,Soltero/a,Construcción/Reparación,Esposo/a,Blanco/a,Hombre,44,Estados Unidos,<=50K
+46,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Soltero/a,Blanco/a,Hombre,37,Estados Unidos,<=50K
+38,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,57,Estados Unidos,<=50K
+35,Gobierno local,Secundaria,9,Soltero/a,Administración,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+38,Privada,Secundaria,9,Separado/a,Ventas,Hijo/a,Blanco/a,Mujer,24,Estados Unidos,<=50K
+29,Gobierno federal,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,44,Estados Unidos,<=50K
+31,Gobierno federal,Secundaria,9,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+33,Gobierno autonómico,Bachillerato,13,Soltero/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,<=50K
+53,Gobierno local,Grado universitario,13,Casado/a,Ejecutivo/Directivo,Otro familiar,Blanco/a,Mujer,47,Estados Unidos,>50K
+47,Privada,Bachillerato,13,Separado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,37,Estados Unidos,<=50K
+34,Privada,Grado universitario,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,>50K
+26,Privada,Bachillerato,13,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Mujer,47,Estados Unidos,<=50K
+39,Privada,Secundaria,9,Soltero/a,Otros servicios,Sin familia,Negro/a,Hombre,50,Estados Unidos,<=50K
+39,Autónomo no inc.,Grado universitario,13,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,29,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Divorciado/a,Ventas,Sin familia,Blanco/a,Hombre,27,Estados Unidos,>50K
+35,Gobierno autonómico,Grado universitario,13,Divorciado/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,42,Estados Unidos,<=50K
+66,Privada,Algo de universidad,10,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,54,Estados Unidos,<=50K
+26,Privada,FP Superior,12,Casado/a,Servicios domésticos,Hijo/a,Blanco/a,Mujer,48,Estados Unidos,>50K
+48,Gobierno local,Algo de universidad,10,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+30,Privada,Secundaria,9,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,55,Estados Unidos,<=50K
+25,Gobierno local,Grado universitario,13,Divorciado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,28,Estados Unidos,<=50K
+29,Privada,Máster,14,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,>50K
+17,Autónomo no inc.,Algo de universidad,10,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+33,Privada,Algo de universidad,10,Viudo/a,Ventas,Sin familia,Blanco/a,Hombre,54,Estados Unidos,>50K
+48,Gobierno autonómico,Secundaria,9,Casado/a,Seguridad,Sin familia,Blanco/a,Hombre,41,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Casado/a,Administración,Otro familiar,Blanco/a,Hombre,19,Estados Unidos,<=50K
+41,Privada,Bachillerato,13,Casado/a,Administración,Sin familia,Blanco/a,Mujer,50,Estados Unidos,<=50K
+27,Privada,Grado universitario,13,Soltero/a,Fuerzas armadas,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+43,Gobierno local,Algo de universidad,10,Soltero/a,Técnico especializado,Esposo/a,Blanco/a,Hombre,49,Estados Unidos,<=50K
+50,Privada,Algo de universidad,10,Casado/a,Construcción/Reparación,Esposo/a,Blanco/a,Hombre,35,Estados Unidos,<=50K
+28,Privada,Secundaria,9,Casado/a,Seguridad,Sin familia,Blanco/a,Mujer,39,Estados Unidos,<=50K
+58,Privada,Secundaria,9,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Mujer,41,Estados Unidos,<=50K
+39,Privada,Máster,14,Divorciado/a,Técnico especializado,Hijo/a,Blanco/a,Mujer,34,Haití,<=50K
+46,Privada,Secundaria,9,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,<=50K
+48,Privada,Secundaria,9,Casado/a,Seguridad,Sin familia,Blanco/a,Mujer,32,Estados Unidos,<=50K
+38,Privada,Secundaria,9,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,49,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,39,Estados Unidos,<=50K
+33,Privada,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,28,Estados Unidos,<=50K
+45,Gobierno local,FP Superior,12,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Hombre,48,Estados Unidos,<=50K
+45,Autónomo no inc.,Doctorado,16,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,>50K
+32,Gobierno federal,Secundaria,9,Soltero/a,Agricultura,Cónyuge,Blanco/a,Hombre,52,Estados Unidos,<=50K
+36,Privada,Algo de universidad,10,Soltero/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,51,Estados Unidos,<=50K
+22,Privada,Algo de universidad,10,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+25,Privada,Bachillerato,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,33,Estados Unidos,<=50K
+43,Privada,Algo de universidad,10,Divorciado/a,Agricultura,Soltero/a,Blanco/a,Hombre,42,Estados Unidos,<=50K
+27,Privada,Algo de universidad,10,Soltero/a,Administración,Cónyuge,Blanco/a,Hombre,10,Estados Unidos,<=50K
+30,Privada,FP Medio,11,Divorciado/a,Ventas,Sin familia,Blanco/a,Mujer,35,Estados Unidos,<=50K
+47,Privada,FP Superior,12,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,>50K
+38,Autónomo no inc.,Bachillerato,13,Casado/a,Administración,Hijo/a,Blanco/a,Hombre,12,Estados Unidos,>50K
+44,Privada,Secundaria,9,Casado/a,Otros servicios,Hijo/a,Blanco/a,Mujer,62,Estados Unidos,<=50K
+27,Privada,Grado universitario,13,Soltero/a,Administración,Esposo/a,Blanco/a,Mujer,42,Estados Unidos,<=50K
+42,Gobierno federal,Bachillerato,13,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,47,Estados Unidos,>50K
+27,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Sin familia,Negro/a,Hombre,35,Estados Unidos,<=50K
+29,Privada,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+42,Privada,Secundaria,9,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,20,Estados Unidos,<=50K
+45,Privada,Grado universitario,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,15,Estados Unidos,<=50K
+52,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,33,Estados Unidos,<=50K
+64,Gobierno local,Bachillerato,13,Casado/a,Otros servicios,Otro familiar,Negro/a,Mujer,46,Estados Unidos,<=50K
+18,Privada,Grado universitario,13,Casado/a,Transporte,Hijo/a,Blanco/a,Hombre,35,Estados Unidos,>50K
+35,Privada,Máster,14,Casado/a,Ejecutivo/Directivo,Sin familia,Negro/a,Hombre,56,Estados Unidos,>50K
+40,Gobierno federal,Secundaria,9,Viudo/a,Otros servicios,Cónyuge,Indígena americano/a,Hombre,28,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Casado/a,Transporte,Sin familia,Otro,Hombre,46,Estados Unidos,>50K
+34,Privada,Grado universitario,13,Soltero/a,Servicios domésticos,Cónyuge,Negro/a,Hombre,36,Estados Unidos,>50K
+42,Privada,Secundaria,9,Casado/a,Otros servicios,Hijo/a,Indígena americano/a,Hombre,50,Estados Unidos,<=50K
+46,Privada,Grado universitario,13,Soltero/a,Seguridad,Sin familia,Blanco/a,Hombre,1,Estados Unidos,>50K
+27,Privada,Secundaria,9,Casado/a,Servicios domésticos,Cónyuge,Blanco/a,Mujer,20,Estados Unidos,<=50K
+34,Privada,Secundaria,9,Soltero/a,Otros servicios,Hijo/a,Blanco/a,Hombre,36,Estados Unidos,<=50K
+36,Privada,Algo de universidad,10,Separado/a,Transporte,Sin familia,Blanco/a,Mujer,57,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Casado/a,Seguridad,Cónyuge,Blanco/a,Mujer,46,México,<=50K
+32,Privada,Algo de universidad,10,Separado/a,Agricultura,Cónyuge,Blanco/a,Mujer,27,Estados Unidos,<=50K
+33,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Soltero/a,Negro/a,Mujer,24,Estados Unidos,<=50K
+52,Privada,FP Medio,11,Soltero/a,Técnico especializado,Esposo/a,Asiático/a,Hombre,22,Estados Unidos,<=50K
+26,Privada,Secundaria,9,Separado/a,Administración,Cónyuge,Blanco/a,Hombre,21,Estados Unidos,<=50K
+20,Privada,Grado universitario,13,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,36,Estados Unidos,<=50K
+25,Privada,Secundaria,9,Soltero/a,Seguridad,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+19,Privada,Bachillerato,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,34,Estados Unidos,>50K
+17,Gobierno autonómico,Algo de universidad,10,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,33,México,<=50K
+46,Privada,Algo de universidad,10,Divorciado/a,Ventas,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,<=50K
+19,Privada,Secundaria,9,Casado/a,Seguridad,Hijo/a,Blanco/a,Mujer,53,Estados Unidos,<=50K
+50,Gobierno local,Secundaria,9,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,33,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Casado/a,Ventas,Sin familia,Blanco/a,Mujer,24,India,<=50K
+44,Privada,Algo de universidad,10,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,<=50K
+29,Privada,Secundaria,9,Casado/a,Operador maquinaria,Otro familiar,Blanco/a,Hombre,41,Estados Unidos,<=50K
+47,Gobierno federal,Grado universitario,13,Casado/a,Administración,Hijo/a,Blanco/a,Hombre,40,Estados Unidos,>50K
+27,Privada,FP Medio,11,Divorciado/a,Otros servicios,Esposo/a,Blanco/a,Mujer,30,Estados Unidos,<=50K
+43,Autónomo no inc.,Algo de universidad,10,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+29,Privada,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,50,Estados Unidos,<=50K
+43,Privada,Bachillerato,13,Viudo/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,55,Estados Unidos,<=50K
+20,Gobierno federal,Algo de universidad,10,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,65,Estados Unidos,<=50K
+56,Privada,Algo de universidad,10,Divorciado/a,Agricultura,Hijo/a,Negro/a,Hombre,31,Estados Unidos,<=50K
+40,Privada,FP Medio,11,Soltero/a,Seguridad,Hijo/a,Blanco/a,Hombre,36,Estados Unidos,<=50K
+32,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,24,Estados Unidos,<=50K
+18,Privada,Bachillerato,13,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,51,Estados Unidos,<=50K
+19,Privada,Bachillerato,13,Casado/a,Agricultura,Hijo/a,Blanco/a,Mujer,48,México,<=50K
+38,Gobierno local,Grado universitario,13,Casado/a,Otros servicios,Sin familia,Negro/a,Hombre,23,Estados Unidos,>50K
+35,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,51,Estados Unidos,<=50K
+37,Autónomo no inc.,FP Superior,12,Soltero/a,Otros servicios,Cónyuge,Negro/a,Mujer,24,Estados Unidos,<=50K
+40,Autónomo no inc.,Grado universitario,13,Casado/a,Administración,Sin familia,Blanco/a,Mujer,38,Estados Unidos,>50K
+33,Autónomo inc.,Secundaria,9,Divorciado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,46,Estados Unidos,<=50K
+51,Privada,FP Superior,12,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,52,Estados Unidos,<=50K
+32,Privada,Primaria incompleta,2,Soltero/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,42,Estados Unidos,<=50K
+28,Gobierno local,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Mujer,48,Estados Unidos,<=50K
+43,Privada,Bachillerato,13,Soltero/a,Seguridad,Soltero/a,Blanco/a,Hombre,34,Estados Unidos,>50K
+30,Privada,Secundaria,9,Soltero/a,Administración,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,<=50K
+53,Privada,Máster,14,Soltero/a,Seguridad,Cónyuge,Blanco/a,Hombre,64,Estados Unidos,>50K
+35,Privada,Bachillerato,13,Divorciado/a,Construcción/Reparación,Hijo/a,Blanco/a,Mujer,39,Estados Unidos,>50K
+54,Gobierno local,Bachillerato,13,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,>50K
+42,Gobierno local,Algo de universidad,10,Soltero/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,43,Estados Unidos,<=50K
+17,Privada,Secundaria,9,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,>50K
+20,Gobierno autonómico,Secundaria,9,Casado/a,Administración,Esposo/a,Blanco/a,Hombre,26,Estados Unidos,<=50K
+54,Privada,Bachillerato,13,Soltero/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,63,Estados Unidos,<=50K
+44,Privada,Bachillerato,13,Divorciado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Mujer,49,Estados Unidos,<=50K
+26,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Esposo/a,Blanco/a,Hombre,44,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Viudo/a,Técnico especializado,Sin familia,Blanco/a,Mujer,43,Canadá,<=50K
+17,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,74,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Casado/a,Otros servicios,Hijo/a,Negro/a,Hombre,43,Estados Unidos,<=50K
+74,Privada,Secundaria,9,Divorciado/a,Otros servicios,Soltero/a,Blanco/a,Mujer,11,Estados Unidos,<=50K
+21,Autónomo no inc.,Doctorado,16,Separado/a,Ejecutivo/Directivo,Esposo/a,Blanco/a,Hombre,42,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Esposo/a,Blanco/a,Hombre,54,Estados Unidos,<=50K
+25,Privada,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,43,Estados Unidos,<=50K
+61,Privada,Bachillerato,13,Viudo/a,Construcción/Reparación,Hijo/a,Blanco/a,Mujer,47,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Mujer,43,Estados Unidos,<=50K
+17,Privada,Secundaria,9,Viudo/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+37,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,55,Estados Unidos,<=50K
+26,Privada,Bachillerato,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,10,Estados Unidos,<=50K
+35,Privada,Algo de universidad,10,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,42,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,61,Estados Unidos,<=50K
+19,Privada,Secundaria,9,Casado/a,Agricultura,Cónyuge,Blanco/a,Mujer,34,Estados Unidos,<=50K
+53,Privada,Grado universitario,13,Casado/a,Transporte,Hijo/a,Blanco/a,Mujer,58,Estados Unidos,>50K
+17,Privada,Secundaria,9,Divorciado/a,Administración,Sin familia,Blanco/a,Hombre,31,El Salvador,<=50K
+36,Privada,Algo de universidad,10,Divorciado/a,Transporte,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+44,Autónomo inc.,Bachillerato,13,Casado/a,Ventas,Soltero/a,Blanco/a,Hombre,63,Estados Unidos,<=50K
+41,Autónomo inc.,Algo de universidad,10,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+27,Privada,Secundaria,9,Divorciado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,55,Estados Unidos,<=50K
+54,Privada,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+47,Privada,Máster,14,Casado/a,Otros servicios,Hijo/a,Blanco/a,Hombre,33,Estados Unidos,>50K
+80,Autónomo inc.,Grado universitario,13,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Hombre,50,Estados Unidos,<=50K
+36,Privada,Bachillerato,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+51,Privada,Bachillerato,13,Casado/a,Ventas,Sin familia,Blanco/a,Mujer,54,Estados Unidos,<=50K
+44,Gobierno local,Bachillerato,13,Viudo/a,Ejecutivo/Directivo,Cónyuge,Otro,Hombre,49,Estados Unidos,>50K
+41,Gobierno local,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,25,Estados Unidos,>50K
+19,Privada,Algo de universidad,10,Soltero/a,Servicios domésticos,Hijo/a,Negro/a,Hombre,33,Estados Unidos,<=50K
+39,Privada,FP Superior,12,Casado/a,Agricultura,Sin familia,Blanco/a,Hombre,63,Estados Unidos,<=50K
+36,Privada,Bachillerato,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,36,Estados Unidos,>50K
+39,Privada,Algo de universidad,10,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,63,Estados Unidos,<=50K
+48,Privada,Secundaria,9,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Mujer,51,Estados Unidos,<=50K
+49,Privada,FP Superior,12,Casado/a,Operador maquinaria,Sin familia,Negro/a,Hombre,23,Estados Unidos,<=50K
+57,Gobierno autonómico,Bachillerato,13,Casado/a,Seguridad,Hijo/a,Blanco/a,Hombre,45,Estados Unidos,<=50K
+47,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Esposo/a,Blanco/a,Hombre,49,Estados Unidos,<=50K
+27,Privada,Algo de universidad,10,Casado/a,Fuerzas armadas,Sin familia,Blanco/a,Mujer,60,Estados Unidos,<=50K
+38,Autónomo no inc.,Secundaria,9,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,34,Estados Unidos,<=50K
+36,Gobierno autonómico,Secundaria,9,Separado/a,Técnico especializado,Sin familia,Negro/a,Hombre,49,Estados Unidos,<=50K
+47,Privada,Secundaria,9,Casado/a,Técnico especializado,Otro familiar,Blanco/a,Hombre,38,Estados Unidos,>50K
+46,Privada,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Mujer,26,Estados Unidos,<=50K
+26,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,52,Estados Unidos,<=50K
+44,Privada,Secundaria,9,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+38,Privada,Algo de universidad,10,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,61,Estados Unidos,<=50K
+17,Privada,FP Superior,12,Casado/a,Seguridad,Hijo/a,Blanco/a,Mujer,53,México,>50K
+55,Privada,Secundaria,9,Soltero/a,Otros servicios,Cónyuge,Negro/a,Hombre,66,Estados Unidos,<=50K
+28,Privada,Grado universitario,13,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+18,Privada,Algo de universidad,10,Separado/a,Agricultura,Sin familia,Blanco/a,Hombre,35,Estados Unidos,<=50K
+33,Gobierno federal,Máster,14,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,60,Estados Unidos,>50K
+67,Privada,Secundaria,9,Soltero/a,Ventas,Hijo/a,Blanco/a,Hombre,28,Estados Unidos,<=50K
+52,Privada,Bachillerato,13,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,44,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,21,Estados Unidos,<=50K
+21,Privada,Grado universitario,13,Casado/a,Seguridad,Esposo/a,Blanco/a,Hombre,23,Estados Unidos,<=50K
+58,Privada,Bachillerato,13,Casado/a,Ventas,Esposo/a,Blanco/a,Hombre,25,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Divorciado/a,Operador maquinaria,Hijo/a,Blanco/a,Hombre,28,Estados Unidos,<=50K
+17,Gobierno local,Secundaria,9,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,39,Guatemala,<=50K
+32,Privada,FP Superior,12,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,55,Estados Unidos,<=50K
+60,Privada,Algo de universidad,10,Casado/a,Seguridad,Cónyuge,Blanco/a,Mujer,27,Estados Unidos,<=50K
+43,Autónomo no inc.,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+17,Privada,FP Medio,11,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+39,Privada,FP Medio,11,Divorciado/a,Otros servicios,Otro familiar,Blanco/a,Mujer,32,Estados Unidos,<=50K
+27,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+24,Gobierno local,Secundaria,9,Casado/a,Agricultura,Sin familia,Blanco/a,Mujer,45,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Soltero/a,Operador maquinaria,Hijo/a,Blanco/a,Hombre,27,Estados Unidos,<=50K
+28,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Hijo/a,Negro/a,Hombre,29,Estados Unidos,<=50K
+29,Gobierno local,Secundaria,9,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,43,Estados Unidos,<=50K
+64,Privada,Secundaria,9,Soltero/a,Administración,Sin familia,Blanco/a,Mujer,30,Estados Unidos,<=50K
+43,Privada,Algo de universidad,10,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+21,Privada,Grado universitario,13,Casado/a,Construcción/Reparación,Otro familiar,Blanco/a,Hombre,48,Italia,>50K
+32,Privada,Grado universitario,13,Casado/a,Transporte,Cónyuge,Blanco/a,Mujer,61,Estados Unidos,>50K
+50,Privada,Algo de universidad,10,Casado/a,Administración,Hijo/a,Blanco/a,Mujer,47,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Divorciado/a,Administración,Hijo/a,Blanco/a,Mujer,35,Estados Unidos,<=50K
+46,Privada,Algo de universidad,10,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,22,Estados Unidos,<=50K
+43,Autónomo no inc.,Bachillerato,13,Soltero/a,Transporte,Hijo/a,Blanco/a,Mujer,41,Jamaica,<=50K
+34,Privada,Grado universitario,13,Viudo/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,23,Estados Unidos,>50K
+60,Autónomo no inc.,Secundaria,9,Casado/a,Servicios domésticos,Sin familia,Blanco/a,Hombre,39,Estados Unidos,<=50K
+29,Privada,Algo de universidad,10,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Mujer,33,Estados Unidos,<=50K
+47,Privada,Máster,14,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,31,El Salvador,>50K
+29,Privada,Secundaria,9,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,35,México,<=50K
+40,Autónomo inc.,Bachillerato,13,Separado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,20,Estados Unidos,>50K
+35,Privada,Secundaria,9,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,27,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,56,Estados Unidos,<=50K
+32,Gobierno local,Secundaria,9,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,32,Estados Unidos,<=50K
+52,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Negro/a,Hombre,25,Estados Unidos,<=50K
+30,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,35,Estados Unidos,<=50K
+75,Privada,Algo de universidad,10,Soltero/a,Transporte,Cónyuge,Blanco/a,Hombre,43,Estados Unidos,<=50K
+17,Privada,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,49,Estados Unidos,<=50K
+61,Autónomo no inc.,Secundaria,9,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,45,Estados Unidos,<=50K
+23,Privada,FP Medio,11,Soltero/a,Agricultura,Soltero/a,Blanco/a,Hombre,47,Estados Unidos,<=50K
+32,Gobierno autonómico,Secundaria,9,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,<=50K
+54,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,21,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Viudo/a,Transporte,Cónyuge,Blanco/a,Hombre,23,Estados Unidos,<=50K
+44,Privada,Bachillerato,13,Casado/a,Operador maquinaria,Otro familiar,Blanco/a,Hombre,40,Estados Unidos,<=50K
+44,Privada,Grado universitario,13,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,46,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Cónyuge,Negro/a,Hombre,54,Estados Unidos,<=50K
+23,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Otro familiar,Blanco/a,Mujer,39,Estados Unidos,<=50K
+59,Privada,Grado universitario,13,Casado/a,Operador maquinaria,Hijo/a,Negro/a,Mujer,37,Estados Unidos,<=50K
+45,Privada,Algo de universidad,10,Divorciado/a,Servicios domésticos,Sin familia,Blanco/a,Hombre,46,Estados Unidos,<=50K
+51,Privada,Grado universitario,13,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,>50K
+42,Privada,Algo de universidad,10,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,35,Estados Unidos,<=50K
+17,Autónomo no inc.,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,25,Estados Unidos,<=50K
+44,Gobierno federal,Algo de universidad,10,Divorciado/a,Servicios domésticos,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,<=50K
+49,Privada,Secundaria,9,Casado/a,Transporte,Soltero/a,Blanco/a,Hombre,48,Filipinas,<=50K
+17,Privada,Bachillerato,13,Casado/a,Administración,Cónyuge,Blanco/a,Hombre,62,Vietnam,<=50K
+23,Privada,Grado universitario,13,Divorciado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,38,Estados Unidos,<=50K
+28,Gobierno autonómico,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,35,Estados Unidos,<=50K
+33,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,20,Estados Unidos,<=50K
+46,Gobierno federal,Bachillerato,13,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,61,Estados Unidos,<=50K
+42,Privada,Máster,14,Casado/a,Servicios domésticos,Esposo/a,Blanco/a,Mujer,28,Estados Unidos,<=50K
+32,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,20,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Separado/a,Técnico especializado,Cónyuge,Negro/a,Mujer,42,Filipinas,<=50K
+34,Privada,Algo de universidad,10,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,42,Alemania,<=50K
+21,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,42,Estados Unidos,<=50K
+48,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,42,Estados Unidos,<=50K
+36,Gobierno federal,Secundaria,9,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,49,Estados Unidos,<=50K
+46,Privada,FP Medio,11,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,52,Estados Unidos,<=50K
+37,Gobierno local,Secundaria,9,Soltero/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,52,Estados Unidos,<=50K
+20,Privada,FP Medio,11,Casado/a,Otros servicios,Hijo/a,Blanco/a,Mujer,21,Estados Unidos,<=50K
+56,Autónomo inc.,Algo de universidad,10,Soltero/a,Otros servicios,Esposo/a,Blanco/a,Hombre,45,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Negro/a,Mujer,51,Estados Unidos,<=50K
+31,Privada,Algo de universidad,10,Soltero/a,Agricultura,Cónyuge,Blanco/a,Mujer,27,Estados Unidos,<=50K
+39,Privada,Grado universitario,13,Casado/a,Administración,Esposo/a,Blanco/a,Mujer,59,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Soltero/a,Transporte,Cónyuge,Blanco/a,Hombre,14,Estados Unidos,<=50K
+47,Gobierno local,Secundaria,9,Soltero/a,Fuerzas armadas,Cónyuge,Blanco/a,Mujer,24,Canadá,<=50K
+38,Gobierno federal,Bachillerato,13,Soltero/a,Construcción/Reparación,Esposo/a,Blanco/a,Mujer,23,Estados Unidos,<=50K
+17,Autónomo inc.,Grado universitario,13,Casado/a,Ventas,Sin familia,Blanco/a,Mujer,31,Estados Unidos,<=50K
+41,Privada,Secundaria,9,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,19,Estados Unidos,<=50K
+17,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Esposo/a,Blanco/a,Hombre,54,Estados Unidos,<=50K
+76,Privada,Grado universitario,13,Casado/a,Ejecutivo/Directivo,Otro familiar,Negro/a,Hombre,38,Estados Unidos,>50K
+26,Privada,Secundaria,9,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,34,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Casado/a,Administración,Sin familia,Blanco/a,Hombre,49,Estados Unidos,<=50K
+43,Privada,Secundaria,9,Divorciado/a,Seguridad,Otro familiar,Blanco/a,Hombre,41,Estados Unidos,<=50K
+60,Privada,Bachillerato,13,Soltero/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+39,Privada,FP Superior,12,Divorciado/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,54,Estados Unidos,<=50K
+29,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,58,Estados Unidos,<=50K
+37,Privada,Bachillerato,13,Divorciado/a,Ventas,Hijo/a,Blanco/a,Hombre,42,Estados Unidos,<=50K
+22,Privada,Bachillerato,13,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,40,Estados Unidos,<=50K
+32,Privada,Algo de universidad,10,Divorciado/a,Técnico especializado,Sin familia,Blanco/a,Mujer,46,Estados Unidos,>50K
+45,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,<=50K
+47,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,31,Estados Unidos,<=50K
+32,Privada,FP Medio,11,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,42,Estados Unidos,<=50K
+23,Privada,Grado universitario,13,Casado/a,Administración,Soltero/a,Blanco/a,Hombre,40,Estados Unidos,<=50K
+34,Privada,Grado universitario,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,36,Estados Unidos,>50K
+29,Sin empleo remunerado,Bachillerato,13,Casado/a,Agricultura,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,<=50K
+27,Privada,Grado universitario,13,Divorciado/a,Seguridad,Cónyuge,Blanco/a,Hombre,24,Estados Unidos,<=50K
+39,Gobierno federal,Algo de universidad,10,Soltero/a,Técnico especializado,Sin familia,Negro/a,Mujer,32,Estados Unidos,<=50K
+31,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,39,Estados Unidos,<=50K
+41,Privada,Bachillerato,13,Soltero/a,Administración,Sin familia,Blanco/a,Hombre,43,Estados Unidos,<=50K
+43,Privada,FP Medio,11,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,29,Estados Unidos,<=50K
+31,Privada,Grado universitario,13,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,39,Estados Unidos,<=50K
+34,Privada,Algo de universidad,10,Divorciado/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,39,México,<=50K
+45,Privada,Secundaria,9,Soltero/a,Ventas,Soltero/a,Blanco/a,Mujer,57,Estados Unidos,<=50K
+67,Autónomo inc.,Secundaria,9,Divorciado/a,Ventas,Cónyuge,Blanco/a,Mujer,7,Estados Unidos,<=50K
+59,Privada,Bachillerato,13,Viudo/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,59,Estados Unidos,<=50K
+28,Gobierno local,Secundaria,9,Casado/a,Administración,Cónyuge,Negro/a,Hombre,42,México,<=50K
+42,Gobierno local,Algo de universidad,10,Divorciado/a,Construcción/Reparación,Otro familiar,Blanco/a,Hombre,45,Estados Unidos,<=50K
+52,Gobierno federal,Secundaria,9,Soltero/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,23,Estados Unidos,<=50K
+50,Autónomo no inc.,Secundaria,9,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,60,Estados Unidos,<=50K
+17,Autónomo no inc.,Secundaria,9,Casado/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,47,Estados Unidos,<=50K
+25,Gobierno local,Grado universitario,13,Divorciado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,57,Estados Unidos,<=50K
+21,Gobierno autonómico,Bachillerato,13,Separado/a,Agricultura,Hijo/a,Blanco/a,Hombre,40,Estados Unidos,<=50K
+21,Privada,Secundaria,9,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,27,Estados Unidos,<=50K
+21,Gobierno local,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,50,Estados Unidos,>50K
+17,Privada,Algo de universidad,10,Soltero/a,Administración,Sin familia,Blanco/a,Mujer,28,Estados Unidos,<=50K
+31,Privada,Máster,14,Casado/a,Administración,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+55,Privada,Bachillerato,13,Casado/a,Ventas,Soltero/a,Negro/a,Mujer,40,Estados Unidos,<=50K
+43,Privada,Secundaria,9,Divorciado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,46,Estados Unidos,<=50K
+31,Privada,Algo de universidad,10,Soltero/a,Operador maquinaria,Sin familia,Blanco/a,Mujer,58,Estados Unidos,<=50K
+17,Autónomo no inc.,Algo de universidad,10,Casado/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,35,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Negro/a,Hombre,30,Estados Unidos,<=50K
+29,Privada,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Otro familiar,Blanco/a,Hombre,52,Estados Unidos,<=50K
+70,Privada,Algo de universidad,10,Divorciado/a,Ventas,Soltero/a,Negro/a,Mujer,60,Estados Unidos,<=50K
+65,Gobierno local,Secundaria,9,Separado/a,Administración,Sin familia,Blanco/a,Mujer,34,Canadá,<=50K
+39,Privada,Grado universitario,13,Divorciado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,60,Estados Unidos,<=50K
+60,Privada,Algo de universidad,10,Casado/a,Administración,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+21,Privada,Máster,14,Soltero/a,Otros servicios,Cónyuge,Negro/a,Hombre,39,Estados Unidos,>50K
+43,Autónomo inc.,FP Superior,12,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,38,Estados Unidos,<=50K
+35,Privada,Algo de universidad,10,Soltero/a,Ventas,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+53,Autónomo no inc.,Grado universitario,13,Casado/a,Seguridad,Otro familiar,Negro/a,Hombre,52,Estados Unidos,>50K
+43,Privada,Grado universitario,13,Separado/a,Otros servicios,Sin familia,Negro/a,Mujer,44,Estados Unidos,>50K
+47,Privada,Secundaria,9,Soltero/a,Operador maquinaria,Sin familia,Negro/a,Hombre,39,Alemania,<=50K
+33,Privada,Secundaria,9,Soltero/a,Transporte,Cónyuge,Blanco/a,Hombre,39,Estados Unidos,<=50K
+44,Gobierno local,Secundaria,9,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,36,Estados Unidos,<=50K
+59,Privada,Bachillerato,13,Casado/a,Administración,Sin familia,Blanco/a,Mujer,36,Estados Unidos,>50K
+37,Gobierno local,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,62,Estados Unidos,<=50K
+51,Privada,Algo de universidad,10,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,<=50K
+52,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,45,Estados Unidos,<=50K
+57,Privada,Algo de universidad,10,Divorciado/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,30,Alemania,<=50K
+47,Autónomo inc.,Secundaria,9,Casado/a,Administración,Hijo/a,Blanco/a,Mujer,57,Estados Unidos,<=50K
+34,Privada,Grado universitario,13,Divorciado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,34,Estados Unidos,>50K
+21,Privada,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,30,Estados Unidos,<=50K
+26,Gobierno local,Secundaria,9,Casado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Hombre,48,Estados Unidos,<=50K
+45,Autónomo no inc.,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,51,Jamaica,<=50K
+63,Privada,Grado universitario,13,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,34,Estados Unidos,>50K
+48,Privada,Bachillerato,13,Soltero/a,Transporte,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+34,Privada,Algo de universidad,10,Divorciado/a,Ventas,Sin familia,Blanco/a,Hombre,54,Estados Unidos,<=50K
+48,Privada,FP Superior,12,Casado/a,Técnico especializado,Cónyuge,Blanco/a,Mujer,27,Estados Unidos,<=50K
+34,Privada,Máster,14,Viudo/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,19,Estados Unidos,>50K
+26,Privada,Grado universitario,13,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,3,Estados Unidos,>50K
+19,Privada,Algo de universidad,10,Soltero/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+40,Privada,FP Medio,11,Divorciado/a,Ventas,Cónyuge,Negro/a,Hombre,19,Estados Unidos,<=50K
+35,Autónomo inc.,Grado universitario,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,54,Estados Unidos,<=50K
+27,Privada,Algo de universidad,10,Casado/a,Administración,Cónyuge,Asiático/a,Mujer,46,Estados Unidos,<=50K
+30,Privada,Bachillerato,13,Casado/a,Transporte,Cónyuge,Blanco/a,Hombre,17,Estados Unidos,>50K
+54,Privada,Grado universitario,13,Divorciado/a,Operador maquinaria,Soltero/a,Negro/a,Hombre,26,Estados Unidos,<=50K
+30,Privada,FP Superior,12,Casado/a,Agricultura,Otro familiar,Asiático/a,Hombre,14,Estados Unidos,>50K
+48,Autónomo inc.,FP Medio,11,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,21,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Divorciado/a,Administración,Hijo/a,Asiático/a,Hombre,35,Estados Unidos,<=50K
+43,Gobierno local,Secundaria,9,Divorciado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,59,Estados Unidos,<=50K
+27,Privada,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Hombre,40,Estados Unidos,<=50K
+45,Privada,Bachillerato,13,Divorciado/a,Agricultura,Cónyuge,Indígena americano/a,Hombre,41,Canadá,<=50K
+35,Gobierno federal,Secundaria,9,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,47,Estados Unidos,<=50K
+21,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,24,India,<=50K
+56,Autónomo inc.,Bachillerato,13,Divorciado/a,Otros servicios,Sin familia,Blanco/a,Hombre,55,Estados Unidos,<=50K
+17,Privada,Secundaria,9,Soltero/a,Administración,Otro familiar,Blanco/a,Mujer,47,Estados Unidos,<=50K
+36,Privada,Grado universitario,13,Soltero/a,Técnico especializado,Cónyuge,Blanco/a,Hombre,33,Estados Unidos,>50K
+31,Privada,Algo de universidad,10,Soltero/a,Administración,Cónyuge,Blanco/a,Hombre,45,Estados Unidos,<=50K
+37,Privada,Algo de universidad,10,Casado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,11,Estados Unidos,<=50K
+46,Privada,Algo de universidad,10,Soltero/a,Otros servicios,Cónyuge,Negro/a,Hombre,46,Estados Unidos,<=50K
+43,Gobierno local,Grado universitario,13,Casado/a,Administración,Cónyuge,Blanco/a,Mujer,49,Estados Unidos,>50K
+50,Gobierno local,Bachillerato,13,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,19,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,35,Estados Unidos,<=50K
+69,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,50,Estados Unidos,<=50K
+44,Autónomo inc.,Secundaria,9,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Mujer,26,Estados Unidos,<=50K
+47,Autónomo no inc.,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,<=50K
+38,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Otro familiar,Blanco/a,Mujer,30,Estados Unidos,<=50K
+26,Gobierno federal,Máster,14,Casado/a,Construcción/Reparación,Otro familiar,Blanco/a,Hombre,21,Estados Unidos,>50K
+40,Autónomo inc.,Grado universitario,13,Casado/a,Otros servicios,Sin familia,Blanco/a,Hombre,60,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Soltero/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,31,Estados Unidos,<=50K
+27,Privada,Grado universitario,13,Divorciado/a,Otros servicios,Sin familia,Blanco/a,Hombre,33,Inglaterra,<=50K
+30,Privada,Bachillerato,13,Soltero/a,Administración,Sin familia,Blanco/a,Mujer,33,Estados Unidos,<=50K
+23,Privada,Grado universitario,13,Casado/a,Técnico especializado,Soltero/a,Blanco/a,Mujer,50,Estados Unidos,<=50K
+28,Privada,Algo de universidad,10,Viudo/a,Ejecutivo/Directivo,Sin familia,Negro/a,Hombre,48,Estados Unidos,<=50K
+45,Autónomo no inc.,Doctorado,16,Casado/a,Operador maquinaria,Cónyuge,Blanco/a,Mujer,25,Estados Unidos,<=50K
+66,Sin empleo remunerado,Secundaria,9,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,15,Filipinas,<=50K
+35,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+47,Privada,Secundaria,9,Separado/a,Operador maquinaria,Cónyuge,Blanco/a,Hombre,41,Estados Unidos,<=50K
+46,Privada,Doctorado,16,Divorciado/a,Técnico especializado,Otro familiar,Blanco/a,Hombre,49,Estados Unidos,>50K
+48,Privada,Algo de universidad,10,Casado/a,Otros servicios,Sin familia,Blanco/a,Mujer,59,Estados Unidos,<=50K
+36,Privada,Grado universitario,13,Soltero/a,Administración,Esposo/a,Blanco/a,Hombre,57,Irán,<=50K
+48,Autónomo inc.,FP Superior,12,Viudo/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,29,Estados Unidos,>50K
+53,Privada,Secundaria,9,Viudo/a,Técnico especializado,Sin familia,Negro/a,Mujer,18,Estados Unidos,<=50K
+17,Privada,Grado universitario,13,Divorciado/a,Seguridad,Sin familia,Blanco/a,Hombre,48,Estados Unidos,<=50K
+30,Privada,Algo de universidad,10,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,29,Estados Unidos,<=50K
+17,Privada,Algo de universidad,10,Separado/a,Técnico especializado,Sin familia,Negro/a,Mujer,57,Estados Unidos,<=50K
+51,Privada,Grado universitario,13,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,<=50K
+24,Privada,FP Medio,11,Casado/a,Transporte,Cónyuge,Blanco/a,Mujer,35,Estados Unidos,<=50K
+25,Gobierno local,Bachillerato,13,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,66,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Viudo/a,Transporte,Esposo/a,Blanco/a,Hombre,67,Estados Unidos,<=50K
+37,Privada,FP Superior,12,Soltero/a,Seguridad,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,<=50K
+27,Privada,Secundaria,9,Casado/a,Administración,Sin familia,Blanco/a,Hombre,25,Estados Unidos,<=50K
+54,Autónomo no inc.,Secundaria,9,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,30,Estados Unidos,<=50K
+60,Privada,Grado universitario,13,Casado/a,Técnico especializado,Soltero/a,Asiático/a,Hombre,46,Estados Unidos,>50K
+37,Autónomo inc.,Máster,14,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,23,México,<=50K
+17,Privada,Bachillerato,13,Soltero/a,Administración,Cónyuge,Blanco/a,Mujer,47,Estados Unidos,<=50K
+36,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Hombre,46,Estados Unidos,<=50K
+54,Autónomo no inc.,FP Superior,12,Soltero/a,Agricultura,Cónyuge,Blanco/a,Hombre,48,Estados Unidos,>50K
+33,Privada,Algo de universidad,10,Casado/a,Agricultura,Cónyuge,Blanco/a,Hombre,37,Estados Unidos,<=50K
+41,Privada,Bachillerato,13,Viudo/a,Agricultura,Esposo/a,Blanco/a,Mujer,49,Estados Unidos,>50K
+44,Privada,FP Medio,11,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,19,Estados Unidos,<=50K
+49,Privada,Secundaria,9,Divorciado/a,Administración,Sin familia,Blanco/a,Hombre,38,Estados Unidos,<=50K
+39,Privada,Bachillerato,13,Soltero/a,Otros servicios,Sin familia,Blanco/a,Hombre,34,Estados Unidos,<=50K
+44,Privada,Doctorado,16,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,53,Jamaica,<=50K
+63,Privada,Bachillerato,13,Soltero/a,Otros servicios,Hijo/a,Blanco/a,Hombre,48,Estados Unidos,<=50K
+32,Gobierno federal,Grado universitario,13,Casado/a,Ventas,Sin familia,Blanco/a,Hombre,27,Estados Unidos,<=50K
+40,Privada,Grado universitario,13,Casado/a,Ejecutivo/Directivo,Hijo/a,Blanco/a,Mujer,40,Estados Unidos,<=50K
+26,Privada,Bachillerato,13,Soltero/a,Técnico especializado,Sin familia,Blanco/a,Hombre,39,Estados Unidos,<=50K
+33,Autónomo inc.,Secundaria,9,Soltero/a,Ventas,Sin familia,Otro,Mujer,42,Estados Unidos,>50K
+30,Privada,Bachillerato,13,Soltero/a,Ventas,Hijo/a,Blanco/a,Hombre,39,Estados Unidos,<=50K
+59,Autónomo no inc.,Grado universitario,13,Divorciado/a,Transporte,Cónyuge,Negro/a,Mujer,23,Estados Unidos,<=50K
+19,Privada,FP Medio,11,Soltero/a,Ventas,Sin familia,Blanco/a,Hombre,34,Estados Unidos,<=50K
+35,Privada,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Mujer,27,Estados Unidos,<=50K
+63,Autónomo no inc.,Secundaria,9,Divorciado/a,Construcción/Reparación,Cónyuge,Blanco/a,Hombre,26,Estados Unidos,<=50K
+37,Privada,Secundaria,9,Casado/a,Técnico especializado,Esposo/a,Blanco/a,Mujer,40,México,<=50K
+28,Privada,Secundaria,9,Casado/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,47,Estados Unidos,<=50K
+40,Privada,Bachillerato,13,Divorciado/a,Agricultura,Sin familia,Blanco/a,Mujer,40,Estados Unidos,>50K
+41,Autónomo no inc.,Máster,14,Casado/a,Técnico especializado,Hijo/a,Blanco/a,Hombre,32,Estados Unidos,>50K
+39,Privada,FP Superior,12,Divorciado/a,Operador maquinaria,Sin familia,Blanco/a,Hombre,19,Estados Unidos,>50K
+42,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Soltero/a,Blanco/a,Mujer,19,Estados Unidos,<=50K
+46,Privada,Secundaria,9,Divorciado/a,Transporte,Cónyuge,Blanco/a,Mujer,38,Estados Unidos,<=50K
+37,Privada,Algo de universidad,10,Casado/a,Construcción/Reparación,Hijo/a,Asiático/a,Hombre,32,Estados Unidos,<=50K
+68,Autónomo inc.,Algo de universidad,10,Casado/a,Administración,Cónyuge,Negro/a,Mujer,35,Estados Unidos,<=50K
+35,Privada,Secundaria,9,Casado/a,Ventas,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,>50K
+32,Gobierno federal,FP Medio,11,Soltero/a,Técnico especializado,Soltero/a,Blanco/a,Hombre,38,Estados Unidos,<=50K
+41,Privada,Máster,14,Casado/a,Seguridad,Cónyuge,Blanco/a,Mujer,37,Estados Unidos,<=50K
+47,Privada,Secundaria,9,Casado/a,Seguridad,Cónyuge,Blanco/a,Hombre,28,Estados Unidos,<=50K
+37,Gobierno local,Grado universitario,13,Divorciado/a,Técnico especializado,Sin familia,Blanco/a,Hombre,21,Estados Unidos,>50K
+17,Gobierno federal,Bachillerato,13,Divorciado/a,Ejecutivo/Directivo,Sin familia,Negro/a,Hombre,27,Estados Unidos,>50K
+38,Privada,Secundaria,9,Soltero/a,Técnico especializado,Otro familiar,Blanco/a,Hombre,49,Estados Unidos,<=50K
+27,Privada,FP Superior,12,Soltero/a,Seguridad,Esposo/a,Blanco/a,Mujer,37,Estados Unidos,<=50K
+54,Privada,Algo de universidad,10,Soltero/a,Administración,Hijo/a,Otro,Mujer,20,Estados Unidos,<=50K
+55,Autónomo no inc.,Grado universitario,13,Soltero/a,Ejecutivo/Directivo,Esposo/a,Negro/a,Hombre,40,Estados Unidos,>50K
+65,Privada,Bachillerato,13,Soltero/a,Administración,Sin familia,Blanco/a,Hombre,47,Estados Unidos,<=50K
+28,Privada,Máster,14,Casado/a,Construcción/Reparación,Sin familia,Blanco/a,Hombre,34,Estados Unidos,>50K
+29,Privada,Máster,14,Soltero/a,Otros servicios,Cónyuge,Blanco/a,Mujer,48,Estados Unidos,>50K
+66,Privada,Grado universitario,13,Soltero/a,Construcción/Reparación,Otro familiar,Blanco/a,Hombre,26,Estados Unidos,<=50K
+40,Privada,FP Medio,11,Casado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,31,Estados Unidos,<=50K
+45,Gobierno autonómico,Algo de universidad,10,Soltero/a,Construcción/Reparación,Sin familia,Blanco/a,Mujer,45,Guatemala,<=50K
+17,Privada,Bachillerato,13,Divorciado/a,Administración,Hijo/a,Asiático/a,Mujer,36,México,<=50K
+23,Privada,Grado universitario,13,Divorciado/a,Ventas,Otro familiar,Blanco/a,Hombre,17,Estados Unidos,<=50K
+17,Privada,Secundaria,9,Casado/a,Ejecutivo/Directivo,Sin familia,Blanco/a,Mujer,33,Estados Unidos,<=50K
+40,Privada,Algo de universidad,10,Casado/a,Ejecutivo/Directivo,Cónyuge,Blanco/a,Hombre,47,Estados Unidos,<=50K
+17,Privada,Bachillerato,13,Casado/a,Otros servicios,Cónyuge,Blanco/a,Hombre,48,Estados Unidos,>50K
+61,Privada,Bachillerato,13,Divorciado/a,Construcción/Reparación,Hijo/a,Blanco/a,Hombre,41,Estados Unidos,<=50K
+59,Privada,Secundaria,9,Soltero/a,Transporte,Hijo/a,Blanco/a,Hombre,43,Estados Unidos,<=50K
+39,Privada,Algo de universidad,10,Casado/a,Ventas,Hijo/a,Blanco/a,Hombre,32,Estados Unidos,<=50K
+41,Privada,Máster,14,Soltero/a,Construcción/Reparación,Cónyuge,Blanco/a,Mujer,42,Estados Unidos,>50K
+57,Privada,Bachillerato,13,Soltero/a,Construcción/Reparación,Soltero/a,Blanco/a,Hombre,46,Cuba,<=50K
+48,Privada,FP Medio,11,Divorciado/a,Otros servicios,Otro familiar,Blanco/a,Hombre,45,Estados Unidos,<=50K
+33,Sin empleo remunerado,Secundaria,9,Divorciado/a,Ventas,Cónyuge,Blanco/a,Mujer,54,Estados Unidos,<=50K
+42,Privada,Secundaria,9,Casado/a,Transporte,Sin familia,Blanco/a,Mujer,34,Estados Unidos,<=50K
