@@ -73,10 +73,11 @@ def _generar_jerarquias(df, qi_cols):
 
             hierarchies[col] = {
                 0: raw,
-                1: np.array(_crear_intervalos(raw, v_min, v_max, step=5), dtype=object),
-                2: np.array(_crear_intervalos(raw, v_min, v_max, step=10), dtype=object),
-                3: np.array(_crear_intervalos(raw, v_min, v_max, step=20), dtype=object),
-                4: np.array(["*"] * n, dtype=object),
+                1: np.array(_crear_intervalos(raw, v_min, v_max, step=2), dtype=object),
+                2: np.array(_crear_intervalos(raw, v_min, v_max, step=5), dtype=object),
+                3: np.array(_crear_intervalos(raw, v_min, v_max, step=10), dtype=object),
+                4: np.array(_crear_intervalos(raw, v_min, v_max, step=20), dtype=object),
+                5: np.array(["*"] * n, dtype=object),
             }
             continue
 

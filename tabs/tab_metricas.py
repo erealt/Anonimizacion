@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from utils.metricas import (
     riesgo_maximo, riesgo_medio, tasa_unicidad, k_value, riesgo_label,
-    generar_grafico_riesgos,
+    generar_grafico_riesgos, calcular_fscore_revisado,
 )
 
 # ── Paleta institucional ──
@@ -74,28 +74,28 @@ def render():
         label_p, class_p = riesgo_label(r_med_anon)
         label_m, class_m = riesgo_label(t_unic_anon)
 
-        # ── Alerta global (F-Score) ─────────────────────────────────────
-        privacidad = max(0.0, 1.0 - r_max_anon)
-        fscore = (
-            2 * (privacidad * retencion) / (privacidad + retencion)
-            if (privacidad + retencion) > 0 else 0.0
-        )
+        # ── Alerta global (F-Score con NCP) ────────────────────────────
+        m = calcular_fscore_revisado(df, df_anon, columnas_qi)
+        privacidad = m["privacidad"]
+        fscore     = m["fscore"]
+        utilidad   = m["utilidad"]
+        ncp        = m["ncp"]
 
         if fscore >= 0.80:
             bg_c, bd_c, tx_c = COLOR_LOW_BG, COLOR_LOW_BD, COLOR_LOW
             icono, nivel = "✅", "ÓPTIMO"
-            texto = (f"F-Score: <strong style='color:{tx_c}'>{fscore:.1%}</strong>. "
-                     f"Privacidad ({privacidad:.1%}) y retención ({retencion:.1%}) equilibradas.")
         elif fscore >= 0.50:
             bg_c, bd_c, tx_c = COLOR_MED_BG, COLOR_MED_BD, COLOR_MED
             icono, nivel = "⚖️", "ACEPTABLE"
-            texto = (f"F-Score: <strong style='color:{tx_c}'>{fscore:.1%}</strong>. "
-                     f"Privacidad ({privacidad:.1%}) y retención ({retencion:.1%}) razonables.")
         else:
             bg_c, bd_c, tx_c = COLOR_HIGH_BG, COLOR_HIGH_BD, COLOR_HIGH
             icono, nivel = "⚠️", "INSUFICIENTE"
-            texto = (f"F-Score: <strong style='color:{tx_c}'>{fscore:.1%}</strong>. "
-                     f"El balance privacidad ({privacidad:.1%}) / retención ({retencion:.1%}) necesita ajuste.")
+
+        texto = (f"F-Score: <strong style='color:{tx_c}'>{fscore:.1%}</strong> · "
+                 f"Privacidad {privacidad:.1%} · Utilidad ajustada {utilidad:.1%}")
+        detalle = (f"Retención: {retencion:.1%} · "
+                   f"NCP (pérdida por generalización): {ncp:.1%} → "
+                   f"Utilidad = {retencion:.1%} × (1 − {ncp:.1%}) = {utilidad:.1%}")
 
         st.markdown(f"""
         <div style='background:{bg_c};border:1px solid {bd_c};border-radius:6px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;'>
@@ -104,6 +104,7 @@ def render():
                 <div>
                     <strong style='color:{tx_c};font-size:1rem;'>Balance Privacidad / Utilidad: {nivel}</strong>
                     <p style='margin:0.4rem 0 0;color:{COLOR_TEXT};font-size:0.88rem;'>{texto}</p>
+                    <p style='margin:0.3rem 0 0;color:{COLOR_MUTED};font-size:0.80rem;'>{detalle}</p>
                 </div>
             </div>
         </div>
