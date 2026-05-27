@@ -47,7 +47,6 @@ def render():
     registros_orig = len(df) if df is not None else 0
     registros_anon = len(df_anon)
     suprimidos     = registros_orig - registros_anon
-    retencion      = registros_anon / registros_orig if registros_orig > 0 else 0
 
     st.markdown(
         f"<div class='section-header'>Métricas de riesgo · {tecnica} · {registros_anon} registros</div>",
@@ -79,7 +78,6 @@ def render():
         privacidad = m["privacidad"]
         fscore     = m["fscore"]
         utilidad   = m["utilidad"]
-        ncp        = m["ncp"]
 
         if fscore >= 0.80:
             bg_c, bd_c, tx_c = COLOR_LOW_BG, COLOR_LOW_BD, COLOR_LOW
@@ -93,18 +91,19 @@ def render():
 
         texto = (f"F-Score: <strong style='color:{tx_c}'>{fscore:.1%}</strong> · "
                  f"Privacidad {privacidad:.1%} · Utilidad ajustada {utilidad:.1%}")
-        detalle = (f"Retención: {retencion:.1%} · "
-                   f"NCP (pérdida por generalización): {ncp:.1%} → "
-                   f"Utilidad = {retencion:.1%} × (1 − {ncp:.1%}) = {utilidad:.1%}")
 
         st.markdown(f"""
         <div style='background:{bg_c};border:1px solid {bd_c};border-radius:6px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;'>
             <div style='display:flex;align-items:center;gap:1rem;'>
                 <div style='font-size:1.5rem;'>{icono}</div>
-                <div>
+                <div style='flex:1;'>
                     <strong style='color:{tx_c};font-size:1rem;'>Balance Privacidad / Utilidad: {nivel}</strong>
                     <p style='margin:0.4rem 0 0;color:{COLOR_TEXT};font-size:0.88rem;'>{texto}</p>
-                    <p style='margin:0.3rem 0 0;color:{COLOR_MUTED};font-size:0.80rem;'>{detalle}</p>
+                    <p style='margin:0.6rem 0 0;color:{COLOR_MUTED};font-size:0.78rem;border-top:1px solid {bd_c};padding-top:0.5rem;'>
+                        El F-Score combina privacidad y utilidad en un único índice. La privacidad mide la reducción
+                        del riesgo de reidentificación; la utilidad refleja cuánta información se ha conservado
+                        tras generalizar y suprimir registros.
+                    </p>
                 </div>
             </div>
         </div>

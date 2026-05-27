@@ -22,8 +22,9 @@ def _resultado_identico(df_original, df_anon):
 def _mensaje_tecnica(tecnica):
     mensajes = {
         "K-Anonimidad": (
-            "Agrupa registros parecidos para que cada persona quede mezclada con, "
-            "al menos, otras k personas similares."
+            "Garantiza que cada persona sea indistinguible de al menos "
+            "k-1 más: ninguna combinación de atributos identificadores puede apuntar"
+            "a un único individuo"
         ),
         "L-Diversidad": (
             "Ademas de agrupar registros, exige variedad en el dato sensible de cada "
@@ -198,8 +199,12 @@ def render():
                 return
 
             st.session_state["df_anonimizado"] = df_anon
+            st.session_state["df_base"] = df_trabajo
             st.session_state["tecnica_usada"] = tecnica
-            st.session_state["params_anon"] = {"k": k, "l": l, "supp": supp}
+            st.session_state["params_anon"] = {
+                "k": k, "l": l, "supp": supp,
+                "sensibilidad": sensibilidad, "epsilon": epsilon,
+            }
             st.session_state["attrs_anon"] = dict(df_anon.attrs) if df_anon.attrs else {}
             st.session_state["resumen_preprocesado"] = resumen_preprocesado
 
