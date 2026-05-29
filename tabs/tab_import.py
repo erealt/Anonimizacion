@@ -46,6 +46,18 @@ def render():
         st.markdown("<div class='section-header'>Modificar selección de columnas</div>", unsafe_allow_html=True)
         st.caption("Puedes cambiar los cuasi-identificadores, el atributo sensible y los identificadores directos sin recargar el dataset.")
 
+        st.markdown("""
+        <div style='background:#f0f4ff;border:1px solid #c7d2fe;border-left:4px solid #4f46e5;
+                    border-radius:6px;padding:1rem 1.4rem;margin:0.8rem 0 1.2rem;font-size:0.85rem;line-height:1.8;'>
+            <strong style='color:#1a3a6b;'>¿Cómo clasificar las columnas?</strong><br>
+            <span style='color:#374151;'>
+            🔴 <strong>Identificadores directos</strong> — Identifican a la persona por sí solos (nombre, DNI, email). Se seudonimizarán automáticamente antes de anonimizar.<br>
+            🟡 <strong>Cuasi-identificadores (QI)</strong> — Columnas que combinadas pueden revelar la identidad (edad, sexo, código postal). Definen el riesgo de reidentificación.<br>
+            🟢 <strong>Atributo sensible</strong> — El dato privado a proteger (diagnóstico, salario, religión). Es lo que no debe poderse vincular a ningún individuo.
+            </span>
+        </div>
+        """, unsafe_allow_html=True)
+
         col_a, col_b = st.columns(2)
 
         sensible_actual = st.session_state.get("columna_sensible")
@@ -62,6 +74,11 @@ def render():
                 default=default_qi,
                 placeholder="Selecciona una o varias columnas...",
                 key="qi_manual_cargado",
+                help=(
+                    "Atributos que, por sí solos, no identifican a nadie, pero combinados sí podrían hacerlo.\n\n"
+                    "Ejemplos típicos: edad, sexo, código postal, fecha de nacimiento, municipio.\n\n"
+                    "Selecciona todas las columnas que puedan usarse como filtros de búsqueda o cruzarse con fuentes externas (padrón, RRSS, etc.)."
+                ),
             )
 
         opciones_sens = [c for c in todas if c not in qi_seleccionado and c not in ident_actual]
@@ -75,6 +92,11 @@ def render():
                 index=0 if idx_defecto is None else idx_defecto + 1,
                 format_func=lambda x: "Selecciona una columna..." if x is None else x,
                 key="sens_manual_cargado",
+                help=(
+                    "El dato privado que quieres proteger: la información que no debería poder vincularse a ningún individuo concreto.\n\n"
+                    "Ejemplos: diagnóstico médico, salario, filiación política, religión.\n\n"
+                    "Solo se puede elegir una columna. No puede coincidir con ningún QI."
+                ),
             )
 
         opciones_ident = [c for c in todas if c not in qi_seleccionado and c != sensible_seleccionado]
@@ -196,6 +218,18 @@ def render():
     st.markdown("---")
     st.markdown("<div class='section-header'>Selección de columnas</div>", unsafe_allow_html=True)
 
+    st.markdown("""
+    <div style='background:#f0f4ff;border:1px solid #c7d2fe;border-left:4px solid #4f46e5;
+                border-radius:6px;padding:1rem 1.4rem;margin:0.8rem 0 1.2rem;font-size:0.85rem;line-height:1.8;'>
+        <strong style='color:#1a3a6b;'>¿Cómo clasificar las columnas?</strong><br>
+        <span style='color:#374151;'>
+        🔴 <strong>Identificadores directos</strong> — Identifican a la persona por sí solos (nombre, DNI, email). Se seudonimizarán automáticamente antes de anonimizar.<br>
+        🟡 <strong>Cuasi-identificadores (QI)</strong> — Columnas que combinadas pueden revelar la identidad (edad, sexo, código postal). Definen el riesgo de reidentificación.<br>
+        🟢 <strong>Atributo sensible</strong> — El dato privado a proteger (diagnóstico, salario, religión). Es lo que no debe poderse vincular a ningún individuo.
+        </span>
+    </div>
+    """, unsafe_allow_html=True)
+
     col_a, col_b = st.columns(2)
 
     sensible_actual = st.session_state.get("columna_sensible")
@@ -212,6 +246,11 @@ def render():
             default=default_qi,
             placeholder="Selecciona una o varias columnas...",
             key="qi_manual",
+            help=(
+                "Atributos que, por sí solos, no identifican a nadie, pero combinados sí podrían hacerlo.\n\n"
+                "Ejemplos típicos: edad, sexo, código postal, fecha de nacimiento, municipio.\n\n"
+                "Selecciona todas las columnas que puedan usarse como filtros de búsqueda o cruzarse con fuentes externas (padrón, RRSS, etc.)."
+            ),
         )
 
     opciones_sens = [c for c in todas if c not in qi_seleccionado and c not in ident_actual]
@@ -225,6 +264,11 @@ def render():
             index=0 if idx_defecto is None else idx_defecto + 1,
             format_func=lambda x: "Selecciona una columna..." if x is None else x,
             key="sens_manual",
+            help=(
+                "El dato privado que quieres proteger: la información que no debería poder vincularse a ningún individuo concreto.\n\n"
+                "Ejemplos: diagnóstico médico, salario, filiación política, religión.\n\n"
+                "Solo se puede elegir una columna. No puede coincidir con ningún QI."
+            ),
         )
 
     opciones_ident = [c for c in todas if c not in qi_seleccionado and c != sensible_seleccionado]
