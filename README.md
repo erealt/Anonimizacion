@@ -1,4 +1,4 @@
-# Anonimizacion de Microdatos
+# Anonimizacion 
 
 > Trabajo de Fin de Grado · Grado en Ingenieria Informatica  
 > Aplicacion web para la anonimización de microdatos bajo los principios de **Privacy by Design**
@@ -66,6 +66,8 @@ La descarga se bloquea automaticamente cuando el resultado coincide con el datas
 
 ## Instalacion
 
+### Opcion A — Ejecucion local
+
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/erealt/Anonimizacion.git
@@ -82,12 +84,32 @@ source .venv/bin/activate      # Linux / macOS
 pip install -r requirements.txt
 ```
 
+### Opcion B — Docker Compose
+
+```bash
+# Construir la imagen y arrancar el contenedor
+docker compose up --build
+
+# Siguientes veces (sin reconstruir)
+docker compose up
+
+# En segundo plano
+docker compose up -d
+
+# Parar
+docker compose down
+```
+
 ---
 
 ## Ejecucion
 
 ```bash
+# Local
 streamlit run app.py
+
+# Docker (ver seccion anterior)
+docker compose up
 ```
 
 La aplicacion queda disponible, por defecto, en `http://localhost:8501`.
@@ -112,6 +134,12 @@ anonimizacion/
 ├── app.py
 ├── README.md
 ├── requirements.txt
+├── runtime.txt
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
+├── .streamlit/
+│   └── config.toml
 ├── tabs/
 │   ├── tab_import.py
 │   ├── tab_original.py
@@ -126,8 +154,6 @@ anonimizacion/
 │   └── styles.py
 └── tests/
     ├── conftest.py
-    ├── test_anonimizacion.py
-    ├── test_edge_cases.py
     └── test_integracion.py
 ```
 
@@ -150,29 +176,31 @@ anonimizacion/
 
 | Libreria | Version minima | Uso |
 |---|---|---|
-| `streamlit` | 1.32.0 | Interfaz web |
-| `pandas` | 2.0.0 | Procesamiento tabular |
-| `numpy` | 1.26.0 | Operaciones numericas |
-| `matplotlib` | 3.8.0 | Visualizacion de metricas |
-| `openpyxl` | 3.0.0 | Lectura y exportacion Excel |
-| `pyarrow` | 10.0.0 | Soporte de serializacion tabular |
+| `streamlit` | 1.35.0 | Interfaz web |
+| `pandas` | 2.2.2 | Procesamiento tabular |
+| `numpy` | 2.0.2 | Operaciones numericas |
+| `matplotlib` | 3.9.0 | Visualizacion de metricas |
+| `openpyxl` | 3.1.0 | Lectura y exportacion Excel |
+| `pyarrow` | 14.0.0 | Soporte de serializacion tabular |
 | `pycanon` | 1.0.0 | Verificacion formal de privacidad |
 | `anjana` | 1.1.0 | Algoritmos de K-Anonimidad y L-Diversidad |
 | `diffprivlib` | 0.6.0 | Privacidad Diferencial |
-| `scikit-learn` | 1.3.0 | Dependencia complementaria del ecosistema analitico |
-| `beartype` | 0.19.0 | Validacion tipada en librerias de terceros |
+| `scikit-learn` | 1.5.0 | Dependencia complementaria del ecosistema analitico |
+| `scipy` | 1.11.0 | Calculos estadisticos auxiliares |
 
 ---
 
 ## Pruebas y calidad del software
 
-El proyecto incorpora una suite de **58 pruebas automatizadas** implementadas con `pytest`, organizada en tres niveles:
+El proyecto incorpora una suite de pruebas automatizadas implementadas con `pytest`, organizada en los siguientes bloques dentro de `tests/test_integracion.py`:
 
-- **Pruebas unitarias** sobre la logica interna del motor y sus funciones auxiliares.
-- **Pruebas de robustez** sobre casos limite, datos vacios, nulos o configuraciones extremas.
-- **Pruebas de integracion** del pipeline completo, incluyendo verificaciones externas con `pycanon`.
+- **Pipeline completo** (`TestPipelineCompleto`): valida que las tres tecnicas devuelven un DataFrame valido, con las columnas originales y sin superar el numero de registros de entrada.
+- **Verificacion formal con pycanon** (`TestIntegracionDatasetGrande`): comprueba que los valores reales de `k` y `l` obtenidos por `pycanon` son iguales o superiores a los solicitados.
+- **Preprocesado de identificadores** (`TestPreprocesadoIdentificadores`): verifica que la seudonimizacion transforma los identificadores directos, conserva la estructura y gestiona correctamente los nulos.
 
-Esta estrategia permite validar tanto la correccion funcional como la seguridad operativa del sistema bajo el principio de **privacidad por diseño**.
+```bash
+pytest tests/
+```
 
 ---
 
