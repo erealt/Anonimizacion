@@ -51,9 +51,9 @@ def render():
                     border-radius:6px;padding:1rem 1.4rem;margin:0.8rem 0 1.2rem;font-size:0.85rem;line-height:1.8;'>
             <strong style='color:#1a3a6b;'>¿Cómo clasificar las columnas?</strong><br>
             <span style='color:#374151;'>
-            🔴 <strong>Identificadores directos</strong> — Identifican a la persona por sí solos (nombre, DNI, email). Se seudonimizarán automáticamente antes de anonimizar.<br>
-            🟡 <strong>Cuasi-identificadores (QI)</strong> — Columnas que combinadas pueden revelar la identidad (edad, sexo, código postal). Definen el riesgo de reidentificación.<br>
-            🟢 <strong>Atributo sensible</strong> — El dato privado a proteger (diagnóstico, salario, religión). Es lo que no debe poderse vincular a ningún individuo.
+             <strong>Identificadores directos</strong> — Identifican a la persona por sí solos (nombre, DNI, email). Se seudonimizarán automáticamente antes de anonimizar.<br>
+             <strong>Cuasi-identificadores (QI)</strong> — Columnas que combinadas pueden revelar la identidad (edad, sexo, código postal). Definen el riesgo de reidentificación.<br>
+             <strong>Atributo sensible</strong> — El dato privado a proteger (diagnóstico, salario, religión). Es lo que no debe poderse vincular a ningún individuo.
             </span>
         </div>
         """, unsafe_allow_html=True)
@@ -130,7 +130,10 @@ def render():
             if st.button("📂 Cargar un fichero diferente", use_container_width=True):
                 for key in ["df", "fuente", "metodo", "hash_archivos",
                             "nuniques", "columnas_qi", "columna_sensible", "columnas_identificadoras",
-                            "df_anonimizado", "tecnica_usada"]:
+                            "df_anonimizado", "tecnica_usada",
+                            "_param_tecnica", "_param_k_kanom", "_param_supp_kanom",
+                            "_param_k_ldiv", "_param_l_ldiv", "_param_supp_ldiv",
+                            "_param_epsilon", "_param_sensibilidad"]:
                     st.session_state.pop(key, None)
                 st.session_state["abrir_dialogo"] = True
                 st.rerun()
@@ -186,6 +189,10 @@ def render():
             st.error(f"❌ {error}")
             return
 
+        for key in ["_param_tecnica", "_param_k_kanom", "_param_supp_kanom",
+                    "_param_k_ldiv", "_param_l_ldiv", "_param_supp_ldiv",
+                    "_param_epsilon", "_param_sensibilidad", "df_anonimizado", "tecnica_usada"]:
+            st.session_state.pop(key, None)
         st.session_state.update({
             "df":            df_cargado,
             "fuente":        etiqueta_fuente,
@@ -223,9 +230,9 @@ def render():
                 border-radius:6px;padding:1rem 1.4rem;margin:0.8rem 0 1.2rem;font-size:0.85rem;line-height:1.8;'>
         <strong style='color:#1a3a6b;'>¿Cómo clasificar las columnas?</strong><br>
         <span style='color:#374151;'>
-        🔴 <strong>Identificadores directos</strong> — Identifican a la persona por sí solos (nombre, DNI, email). Se seudonimizarán automáticamente antes de anonimizar.<br>
-        🟡 <strong>Cuasi-identificadores (QI)</strong> — Columnas que combinadas pueden revelar la identidad (edad, sexo, código postal). Definen el riesgo de reidentificación.<br>
-        🟢 <strong>Atributo sensible</strong> — El dato privado a proteger (diagnóstico, salario, religión). Es lo que no debe poderse vincular a ningún individuo.
+         <strong>Identificadores directos</strong> — Identifican a la persona por sí solos (nombre, DNI, email). Se seudonimizarán automáticamente antes de anonimizar.<br>
+         <strong>Cuasi-identificadores (QI)</strong> — Columnas que combinadas pueden revelar la identidad (edad, sexo, código postal). Definen el riesgo de reidentificación.<br>
+         <strong>Atributo sensible</strong> — El dato privado a proteger (diagnóstico, salario, religión). Es lo que no debe poderse vincular a ningún individuo.
         </span>
     </div>
     """, unsafe_allow_html=True)

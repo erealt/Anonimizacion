@@ -52,11 +52,15 @@ def render():
 
     with col_controles:
         st.markdown("<div class='section-header'>Tecnica de anonimizacion</div>", unsafe_allow_html=True)
+        _tecnicas = ["K-Anonimidad", "L-Diversidad", "Privacidad Diferencial"]
         tecnica = st.radio(
             "",
-            ["K-Anonimidad", "L-Diversidad", "Privacidad Diferencial"],
+            _tecnicas,
+            index=_tecnicas.index(st.session_state.get("_param_tecnica", "K-Anonimidad")),
             label_visibility="collapsed",
+            key="anon_tecnica",
         )
+        st.session_state["_param_tecnica"] = tecnica
         st.caption(_mensaje_tecnica(tecnica))
         st.markdown("---")
 
@@ -73,80 +77,94 @@ def render():
                 "Valor de k",
                 2,
                 20,
-                3,
+                st.session_state.get("_param_k_kanom", 3),
+                key="anon_k_kanom",
                 help=(
                     "Numero minimo de registros parecidos que debe haber en cada grupo. "
                     "Cuanto mayor sea k, mayor privacidad, pero tambien menor detalle."
                 ),
             )
+            st.session_state["_param_k_kanom"] = k
             supp = st.slider(
                 "Supresion maxima (%)",
                 5,
                 80,
-                30,
+                st.session_state.get("_param_supp_kanom", 30),
                 step=5,
+                key="anon_supp_kanom",
                 help=(
                     "Porcentaje maximo de filas que el sistema puede eliminar si es "
                     "necesario para proteger la privacidad."
                 ),
             )
+            st.session_state["_param_supp_kanom"] = supp
             l, epsilon, sensibilidad = 2, 1.0, 1.0
         elif tecnica == "L-Diversidad":
             k = st.slider(
                 "Valor de k",
                 2,
                 20,
-                3,
+                st.session_state.get("_param_k_ldiv", 3),
+                key="anon_k_ldiv",
                 help=(
                     "Tamano minimo de cada grupo de registros parecidos. "
                     "Es la base sobre la que despues se aplica la diversidad."
                 ),
             )
+            st.session_state["_param_k_ldiv"] = k
             l = st.slider(
                 "Valor de l",
                 2,
                 10,
-                2,
+                st.session_state.get("_param_l_ldiv", 2),
+                key="anon_l_ldiv",
                 help=(
                     "Numero minimo de valores sensibles distintos que debe haber dentro "
                     "de cada grupo."
                 ),
             )
+            st.session_state["_param_l_ldiv"] = l
             supp = st.slider(
                 "Supresion maxima (%)",
                 5,
                 80,
-                30,
+                st.session_state.get("_param_supp_ldiv", 30),
                 step=5,
+                key="anon_supp_ldiv",
                 help=(
                     "Porcentaje maximo de filas que el sistema puede eliminar para "
                     "alcanzar el nivel de privacidad solicitado."
                 ),
             )
+            st.session_state["_param_supp_ldiv"] = supp
             epsilon, sensibilidad = 1.0, 1.0
         else:
             epsilon = st.slider(
                 "Epsilon",
                 0.01,
                 5.0,
-                1.0,
+                st.session_state.get("_param_epsilon", 1.0),
                 step=0.01,
+                key="anon_epsilon",
                 help=(
                     "Controla cuanto ruido se anade. Un valor menor da mas privacidad, "
                     "pero tambien menos precision."
                 ),
             )
+            st.session_state["_param_epsilon"] = epsilon
             sensibilidad = st.slider(
                 "Sensibilidad",
                 0.1,
                 10.0,
-                1.0,
+                st.session_state.get("_param_sensibilidad", 1.0),
                 step=0.1,
+                key="anon_sensibilidad",
                 help=(
                     "Indica cuanto puede influir un solo registro en el resultado. "
                     "A mayor sensibilidad, mas ruido se necesita."
                 ),
             )
+            st.session_state["_param_sensibilidad"] = sensibilidad
             k, l, supp = 3, 2, 30
 
         st.markdown("---")
