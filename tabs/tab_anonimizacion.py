@@ -199,7 +199,6 @@ def render():
                 return
 
             st.session_state["df_anonimizado"] = df_anon
-            st.session_state["df_base"] = df_trabajo
             st.session_state["tecnica_usada"] = tecnica
             st.session_state["params_anon"] = {
                 "k": k, "l": l, "supp": supp,
