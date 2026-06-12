@@ -1,6 +1,6 @@
 streamlit==1.35.0
 pandas==2.2.2
-numpy==1.26.4
+numpy==2.0.2
 matplotlib==3.9.0
 openpyxl==3.1.5
 pyarrow==18.1.0
@@ -8,4 +8,4 @@ pycanon>=1.0.0
 anjana==1.1.0
 diffprivlib==0.6.6
 scikit-learn==1.5.2
-scipy==1.11.4
+scipy>=1.13.0
