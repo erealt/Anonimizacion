@@ -19,7 +19,7 @@ La arquitectura de la aplicacion es **in-memory y stateless**: los datos se proc
 |---|---|---|---|
 | **K-Anonimidad** | `k`, `supp_level` | `anjana` | Cada registro queda oculto dentro de un grupo de equivalencia de tamano al menos `k` |
 | **L-Diversidad** | `k`, `l`, `supp_level` | `anjana` | Cada grupo equivalente contiene al menos `l` valores sensibles distintos |
-| **Privacidad Diferencial** | `epsilon`, `sensibilidad` | `diffprivlib` | Se inyecta ruido Laplaciano calibrado sobre atributos numericos |
+| **Privacidad Diferencial** | `epsilon`, `sensibilidad` | `Laplace` | Se inyecta ruido Laplaciano calibrado sobre atributos numericos |
 
 Adicionalmente, el sistema genera metadatos tecnicos sobre la transformacion aplicada, el numero de filas suprimidas y el presupuesto de privacidad consumido.
 
@@ -32,7 +32,6 @@ La aplicacion incorpora una capa de analitica posterior a la anonimización para
 | Bloque | Metricas principales |
 |---|---|
 | **Riesgo de reidentificacion** | Riesgo fiscal, riesgo periodistico, tasa de unicidad, valor real de `k` |
-| **Verificacion formal** | `k-anonymity` y `l-diversity` mediante `pycanon` |
 | **Privacidad diferencial** | `epsilon`, numero de columnas perturbadas |
 | **Utilidad** | Retencion de registros y comparativa visual entre dataset original y anonimizado |
 
@@ -178,9 +177,7 @@ anonimizacion/
 | `matplotlib` | 3.9.0 | Visualizacion de metricas |
 | `openpyxl` | 3.1.0 | Lectura y exportacion Excel |
 | `pyarrow` | 14.0.0 | Soporte de serializacion tabular |
-| `pycanon` | 1.0.0 | Verificacion formal de privacidad |
 | `anjana` | 1.1.0 | Algoritmos de K-Anonimidad y L-Diversidad |
-| `diffprivlib` | 0.6.0 | Privacidad Diferencial |
 | `scikit-learn` | 1.5.0 | Dependencia complementaria del ecosistema analitico |
 | `scipy` | 1.11.0 | Calculos estadisticos auxiliares |
 
