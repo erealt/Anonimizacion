@@ -5,8 +5,6 @@ from hashlib import sha256
 from anjana.anonymity import k_anonymity as _anjana_k_anon
 from anjana.anonymity import l_diversity as _anjana_l_div
 from anjana.anonymity.utils.utils import get_transformation as _anjana_get_transformation
-from diffprivlib.accountant import BudgetAccountant
-from diffprivlib.mechanisms import Laplace as LaplaceMechanism
 
 
 def _crear_intervalos(valores, v_min, v_max, step):
@@ -164,7 +162,7 @@ def l_diversidad(df, qi_cols, col_sensible, k, l, supp_level=30):
 
 def privacidad_diferencial(df, epsilon, sensibilidad):
     """
-    Privacidad Diferencial usando diffprivlib (IBM).
+    Privacidad Diferencial con mecanismo de Laplace (numpy puro).
 
     Aplica el mecanismo de Laplace a cada columna numerica
     """
@@ -172,20 +170,20 @@ def privacidad_diferencial(df, epsilon, sensibilidad):
     columnas_num = df.select_dtypes(include=[np.number]).columns.tolist()
 
     epsilon_por_col = epsilon / len(columnas_num) if columnas_num else epsilon
-    accountant = BudgetAccountant(epsilon=epsilon, delta=0)
+    escala = sensibilidad / epsilon_por_col
 
     for col in columnas_num:
-        mech = LaplaceMechanism(
-            epsilon=epsilon_por_col,
-            sensitivity=sensibilidad,
-        )
-        anon[col] = anon[col].apply(
-            lambda x: mech.randomise(x) if pd.notna(x) else x
-        )
-        accountant.spend(epsilon_por_col, 0)
+        es_entero = pd.api.types.is_integer_dtype(df[col])
+        mascara = anon[col].notna()
+        ruido = np.random.laplace(loc=0, scale=escala, size=mascara.sum())
+        valores = anon[col].copy()
+        valores[mascara] = valores[mascara] + ruido
+        if es_entero:
+            valores[mascara] = valores[mascara].round().astype(df[col].dtype)
+        anon[col] = valores
 
     anon.attrs["epsilon_total"] = epsilon
-    anon.attrs["epsilon_gastado"] = sum(e for e, _ in accountant.spent_budget)
+    anon.attrs["epsilon_gastado"] = epsilon
     anon.attrs["epsilon_por_columna"] = epsilon_por_col
     anon.attrs["n_columnas_ruido"] = len(columnas_num)
 
