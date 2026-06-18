@@ -1,5 +1,6 @@
 import streamlit as st
 
+from utils.footer import render_footer
 from utils.styles import CSS
 from tabs import tab_import, tab_original, tab_anonimizacion, tab_metricas, tab_comparativa
 
@@ -134,3 +135,5 @@ elif pagina == 3:
 
 elif pagina == 4:
     tab_comparativa.render()
+
+render_footer()
